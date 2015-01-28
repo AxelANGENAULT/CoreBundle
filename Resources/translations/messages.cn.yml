@@ -1,0 +1,388 @@
+About me: 关于我
+Account: 账户
+Action: 动作
+Add connection: 添加连接
+Add filter: 添加过滤
+Add repository: 添加目录
+Add site on Company: 在公司添加站点
+Add Site: 添加站点
+Add spooler: 添加后台处理程序
+Add Team: 添加团队
+Add User: 添加用户
+Add: 添加
+Admin Map: 管理图
+Administration: 管理
+Advanced Search: 高级搜索
+All: 全部
+Allowed Host: 授权主机
+arii_JID_history: 监控
+Attach Filter on Team: 在组上添加过滤器
+Audit: 审查
+Authentication: 验证
+Available: 可用
+Backup server: 备份服务器
+Base de données: 数据库
+Batch Installer: 批处理安装
+Category: 类别
+Change command: 更改命令
+Change password: 更改密码
+Check for update: 检查更新
+cluster_options: 集群选项
+Commercial: 商业
+connection.category.note: 指明此连接的类别。
+connection.description.note: 请给出一个此链接的简短描述。
+connection.host.note: 指明此连接的主机名。
+connection.message.delete: 您确定要删除此连接吗？
+connection.message.save: 连接已保存。
+connection.title.note: 请给此连接一个标题。
+Connection: 连接
+Connections: 连接
+Connector: 连接器
+Country code: 国家代码
+Country Code: 国家代码
+Country: 国家
+Cron adapter: CRON 连接器
+Cron adapter: CRON 连接器
+Cron System: Cron 系统
+Custom: 客户
+custom_filter: 客户过滤器
+dashboard.Admin: 管理
+dashboard.Cloud: 云
+dashboard.Event: 事件管理器
+dashboard.GVZ: 制图
+dashboard.Home: 首页
+dashboard.JID: 仪表盘
+dashboard.JOC: 操作监控
+dashboard.JOE: 作业设计
+dashboard.MFT: 文件传输
+dashboard.Simile: Simile
+dashboard.Time: 规划计算
+Data: 数据
+Database Connection: 数据库连接
+database: 数据库
+Database: 数据库
+date.reference: 引用
+day.d: 天
+DBDRIVER.CHANGE: 在参数文件中指定的数据库驱动不被Arii支持。
+DBDRIVER.ERROR: 未知的驱动程序
+Delete Connection: 删除链接
+Delete Filter: 删除过滤器
+Delete package: 删除包
+Delete Repository: 删除目录
+Delete right: 删除权限
+Delete site: 删除站
+Delete spooler: 删除后台处理程序
+Delete team: 删除团队
+Delete Team: 删除团队
+Delete User: 删除用户
+Delete user: 删除用户
+Delete: 删除
+Description: 描述
+Do you really want to delete this connection ?: 您确定要删除此连接吗？
+Do you really want to delete this filter ?: 您确定要删除此过滤器吗？
+Do you really want to delete this queue ?: 您确定要删除此队列吗？
+Do you really want to delete this queue ?: 您确定要删除此队列吗？
+Do you really want to delete this team ?: 您确定要删除此团队吗？
+Do you really want to delete this user ?: 您确定要删除此用户吗？
+dow.Friday: 周五
+dow.Monday: 周一
+dow.Saturday: 周六
+dow.Sunday: 周日
+dow.Thursday: 周四
+dow.Tuesday: 周二
+dow.Wednesday: 周三
+Driver: 驱动
+Edit connection: 编辑连接
+Edit Filter: 编辑过滤器
+Edit repository: 编辑目录
+Edit right: 编辑权限
+Edit rights: 编辑权限
+Edit site: 编辑站点
+Edit spooler: 编辑后台处理程序
+Edit team: 编辑组
+Edit user: 编辑用户
+Edit: 编辑
+EM: EM
+Email: 邮件
+enterprise.note: 为用户选择公司
+Enterprise: 公司
+events: 事件
+File Transfer: 文件传输
+Filter Management: 过滤器管理
+filter.description.note: 给出一个过滤器的简短描述
+filter.name.note: 指明过滤器的名称。
+filter.status.note: 为这个过滤器指明状态。
+filter.title.note: 请为过滤器指明标题。
+Filter: 过滤
+Filters: 过滤
+First Name: 名字
+firstname.note: 在这里输入名字
+Free text: 空文本
+From: 从
+General: 概括
+Global administration: 全局管理
+GPL: GPL
+h: h
+history: 历史
+Host: 主机
+HOST: 主机
+hour: 时
+Id: 标识
+Informations: 信息
+Install path: 安装目录
+Installation: 安装
+install_date: 安装日期
+install_path: 安装路径
+IP Adress: IP 地址
+IP: IP
+JDBC driver: JDBC 驱动器
+Jetty Http Connection: Jetty Http 连接
+Job chain: 作业链
+Job Chain: 作业链
+Job events: 作业事件
+Job information: 信息
+job.note: 指明像这样的作业。
+Job: 作业
+job: 作业
+jobchain.note: 指明像这样的作业链。
+jobchain: 作业链
+JOBS.STOPPED: 作业在状态 STOPPED
+JOBS.TO_UNSTOP: 这些作业不会开展由于Unstop没有被执行
+Jobs: 作业
+Last Login: 上次登录
+Last name: 姓
+lastname.note: 在这里输入姓
+Latitude: 纬度
+licence: 许可
+Licence: 许可
+List: 索引
+Load balancing: 负载均衡
+Location: 位置
+Log Time: 日志事件
+Longitude: 经度
+Mail Bcc: 密件抄送
+Mail Cc: 抄送
+Mail Connection: 邮件连接
+Mail from: 发件人
+Mail on Error: 邮件错误
+Mail on Success: 邮件成功
+Mail on Warning: 邮件警告
+Mail Server: 邮件服务器
+Mail to: 收件人
+Mail: 邮件
+Main menu: 主菜单
+Management: 管理
+Map: 映射
+Menu: 菜单
+minute: 分
+minutes: 分
+module.Admin: 管理
+module.Cloud: 云
+module.Event: 事件
+module.GVZ: 制图
+module.Home: 首页
+module.JID: 监控
+module.JOC: 操作
+module.JOE: 设计
+module.MFT: 传输
+module.Simile: Simile
+module.Time: 规划
+Module: 模块
+Modules: 模块
+Modules: 模块
+My account: 我的账户
+My.account: 我的账户
+Name: 名称
+Need Help ?: 需要帮助？
+Network:  网络
+Never: 从不
+New connection: 新建连接
+New package: 新建包
+New password: 新建密码
+New repository: 新建目录
+New right: 新建权限
+New Site: 新建站点
+New site: 新建站点
+New spooler: 新建后台管理程序
+New: 新建
+Next day: 后一天
+Next day: 后一天
+No database: 无数据库
+No: 否
+Notifications: 通知
+on this team ?: 在此组中？
+Operating System: 操作系统
+Order ID: 序列指令 ID
+order.note: 指明像这样的序列指令。
+order: 序列指令
+Organisation: 组织
+os_target: 操作系统目标
+Package: 包装
+Packages: 包
+Password: 密码
+Path: 路径
+PDF: PDF
+planned: 计划的
+Port: 端口
+Previous day: 前一天
+Primary server: 主服务器
+Quick info: 消息
+R: R
+Record deleted: 记录删除
+Record updated: 记录更新
+Reference date: 引用日期
+Refresh: 刷新
+Refreshing: 刷新中
+Remove Filter: 删除过滤器
+Repositories: 目录
+repository.db.note: 请指明此目录的数据库。
+repository.db.tooltip: 请指明此目录的数据库
+repository.description.note: 请描述此目录
+repository.description.tooltip: 请描述此目录
+repository.description: 
+repository.message.delete: 您确定要删除此目录吗？
+repository.message.save: 目录已保存
+repository.name.note: 请给出目录名称
+repository.name.tooltip: 请给出目录名称
+repository.timezone.note: 请选择此目录的时区。
+repository.timezone.tooltip: 请选择此目录的时区
+Repository: 目录
+role.note: 在这里选择用户的角色。
+Roles: 角色
+ROLE_ADMIN: 角色管理员
+ROLE_DEVELOPER: 角色开发者
+ROLE_OPERATOR: 角色操作者
+ROLE_USER: 角色用户
+Save changes: 保存更改
+Save new password: 保存新密码
+Save: 保存
+Saved: 以保存
+scheduler_id: 后台处理程序 id
+Schema: 模式
+seconds: 秒
+Security: 安全
+Server installation: 服务器安装
+Servers management: 服务器管理
+Servers: 服务器
+Session: 会话
+Settings: 设置
+Shortlinks: 快捷连接
+short_dow.1: 星期一
+short_dow.1: 星期一
+short_dow.2: 星期二
+short_dow.2: 星期二
+short_dow.3: 星期三
+short_dow.3: 星期三
+short_dow.4: 星期四
+short_dow.4: 星期四
+short_dow.5: 星期五
+short_dow.5: 星期五
+short_dow.6: 星期六
+short_dow.6: 星期六
+short_dow.7: 星期日
+short_dow.7: 星期日
+Site Name: 站点名称
+site.country_code.note: 国家代码
+site.description.note: 请输入此站点的描述。
+site.description.tooltip: 请输入此站点的描述
+site.latitude.note: 纬度
+site.longitude.note: 经度
+site.message.delete: 您确定要删除此站点吗？
+site.message.save: 站点已保存
+site.name.note: 请给出站点
+site.name.tooltip: 请给出一个站点名称。
+site.timezone.note: 请为此站点选择时区。
+site.timezone.tooltip: 请为此站点选择时区
+Site: 站点
+Site: 站
+Sites: 站点
+Spooler Name: 后台处理程序名称
+Spooler name: 处理程序名称
+Spooler Saved: 后台处理程序已保存
+spooler.all: 全部
+spooler.connection.note: 请指明后台处理程序的入口连接。
+spooler.connection.tooltip: 请指明后台处理程序的入口连接。
+spooler.connection: 
+spooler.database.note: 请为后台处理程序指明一个数据库
+spooler.event.note: 检查此后台处理程序是不是一个事件管理器
+spooler.events.note: 检查此后台处理程序是不是一个事件管理器
+spooler.mail.note: 请问后台处理程序指明邮件服务器。
+spooler.message.delete: 您确定要删除此连接吗？
+spooler.name.note: 请为后台处理程序输入一个名称
+spooler.note: 指明像这样的后台管理程序。
+spooler.site.note: 请为后台处理程序指明一个站点。
+spooler.supervisor.note: 请选择一个后台处理程序的监视。
+spooler.transfer.note: 请指明后台处理程序文件传输的一个连接。
+spooler.version.note: 指明后台处理程序的版本。
+spooler: 后台处理程序
+Spooler: 后台处理程序
+Spoolers: 后台处理程序
+Standalone server: 单机服务器
+Start day: 开始日期
+Start time: 开始时间
+Status: 状态
+status_date: 状态日期
+str_month.10: 十月
+str_month.11: 十一月
+str_month.12: 十二月
+str_month.1: 一月
+str_month.2: 二月
+str_month.3: 三月
+str_month.4: 四月
+str_month.5: 五月
+str_month.6: 六月
+str_month.7: 七月
+str_month.8: 八月
+str_month.9: 九月
+Supervisor: 监视
+Team Management: 组管理
+Team Name: 组名
+team.description.note: 请给出一个简短的团队描述。
+team.description.note: 输入这个组的描述。
+team.message.delete: 您确定要删除这个团队吗？
+team.message.save: 团队以保存
+team.name.note: 输入组名，此区域不能为空。
+team.note: 为新用户选择一个组
+team.title.note: 请给此团队一个标题
+Team: 组
+Time Zone: 时区
+Timeout (s): 超时时间
+Timezone: 时区
+Title: 标题
+To do list: 要做的列表
+To: 到
+to: 到
+Today: 今天
+Tomorrow: 明天
+Traitements: 作业
+Type: 类型
+Type: 类型
+Update: 更新
+User change: 用户更改
+User change: 用户更改
+User Management: 用户管理
+User Name: 用户名
+User path: 用户目录
+user.mail.note: 请在这里输入您的有效Email地址。此区域不能为空。
+user.mail.note: 请在这里输入您的有效Email地址，此区域不能为空。
+user.mail.tooltip: 请在这里输入您的有效Email地址。
+user.mail.tooltipe: 请在这里输入您的有效Email地址。
+user.message.delete: 您确定要删除此用户吗？
+user.message.save: 用户已保存
+user.name.note: 在这里输入您的登录用户名，用户名不能为空。
+user.name.tooltip: 在这里输入您的登录用户名。
+User: 用户
+User: 用户
+Username: 用户名
+Users management: 用户管理
+Users: 用户
+user_path: 用户路径
+Value: 值
+Version: 版本
+version: 版本
+W: W
+X: X
+XLS: XLS
+XML Export: XML 导出
+Yes: 时
+Yesterday: 昨天

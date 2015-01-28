@@ -1,0 +1,259 @@
+About me: About me
+Account: Account
+Add filter: Add filter
+Admin Map: Admin Map
+Administration: Administration
+Advanced Search: Advanced Search
+All: All
+Allowed Host: Allowed Host
+arii_JID_history: Monitoring
+Authentication: Authentication
+Available: Available
+Backup server: Backup server
+Base de données: Base de données
+Batch Installer: Batch Installer
+Change command: Change command
+Change password: Change password
+Check for update: Check for update
+Commercial: Commercial
+connection.category.note:    Specify the category of this connection
+connection.description.note:    Please give a short description of this connection
+connection.host.note:    Specify the host name of this connection
+connection.message.delete:  Do you really want to delete this connection ?
+connection.message.save:    Connection saved.
+connection.title.note:    Please give a title to this connection
+Connector: Connector
+Cron adapter: Cron adapter
+Cron System: Cron System
+Custom: Custom
+custom_filter: custom_filter
+dashboard.Admin: Administration
+dashboard.Event: Event manager
+dashboard.GVZ: Job Map
+dashboard.Home: Home
+dashboard.JID: Dashboard
+dashboard.JOC: Monitoring
+dashboard.JOE: Job Editor
+dashboard.MFT: File transfers
+dashboard.Simile: Simile
+dashboard.Time: Time calculation
+Database: Database
+database: database
+date.reference: date.reference
+day.d: day.d
+DBDRIVER.CHANGE: Database driver indicated in permeter file cannot be used with Arii.
+DBDRIVER.ERROR: Unknown driver
+Delete package: Delete package
+Delete: Delete
+Description: Description
+Do you really want to delete this queue ?: Do you really want to delete this queue ?
+dow.Friday: dow.Friday
+dow.Monday: dow.Monday
+dow.Saturday: dow.Saturday
+dow.Sunday: dow.Sunday
+dow.Thursday: dow.Thursday
+dow.Tuesday: dow.Tuesday
+dow.Wednesday: dow.Wednesday
+Driver: Driver
+Edit: Edit
+Events: Events
+Filter management: Filter management
+Filter: Filter
+Filters: Filters
+First name: First name
+Free text: Free text
+From: From
+General: General
+Generate file: Generate file
+Global administration: Global administration
+GPL: GPL
+h: h
+history.list: List
+history.pie: Graphs
+history.timeline: Timeline
+history:  History
+Host: Host
+hour: hour
+Id: Id
+Informations: Informations
+Install path: Install path
+Installation: Installation
+JDBC driver: JDBC driver
+Job chain: Job chain
+Job events: Job events
+Job information: Job information
+Job information: Job information
+Job: Job
+job: job
+jobchain: jobchain
+JOBS.STOPPED:  Jobs STOPPED
+JOBS.STOPPED: Jobs STOPPED
+JOBS.TO_UNSTOP: These jobs are blocked, an UNSTOP command has to be done.
+JOBS.TO_UNSTOP: These jobs are blocked, an UNSTOP command has to be done.
+Jobs: Jobs
+Jobs: Jobs
+Last name: Last name
+Licence: Licence
+List: List
+Load balancing: Load balancing
+Mail Bcc: Mail Bcc
+Mail Cc: Mail Cc
+Mail from: Mail from
+Mail on Error: Mail on Error
+Mail on Success: Mail on Success
+Mail on Warning: Mail on Warning
+Mail Server: Mail Server
+Mail to: Mail to
+Main menu: Main menu
+Menu: Menu
+minute: minute
+minutes: minutes
+module.Admin: Administration
+module.BPM: Process Monitoring
+module.Config: Installation
+module.Event: Event manager
+module.GVZ: Job Map
+module.Home: Home
+module.JID: Monitoring
+module.JOC: Job operations
+module.JOE: Job editor
+module.MFT: File transfers
+module.Report: Report
+module.Simile: Simile
+module.Time: Timecode
+Monitoring: Monitoring
+Modules: Modules
+My account: My account
+My.account: My account
+Name: Name
+Need Help ?: Need Help ?
+Network: Network
+Never: Never
+New package: New package
+New password: New password
+Next day: Next day
+No database: No database
+No: No
+Notifications: Notifications
+Operating System: Operating System
+order: order
+Order: Order
+Package: Package
+Packages: Packages
+Password: Password
+Path: Path
+planned: Planned
+planned: Planned
+Port: Port
+Previous day: Previous day
+Primary server: Primary server
+Record deleted: Record deleted
+Record updated: Record updated
+Reference date: Reference date
+Refresh: Refresh
+repository.db.note:    Please specify a database for this repository
+repository.db.tooltip: Please specify a database for this repository
+repository.description.note:    Please type in the description for this repository
+repository.description.tooltip: Please type in the description for this repository
+repository.message.delete:  Do you really want to delete this repository ?
+repository.message.save:    Repository saved.
+repository.name.note:    Please give a name of the repository
+repository.name.tooltip: Please give a name of the repository
+repository.timezone.note:    Please select the time zone for this repository
+repository.timezone.tooltip: Please select the time zone for this repository
+Right_R: Read
+Right_W: Write
+Right_X: Execute
+Repository: Repository
+Save changes: Save changes
+Save new password: Save new password
+Save: Save
+Saved: Saved
+Schema: Schema
+seconds: seconds
+Server installation: Server installation
+Servers management: Servers management
+Session: Session
+Settings: Settings
+Shortlinks: Shortlinks
+short_dow.1: Mon
+short_dow.2: Tue
+short_dow.3: Wed
+short_dow.4: Thu
+short_dow.5: Fri
+short_dow.6: Sat
+short_dow.7: Sun
+Silent install: Silent install
+site.description.note:    Please type in the description for this site
+site.description.tooltip: Please type in the description for this site
+site.message.delete:  Do you really want to delete this site ?
+site.message.save:    Site saved.
+site.name.note:    Please give a name of the site
+site.name.tooltip: Please give a name of the site
+site.timezone.note:    Please select the time zone for this site
+site.timezone.tooltip: Please select the time zone for this site
+Site: Site
+size.b: b
+size.Kb: Kb
+size.Mb: Mb
+Spooler name: Spooler name
+spooler.all: spooler.all
+spooler.connection.note:    Please specify an access connection for the spooler
+spooler.connection.tooltip: Please specify an access connection for the spooler
+spooler.database.note:    Please specify a database for the spooler
+spooler.event.note:    Check is this spooler is an event manager
+spooler.mail.note:    Please specify a mail server for the spooler
+spooler.message.delete:  Do you really want to delete this connection ?
+spooler.name.note:    Please type a name for the spooler
+spooler.site.note:    Please specify a site for the spooler
+spooler.supervisor.note:    Please choose a supervisor for the spooler
+spooler.transfer.note:    Please specify a connection for file tranferation of the spooler
+spooler.version.note:    Specify the version of this spooler
+Spooler: Spooler
+spooler: spooler
+Standalone server: Standalone server
+Start day: Start day
+Start time: Start time
+Status: Status
+str_month.10: October
+str_month.11: November
+str_month.12: December
+str_month.1: January
+str_month.2: February
+str_month.3: March
+str_month.4: April
+str_month.5: May
+str_month.6: June
+str_month.7: July
+str_month.8: August
+str_month.9: September
+team.description.note:    Please give a short description of this team
+team.message.delete:  Do you really want to delete this team ?
+team.message.save:    Team saved.
+team.title.note:    Please give a title to this team
+Timeout (s): Timeout (s)
+Timezone: Timezone
+Timeline.: Timeline
+Title: Title
+To do list: To do list
+To do list: To do list
+to: to
+To: To
+Today: Today
+Tomorrow: Tomorrow
+Traitements: Traitements
+Type: Type
+User change: User change
+User path: User path
+user.mail.note:    Enter your validate Email Adress here. This field can not be empty
+user.mail.tooltip: Enter you validate Email here
+user.message.delete:  Do you really want to delete this user ?
+user.message.save:    User saved.
+user.name.note:    Enter your login username here, this field can not be empty.
+user.name.tooltip: Enter your login username here
+User: User
+Users management: Users management
+Value: Value
+XML Export: XML Export
+Yes: Yes
+Yesterday: Yesterday

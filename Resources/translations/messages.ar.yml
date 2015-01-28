@@ -1,0 +1,273 @@
+About me: معلومات عني
+Account: حساب
+Add filter: __Add filter
+Admin Map: مشرف الخريطة
+Administration: إدارة
+Advanced Search: بحث متقدم
+All: كل
+Allowed Host: آلات المسموح به
+arii_JID_history: يَتَّبِع
+Authentication: تسجيل الدخول
+Available: متوفر
+Backup server: حماية Serveur
+Base de données: قاعدة البيانات
+Batch Installer: Batch تركيب
+category: 
+Change command: تغيير القيادة
+Change password: تغيير كلمة المرور
+Check for update: تحقق من تحديث
+Commercial: تجاري
+connection.category.note: حدد فئة هذه الصلة
+connection.description.note: يرجى إعطاء وصف قصير على هذه الصلة
+connection.host.note: حدد اسم المضيف هذا الصدد
+connection.message.delete: هل حقا تريد حذف هذا الصدد؟
+connection.message.save: حفظ الصدد
+connection.title.note: يرجى إعطاء عنوان لهذا الصدد
+connection: 
+Connector: موصّل
+Cron adapter: CRON موصّل 
+Cron System: نظام Cron
+Custom: __Custom
+custom_filter: __custom_filter
+dashboard.Admin: إدارة
+dashboard.Cloud: سحابة
+dashboard.Event: مدير الأحداث
+dashboard.GVZ: فنّ رسم الخرائط
+dashboard.Home: إستقبال
+dashboard.JID: لوحة المراقبة
+dashboard.JOC: إستغلال
+dashboard.JOE: تصميم الوظائف
+dashboard.MFT: نقل الملفات
+dashboard.Simile: Simile
+dashboard.Time: حساب التخطيط
+database: قاعدة البيانات
+Database: قاعدة البيانات
+date.reference: التاريخ المرجعي
+day.d: __day.d
+db: 
+DBDRIVER.CHANGE: Le pilote de base de données indiqué dans le fichier de paramètres nest pas pris en charge par Arii.
+DBDRIVER.CHANGE: Le pilote de base de données indiqué dans le fichier de paramètres nest pas pris en charge par Arii.
+DBDRIVER.ERROR: Pilote مجهول
+Delete package: package حذف
+Delete: حذف
+delete: هل حقا تريد حذف هذا الصدد؟
+Description: وصف
+description: وصف 
+Do you really want to delete this queue ?: هل تريد حقا نزع قائمة الانتظار هذه؟
+Do you really want to delete this queue ?: هل تريد حقا نزع قائمة الانتظار هذه؟ 
+dow.Friday: الجمعة
+dow.Friday: dow.الجمعة
+dow.Monday: الاثنين
+dow.Monday: dow.الاثنين
+dow.Saturday: السبت
+dow.Saturday: dow.السبت
+dow.Sunday: الأحد
+dow.Sunday: dow.الأحد
+dow.Thursday: الخميس
+dow.Thursday: dow.الخميس
+dow.Tuesday: الثلاثاء
+dow.Tuesday: dow.الثلاثاء
+dow.Wednesday: الأربعاء
+dow.Wednesday: dow.الأربعاء
+Driver: Pilote
+Edit: تعديل
+Filter management: إدارة التصفية
+Filter: تصفية
+Filters: تصفية
+First name: الاسم الأول
+First name: الاسم الأول
+Free text: نص حر
+Free text: نص حر
+From: من
+General: عام
+Global administration: إدارة عامة
+GPL: GPL
+h: h
+history: سجل
+Host: مُضِيف
+host: 
+hour: الساعة
+Id: معرّف
+Informations: معلومات
+Install path: دليل التثبيت
+Installation: تركيب
+JDBC driver: Pilote JDBC
+Job chain: تسلسل الوظيفي
+Job events: مدير الأحداث
+Job information: معلومات
+job: وظيفة
+Job: وظيفة
+jobchain: تسلسل الوظائف
+JOBS.STOPPED: الوظائف في حالة إيقاف 
+JOBS.TO_UNSTOP: UNSTOP هذه الوظائف لا تبدأ حتى شغل
+Jobs: وظائف
+Last name: إسم العائلة
+Licence: رخصة
+List: مؤشر
+Load balancing: موازنة التحميل
+Mail Bcc:  نسخة مخفية 
+Mail Cc: في نسخة
+Mail from: مُرسِل
+Mail on Error: خطأ في البريد
+Mail on Success: البريد على النجاح
+Mail on Warning: البريد على التحذير
+Mail Server: البريد الإلكتروني
+Mail to: مُستَلِم
+Main menu: القائمة الرئيسية
+Menu: القائمة
+minute: دقيقة
+minutes: دقائق
+module.Admin: إدارة
+module.Cloud: Cloud
+module.Event: أحداث
+module.GVZ: فنّ رسم الخرائط
+module.Home: إستقبال
+module.JID: يَتَّبِع
+module.JOC: إستغلال
+module.JOE: تصميم
+module.MFT: تحويلات
+module.Simile: Simile
+module.Time: تخطيط
+Modules: وحدات
+My account: حسابي
+My.account: حسابي
+Name: اسم
+Need Help ?: بحاجة للمساعدة؟
+Network: شبكة
+Never: أبدا
+New package: جديد package
+New password: كلمة مرور جديدة
+Next day: اليوم التالي
+No database: لا توجد قاعدة بيانات
+No: لا
+note: spooler حدد إصدار هذا 
+Notifications: إشعار
+Operating System: نظام التشغيل
+Order: أمر
+order: أمر
+Package: Package
+Packages: Packages
+Password: كلمة المرور
+Path: طريق
+planned: مخطط
+Port: وصلة
+Previous day: اليوم السابق
+Primary server: رئيسي Serveur
+Quick info: نص الرسالة
+Record deleted: حذف سجل
+Record updated: تم تحديث سجل
+Reference date: التاريخ المرجعي
+Refresh: تحديث
+repository.db.note: يرجى تحديد قاعدة بيانات لهذا المستودع
+repository.db.tooltip: يرجى تحديد قاعدة بيانات لهذا المستودع
+repository.description.note: الرجاء كتابة في وصف لهذا المستودع
+repository.description.tooltip: الرجاء كتابة في وصف لهذا المستودع
+repository.description: 
+repository.message.delete: هل حقا تريد حذف هذا المورد؟
+repository.message.save: حفظ المخزون
+repository.name.note: يرجى إعطاء اسم المستودع
+repository.name.tooltip: يرجى إعطاء اسم المستودع
+repository.timezone.note: يرجى تحديد المنطقة الزمنية لهذا المستودع
+repository.timezone.tooltip: يرجى تحديد المنطقة الزمنية لهذا المستودع
+Repository: مستودع
+ROLE_ADMIN: مدير البرنامج
+ROLE_DEVELOPPER: المطور
+ROLE_OPERATOR: عامل
+ROLE_USER: المستخدم
+Save changes: حفظ التغييرات
+Save new password: حفظ كلمة المرور الجديدة
+Save: حفظ
+save: حفظ موقع
+Saved: مسجل
+Schema: مخطط
+seconds: ثواني
+Server installation: Server تركيب 
+Servers management: Server إدارة
+Session: حساب
+Settings: إعدادات
+Shortlinks: اختصارات
+short_dow.1: الاثنين
+short_dow.1: الاثنين
+short_dow.2: الثلاثاء
+short_dow.2: الثلاثاء
+short_dow.3: الأربعاء
+short_dow.3: الأربعاء
+short_dow.4: الخميس
+short_dow.4: الخميس
+short_dow.5: الجمعة
+short_dow.5: الجمعة
+short_dow.6: السبت
+short_dow.6: السبت
+short_dow.7: الأحد
+short_dow.7: الأحد
+site.description.note: يرجى كتابة في الوصف لهذا الموقع
+site.description.tooltip: يرجى كتابة في الوصف لهذا الموقع
+site.message.delete: هل حقا تريد حذف هذا الموقع؟
+site.message.save: حفظ الموقع
+site.name.note: يرجى إعطاء اسم الموقع
+site.name.tooltip: يرجى إعطاء اسم الموقع
+site.timezone.note: يرجى تحديد المنطقة الزمنية لهذا الموقع
+site.timezone.tooltip: يرجى تحديد المنطقة الزمنية لهذا الموقع
+Site: موقع
+Spooler name: Spooler اسم
+spooler.all: spooler كل
+spooler.connection.note: spooler يرجى تحديد اتصال الوصول لل 
+spooler.connection.tooltip: spooler يرجى تحديد اتصال الوصول لل 
+spooler.database.note: spooler يرجى تحديد قاعدة بيانات لل 
+spooler.event.note: Check is this spooler is an event manager
+spooler.mail.note: Please specify a mail server for the spooler
+spooler.message.delete: هل حقا تريد حذف هذا الصدد؟
+spooler.name.note: spooler يرجى كتابة اسم لل  
+spooler.site.note: spooler يرجى تحديد موقع على شبكة الانترنت لل 
+spooler.supervisor.note: spooler يرجى اختيار المشرف لل 
+spooler.transfer.note: Please specify a connection for file tranferation of the spooler
+spooler.version.note: spooler حدد إصدار هذا 
+Spooler: Spooler
+spooler: spooler
+Standalone server: مستقل Serveur
+Start day: يوم البدء
+Start time: تبدأ من وقت
+Status: الحالة
+str_month.10: أكتوبر
+str_month.11: نوفمبر
+str_month.12: ديسمبر
+str_month.1: يناير
+str_month.2: فبراير
+str_month.3: مارس
+str_month.4: أبريل
+str_month.5: مايو
+str_month.6: يونيو
+str_month.7: يوليو
+str_month.8: أغسطس
+str_month.9: سبتمبر
+team.description.note: يرجى إعطاء وصف موجز لهذا الفريق
+team.message.delete: هل حقا تريد حذف هذا الفريق؟
+team.message.save: أنقذ فريق
+team.title.note: يرجى إعطاء عنوان لهذا الفريق
+Timeout (s): مهلة
+Timezone: المنطقة الزمنية
+Title: عنوان
+Title: عنوان
+To do list: للقيام
+to: الى
+To: الى
+Today: اليوم
+Tomorrow: غدا
+tooltip: spooler يرجى تحديد اتصال الوصول لل 
+Traitements: وظائف
+Type: نوع
+User change: تغيير المستخدم
+User path: دليل المستخدم
+user.mail.note: برجاء إدخال بريدك الإلكتروني هنا. هذا المجال لا يمكن أن تكون فارغة
+user.mail.tooltip: برجاء إدخال بريدك الإلكتروني هنا
+user.message.delete: هل حقا تريد حذف هذا المستخدم؟
+user.message.save: حفظ المستخدم
+user.name.note: برجاء إدخال بريدك الإلكتروني هنا. هذا المجال لا يمكن أن تكون فارغة
+user.name.tooltip: أدخل اسم المستخدم هنا
+User: مُستَخْدِم
+Users management: إدارة المستخدم
+Value: قيمة
+version: 
+XML Export: XML تصدير 
+Yes: نعم
+Yesterday: أمس

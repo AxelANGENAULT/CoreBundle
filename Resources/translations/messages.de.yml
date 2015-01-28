@@ -1,0 +1,246 @@
+About me: Über mich
+Account: Rechnung
+Add filter: Filter hinzufügen
+Admin Map: Admin Karte
+Administration: Verwaltung
+Advanced Search: Erweiterte Suche
+All: Alle
+Allowed Host: erlaubt Moderator
+arii_JID_history: arii_JID_history
+arii_JID_history: arii_JID_history
+Authentication: Beglaubigung
+Available: verfügbar
+Backup server: Backup-Server
+Base de données: Base de données
+Batch Installer: Batch Installer
+Change command: Befehl ändern
+Change password: Kennwort ändern
+Check for update: Update prüfen
+Commercial: Gewerbe
+connection.category.note: connection.category.note
+connection.description.note: connection.description.note
+connection.host.note: connection.host.note
+connection.message.delete: connection.message.delete
+connection.message.save: connection.message.save
+connection.title.note: connection.title.note
+Connector: Steckverbinder
+Cron adapter: cron Adapter
+Cron System: cron -System
+Custom: Brauch
+custom_filter: custom_filter
+dashboard.Admin: dashboard.Admin
+dashboard.Event: dashboard.Event
+dashboard.GVZ: dashboard.GVZ
+dashboard.Home: dashboard.Home
+dashboard.JID: dashboard.JID
+dashboard.JOC: dashboard.JOC
+dashboard.JOE: dashboard.JOE
+dashboard.MFT: dashboard.MFT
+dashboard.Simile: dashboard.Simile
+dashboard.Time: dashboard.Time
+Database: Database
+database: Datenbank
+date.reference: date.reference
+day.d: day.d
+DBDRIVER.CHANGE: DBDRIVER.CHANGE
+DBDRIVER.ERROR: DBDRIVER.ERROR
+Delete package: löschen Paket
+Delete: Löschen
+Description: Beschreibung
+Do you really want to delete this queue ?: Wollen Sie wirklich auf diese Warteschlange löschen?
+dow.Friday: dow.Friday
+dow.Monday: dow.Monday
+dow.Saturday: dow.Saturday
+dow.Sunday: dow.Sunday
+dow.Thursday: dow.Thursday
+dow.Tuesday: dow.Tuesday
+dow.Wednesday: dow.Wednesday
+Driver: Treiber
+Edit: bearbeiten
+Filter management: Filter Management
+Filter: filtern
+Filters: Filter
+First name: Vorname
+Free text: Freitext
+From: Von
+General: Allgemeine
+Global administration: Globale Verwaltung
+GPL: GPL
+h: h
+history.list: history.list
+history.pie: history.pie
+history.timeline: history.timeline
+history: Geschichte
+Host: Moderator
+hour: Stunde
+Id: ID
+Informations: Informationen
+Install path: Installieren Pfad
+Installation: Montage
+JDBC driver: JDBC-Treiber
+Job chain: Job-Kette
+Job events: Job Veranstaltungen
+Job information: Berufsinformationen
+Job information: Berufsinformationen
+Job: Job
+job: Job
+jobchain: jobchain
+JOBS.STOPPED: JOBS.STOPPED
+JOBS.STOPPED: JOBS.STOPPED
+JOBS.TO_UNSTOP: JOBS.TO_UNSTOP
+JOBS.TO_UNSTOP: JOBS.TO_UNSTOP
+Jobs: Jobs
+Jobs: Jobs
+Last name: Nachname
+Licence: Licence
+List: Liste
+Load balancing: load-Balancing
+Mail Bcc: Mail Bcc
+Mail Cc: Mail Cc
+Mail from: Mail von
+Mail on Error: Mail on Fehler
+Mail on Success: Mail on Success
+Mail on Warning: Mail on Warning
+Mail Server: Mail Server
+Mail to: Mail to
+Main menu: Hauptmenü
+Menu: Menü
+minute: Minute
+minutes: Minuten
+module.Admin: module.Admin
+module.Event: module.Event
+module.GVZ: module.GVZ
+module.Home: module.Home
+module.JID: module.JID
+module.JOC: module.JOC
+module.JOE: module.JOE
+module.MFT: module.MFT
+module.Simile: module.Simile
+module.Time: module.Time
+Modules: Module
+My account: Mein Konto
+My.account: My.account
+Name: Name
+Need Help ?: Brauchen Sie Hilfe?
+Network: Netzwerk
+Never: nie
+New package: Neues Paket
+New password: Neues Passwort
+Next day: Nächster Tag
+No database: Keine Datenbank
+No: Keine
+Notifications: Benachrichtigungen
+Operating System: Betriebssystem
+order: Auftrag
+Order: Auftrag
+Package: Package
+Packages: Pakete
+Password: Kennwort
+Path: Pfad
+planned: geplant
+planned: geplant
+Port: Port
+Previous day: Letzter Tag
+Primary server: Primary Server
+Record deleted: Datensatz gelöscht
+Record updated: Notieren aktualisiert
+Reference date: Stichtag
+Refresh: erfrischen
+repository.db.note: repository.db.note
+repository.db.tooltip: repository.db.tooltip
+repository.description.note: repository.description.note
+repository.description.tooltip: repository.description.tooltip
+repository.message.delete: repository.message.delete
+repository.message.save: repository.message.save
+repository.name.note: repository.name.note
+repository.name.tooltip: repository.name.tooltip
+repository.timezone.note: repository.timezone.note
+repository.timezone.tooltip: repository.timezone.tooltip
+Repository: Repository
+Save changes: Speichern Sie die Änderungen
+Save new password: Neues Passwort speichern
+Save: Speichern
+Saved: Gespeichert
+Schema: Schema
+seconds: Sekunden
+Server installation: Server-Installation
+Servers management: Server -Management
+Session: Session
+Settings: Einstellungen
+Shortlinks: Shortlinks
+short_dow.1: short_dow.1
+short_dow.2: short_dow.2
+short_dow.3: short_dow.3
+short_dow.4: short_dow.4
+short_dow.5: short_dow.5
+short_dow.6: short_dow.6
+short_dow.7: short_dow.7
+site.description.note: site.description.note
+site.description.tooltip: site.description.tooltip
+site.message.delete: site.message.delete
+site.message.save: site.message.save
+site.name.note: site.name.note
+site.name.tooltip: site.name.tooltip
+site.timezone.note: site.timezone.note
+site.timezone.tooltip: site.timezone.tooltip
+Site: Website
+Spooler name: Spooler Namen
+spooler.all: spooler.all
+spooler.connection.note: spooler.connection.note
+spooler.connection.tooltip: spooler.connection.tooltip
+spooler.database.note: spooler.database.note
+spooler.event.note: spooler.event.note
+spooler.mail.note: spooler.mail.note
+spooler.message.delete: spooler.message.delete
+spooler.name.note: spooler.name.note
+spooler.site.note: spooler.site.note
+spooler.supervisor.note: spooler.supervisor.note
+spooler.transfer.note: spooler.transfer.note
+spooler.version.note: spooler.version.note
+Spooler: Spooler
+spooler: Spooler
+Standalone server: Standalone -Server
+Start day: starten Tag
+Start time: Startzeitpunkt
+Status: Status
+str_month.10: Oktober
+str_month.11: November
+str_month.12: Dezember
+str_month.1: Januar
+str_month.2: Februar
+str_month.3: März
+str_month.4: April
+str_month.5: Mai
+str_month.6: Juni
+str_month.7: Juli
+str_month.8: August
+str_month.9: September
+team.description.note: team.description.note
+team.message.delete: team.message.delete
+team.message.save: team.message.save
+team.title.note: team.title.note
+Timeout (s): Timeout ( s )
+Timezone: Zeitzone
+Title: Titel
+To do list: To do list
+To do list: To do list
+to: zu
+To: An
+Today: heute
+Tomorrow: Tomorrow
+Traitements: Traitements
+Type: Typ
+User change: Benutzerwechsel
+User path: Benutzer Pfad
+user.mail.note: user.mail.note
+user.mail.tooltip: user.mail.tooltip
+user.message.delete: user.message.delete
+user.message.save: user.message.save
+user.name.note: user.name.note
+user.name.tooltip: user.name.tooltip
+User: Benutzer
+Users management: Benutzer -Management
+Value: Preis
+XML Export: XML Export
+Yes: Ja
+Yesterday: Gestern

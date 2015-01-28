@@ -1,0 +1,585 @@
+About me: À propos de moi
+About Ari'i: A propos de Ari'i
+Account: Compte
+Action: Action
+Add connection: Ajouter connexion
+Add filter: Ajouter un filtre
+Add repository: Ajouter repository
+Add right: Ajouter une permission
+Add site on Company: Ajouter site sur la société
+Add Site: Ajouter un Site
+Add spooler: Ajouter spooler
+Add order: Ajouter un ordre
+Add team: Ajouter une équipe
+Add user: Ajouter un utilisateur
+Add: Ajouter
+Admin Map: Admin Map
+Administration: Administration
+Advanced Search: Recherche avancée
+All: Tout
+Allowed Host: Machines autorisées
+Answer: Réponse
+Answer OK: Réponse OK
+Attach Filter on Team: Joindre un Filtre dans Team
+Automatic download: Téléchargement automatique
+Authentication: Authentification
+Available: Disponible
+Backup server: Serveur de sauvegarde
+Base de données: Base de données
+Batch Installer: Installation automatique
+Begin: Début
+Bitmap image (PNG): Image bitmap (PNG)
+Blocked: Bloqué
+Cancel: Abandon
+Category: Categorie
+Chains: Chaînes
+Change command: Changement de commande
+Change password: Changer le mot de passe
+Chart: Graphique
+Check spooler: Vérifier le moteur
+Check for update: Vérifier la mise à jour
+cluster_options: Options de cluster
+Commercial: Commercial
+Connect on spooler: Connexion sur le moteur
+connection.category.note: Sélectionnez la catégorie de cette connexion
+connection.description.note: Donnez une description à cette connexion
+connection.host.note: Indique le nom de la machine
+connection.message.delete: Souhaitez-vous vraiment supprimer cette connexion ?
+connection.message.save: Connexion enregistrée
+connection.title.note: Indiquez le titre de la connexion
+Connection: Connexion
+"Connection failed %protocol%://%host%:%port%! Please make sure the JobScheduler have started!": Erreur de connexion sur %protocol%://%host%:%port%! Vérifier que l'ordonnanceur est démarré, accessible par le réseau et qu'il autorise l'adresse IP de l'interface !
+Connections: Connexions
+Connector: Connecteur
+Continue: Continuer
+Continue spooler: Débloquer la pause
+Country Code: Code du Pays
+Country code: Code du pays
+Country: Pays
+created: créé
+Creation: Création
+Created.by: Créé
+Created: Création
+Create table: Créer les tables
+Cron adapter: Connecteur CRON
+Cron System: Système Cron
+Curved: Lignes courbes
+Custom: Custom
+custom_filter: filtre personnalisé
+dashboard.Admin: Administration
+dashboard.Cloud: Cloud
+dashboard.Event: Gestionnaire d'évènements
+dashboard.GVZ: Cartographie
+dashboard.Home: Accueil
+dashboard.JID: Tableau de bord
+dashboard.JOC: Opérations
+dashboard.JOE: Conception des traitements
+dashboard.MFT: Transferts de fichiers
+dashboard.Simile: Simile
+dashboard.Time: Calcul de planification
+Data: Données
+Database Connection: Connexion base de données
+Database: Base de données
+database: base de données
+Databases: Bases de données
+date.reference: date de référence
+day.d: j
+DBDRIVER.CHANGE: Le pilote de base de données indiqué dans le fichier de paramètres n'est pas pris en charge par Arii.
+DBDRIVER.ERROR: Pilote inconnu
+Delay: Délai
+Delete Connection: Supprimer une connexion
+Delete Filter: Supprimer un filtre
+Delete package: supprimer un package
+Delete repository: Supprimer un référentiel
+Delete right: Supprimer un droit
+Delete site: Supprimer un site
+Delete spooler: Supprimer un moteur
+Delete team: Supprimer une équipe
+Delete user: Supprimer un utilisateur
+Delete: Supprimer
+Description: Description
+Directory: Annuaire
+Do you really want to delete this connection ?: Voulez-vous vraiment supprimer cet connexion?
+Do you really want to delete this filter ?: Voulez-vous vraiment supprimer ce filtre?
+Do you really want to delete this queue ?: Voulez vous vraiment supprimer cette file d'attente?
+Do you really want to delete this queue ?: Voulez vous vraiment supprimer cette file d'attente?
+Do you really want to delete this team ?: Voulez-vous vraiment supprimer cette équipe?
+Do you really want to delete this user ?: Voulez-vous vraiment supprimer cet utilisateur ?
+dow.Friday: Vendredi
+dow.Monday: Lundi
+dow.Saturday: Samedi
+dow.Sunday: Dimanche
+dow.Thursday: Jeudi
+dow.Tuesday: Mardi
+dow.Wednesday: Mercredi
+Download: Télécharger
+Driver: Pilote
+Duration: Durée
+Duration: Durée
+Edit connection: Éditer une connexion
+Edit Filter: Éditer un Filtre
+Edit repository: Éditer un référentiel
+Edit permission: Éditer les permissions
+Edit right: Éditer un droit
+Edit rights: Éditer les droits
+Edit site: Éditer un site
+Edit spooler: Éditer spooler
+Edit team: Éditer une équipe
+Edit user: Éditer un utilisateur
+Edit: Éditer
+Edit: Modifier
+EM: Ev.
+Email: Email
+End: Fin
+End state: Etape finale
+End time: Heure de fin
+Error: Erreur
+ERROR !: ERREUR !
+Error message: Message erreur
+Event: Evènement
+events.list: Liste
+events.pie: Graphiques
+events.timeline: Chronogramme
+Events: Événements
+events: événements
+Execution: Exécution
+Executions per hour: Exécutions par heure
+Executed: Exécuté
+Exit Code: Code d'exit
+Exit Code: Exit
+Filename: Nom de fichier
+File size: Taille
+File successfully generated: Fichier correctement généré.
+File Transfer: Transfert de fichiers
+File Transfers: Transferts de fichiers
+Fill the form and generate the file.: Remplir le formulaire et générer le fichier d'installation silencieuse.
+Filter management: Gestion des filtres
+Filter: Filtre
+Filter deleted: Filtre supprimé
+Filter saved: Filtre sauvé
+Filters: Filtres
+First Name: Prénom
+Folders: Répertoires
+Found records: Enregistrements trouvés
+Free text: Texte Libre
+from: de
+From: De
+General: Général
+Generate file: Générer le fichier
+Global administration: Administration Globale
+Go to past: Dans le passé
+GPL: GPL
+Graph: Graphique
+Graph monitor: Suivi graphique
+Graph supervisor: Schéma 
+h: h
+history.list: List
+history.list: Liste
+history.pie: Graphiques
+history.pie: Graphs
+history.timeline: Chronogramme
+history.timeline: Timeline
+history: historique
+History: Historique
+High availability: Haute disponibilité
+HTTP Port: Port HTTP
+HTTPS Port: Port HTTPS
+HOST: HÔTE
+Host: Hôte
+Hostname: Nom d'hôte
+hour: heure
+Hour: Heure
+I accept the terms of the GPL v2 licence agreement: J'accepte les termes du contrat de licence GPL V2
+Id: Id
+Informations: Informations
+Install path: Installer chemin 
+Install path: Répertoire d'installation
+Installation: Installation
+Installation: Installation
+install_date: Dated d'installation
+install_path: Chemin d'installation
+IP Adress: Adresse IP
+IP: IP
+JDBC driver: Pilote JDBC
+Jetty Http Connection: Jetty Http Connexion
+job_chain: chaîne
+Job chain: Séquence de traitements
+Job Chain: Séquence de Traitements
+Job detail: Détail du traitement
+Job events: Gestionnaire d'évènements
+Job history: Historique du traitement
+Job information: Information
+Job log: Journal du traitement
+Job name: Nom du traitement
+Job purged: Traitement purgé
+Job status: Etat des traitements
+Job: Traitement
+job: traitement
+jobchain: séquence de traitements
+JOBS.STOPPED: Traitements en état STOPPED
+JOBS.TO_UNSTOP: Ces traitements ne se lanceront plus tant qu'un UNSTOP nest pas effectué.
+jobs: Tâches
+Jobs: Traitements
+Jobs per hour: Traitements par heure
+job_chains: Séquence
+Kill task: Tuer la tâche
+Kill job: Arrêt brutal du traitement
+Last Login: Dernière Connexion
+Last name: Nom
+Last update: Dernière mise à jour
+Latitude: Latitude
+Launch scheduler: Démarrer le moteur
+Licence: Licence
+Line: Lignes droites
+List: Index
+List: Liste
+Load balancing: Equilibrage de charge
+Location: Localisation
+Lock: Verrou
+Locks: Verrous
+Log: Journal
+Log time: Heure du journal
+Logout: Déconnexion
+Longitude: Longitude
+Mail Bcc: en copie cachée
+Mail Cc: en copie
+Mail Connection: Mail Connexion
+Mail from: Expéditeur
+Mail on Error: Mail sur Erreur
+Mail on Success: Mail sur Succès
+Mail on Warning: Mail sur Avertissement
+Mail Server: Messagerie
+Mail to: Destinataire(s)
+Mail: Mail
+Main menu: Menu principal
+Management: Management
+Mandator: Mandant
+Map: Cartographie 
+Menu: Menu
+messages.list: Liste
+messages.pie: Graphiques
+messages.timeline: Chronogramme
+Messages: Messages
+minute: minute
+minutes: minutes
+Modified.by: Modifié par
+Modified: Modification
+Modify order: Modifier l'ordre
+module.Admin: Administration
+module.BPM: Suivi de processus
+module.Cloud: Cloud
+module.Config: Installation
+module.Event: Evènements
+module.GVZ: Cartographie
+module.Home: Accueil
+module.JID: Suivi
+module.JOC: Opérations
+module.JOE: Conception
+module.MFT: Transferts
+module.Public: Information
+module.Report: Rapports
+module.Simile: Simile
+module.Time: Planification
+Module: Module
+Modules: Modules
+Monitoring: Surveillance
+Monitor: Suivi
+My account: Mon compte
+My filters: Mes filtres
+My.account: Mon compte
+My.account: Mon compte
+MariaDB driver: Pilote MariaDB
+MySQL driver: Pilote MySQL
+Name: Nom
+Need Help ?: Besoin d'aide ?
+Network: Réseau
+Never: Jamais
+New connection: Nouvelle connexion
+New package: Nouveau package
+New parameter: Nouvel argument
+New password: Nouveau mot de passe
+New repository: Nouveau référentiel
+New right: Nouveau droit
+New site: Nouveau site
+New Site: Nouveau Site
+New spooler: Nouveau spooler
+New: Nouveau
+Next day: Jour suivant
+Next Page: Page suivante
+Next start time: Prochain départ
+Next tasks: Prochaines tâches
+No database: Aucune base de données
+No job selected !: Aucun traitement sélectionné !
+No Records Found: Aucun enregistrement
+No: Non
+None: Aucune ligne
+Notifications: Notifications
+Objects: Objets
+on this team ?: Dans cette équipe ?
+on Error: sur erreur
+on Warning: sur avertissement
+on Success: sur Succès
+Operating System: Système d'Exploitation
+Operation: Opération
+Order detail: Détail de l'ordre
+Order ID: ID de l'Ordre
+Order history: Historique des ordres
+Order status: Etat des ordres
+order: ordre
+Order: Ordre
+Order purged: Ordre purgé
+Order log: Journal de l'ordre
+Ordered jobs: Traitement ordonnés
+orders.list: Liste
+orders.pie: Graphiques
+orders.timeline: Chronogramme
+Orders: Ordres
+Orders status: Etat des ordres
+Organisation: Organisation
+Ortho: Lignes perpendiculaires
+os_target: os cible
+Overview: Vue globale
+Package: Package
+Packages: Packages
+Parameters: Arguments
+Password: Mot de passe
+Path: Chemin
+Pause spooler: Mettre le moteur en pause
+PDF: PDF
+Planned schedule: Planifications
+Planned schedule: Planifications
+planned.list: Liste
+planned.pie: Graphiques
+planned.timeline: Chronogramme
+planned: Planifié
+Planning: Planifications
+Password updated: Mot de passe mis à jour
+Port: Port
+Poly line: Lignes brisées
+Previous day: Jour précédent
+Previous Page: Page précédente
+Primary server: Serveur principal
+Process: Processus
+Processing: Traitement en cours...
+process_class: Agent d'exécution
+process_classes: Agents d'exécution
+Profile: Profil
+Profile updated: Profil mis à jour
+Protocol: Protocole
+Purge job: Purge du traitement
+Purge order: Purger l'ordre
+Purge task: Purger la tâche
+Quick info: Message
+R: R
+Record deleted: enregistrement supprimé
+Record updated: Enregistrement mis à jour
+Reference date: Date de référence
+Refresh: Actualiser
+Refreshing: Actualiser
+Remote scheduler: Moteur distant
+Remote schedulers: Moteurs distants
+Remove filter: Supprimer le filtre
+Remove setback: Supprimer la reprise
+Reporting: Rapport
+Repositories: Référentiels
+repository.db.note: __repository.db.note
+repository.db.tooltip: spécifier une base de données pour ce référentiel
+repository.description.note: __repository.description.note
+repository.description.tooltip: Saisir la description de ce référentiel
+repository.description: 
+repository.message.delete: __repository.message.delete
+repository.message.save: Référentiel enregistré
+repository.name.note: __repository.name.note
+repository.name.tooltip: donnez un nom à ce référentiel
+repository.timezone.note: __repository.timezone.note
+repository.timezone.tooltip: sélectionner le fuseau horaire de ce référentiel
+Repository: Référentiel
+repository: référentiel
+Reset Order: Réinitialiser l'ordre
+Restart spooler: Redémarrer le moteur
+Results: Résultats
+Reset order: Réinitialiser l'ordre
+Resume order: Résumer l'ordre
+Rights: Droits
+Right_R: Lecture
+Right_W: Ecriture
+Right_X: Exécution
+ROLE_ADMIN: Administrateur
+ROLE_DEVELOPER: Concepteur
+ROLE_MANAGER: Gestionnaire
+ROLE_OPERATOR: Operateur
+ROLE_SYSADMIN: Admin. Sys.
+ROLE_USER: Utilisateur
+rows per page: Lignes par page
+Runing: En cours
+Save changes: Sauvegarder les changements
+Save new password: Sauvegarder le nouveau mot de passe
+Save: Sauver
+Saved: Enregistré
+scheduler_id: Automate
+schedules: Planifications
+Schema: Schéma
+seconds: secondes
+Security: Sécurité
+Send mail: Envoi de mail
+Server installation: Installation de serveur
+Servers management: Gestion des serveurs
+Servers: Serveurs
+Session: Session
+Settings: Réglages
+Severity: Sévérité
+Shortlinks: Raccourcis
+short_dow.1: Lun
+short_dow.2: Mar
+short_dow.3: Mer
+short_dow.4: Jeu
+short_dow.5: Ven
+short_dow.6: Sam
+short_dow.7: Dim
+Silent install: Installation silencieuse
+Site Name: Nom du Site
+site.country_code.note: __site.country_code.note
+site.description.note: __site.description.note
+site.description.tooltip: entrez dans la description pour ce site
+site.latitude.note: __site.latitude.note
+site.longitude.note: __site.longitude.note
+site.message.delete: __site.message.delete
+site.message.save: __site.message.save
+site.name.note: __site.name.note
+site.name.tooltip: donnez un nom du site
+site.timezone.note: __site.timezone.note
+site.timezone.tooltip: sélectionnez le fuseau horaire de ce site
+Site: Site
+Sites: Sites
+size.b: o
+size.Kb: Ko
+size.Mb: Mo
+Skip node: Sauter le noeud de la chaîne
+Source dir: Répertoire source
+Source filename: Fichier source	
+Source host: Hôte source
+Source IP: IP source
+Source user: Utilisateur
+Source: Source
+Spooler Name: Nom du Spooler
+Spooler Saved: Spooler Enregistré
+spooler.all: Tous les spooler
+spooler.connection.note: __spooler.connection.note
+spooler.connection.tooltip: spécifiez une connexion d'accès à la file d'attente
+spooler.connection: 
+spooler.database.note: __spooler.database.note
+spooler.event.note: Vérifiez si ce spooler est un gestionnaire d'événement
+spooler.events.note: __spooler.events.note
+spooler.mail.note: __spooler.mail.note
+spooler.message.delete: __spooler.message.delete
+spooler.name.note: __spooler.name.note
+spooler.site.note: __spooler.site.note
+spooler.supervisor.note: __spooler.supervisor.note
+spooler.transfer.note: spécifier une connexion pour le fichier tranferation de la file d'attente
+spooler.version.note: Spécifiez la version de ce spooler
+spooler: Moteur
+Spooler: Moteur
+Spoolers: Moteurs
+Standalone server: Serveur Autonome
+Standalone jobs: Traitements indépendants
+standalone: Tâches libres
+Start day: Jour de départ
+Start job: Exécution du traitement
+Start time: Heure de départ
+Start order: Déclencher l'ordre
+Start task: Exécuter la tâche
+Startup: Démarrage
+Start state: Etape initiale
+state: étape
+State: Etat
+Status: Statut
+status: statut
+States: Etapes
+Steps purged: Etapes purgées
+Stop job chain: Bloquer la chaîne de traitements
+Stop job: Bloquer le traitement
+Stop node: Bloquer le noeud de la chaîne
+Stop task: Arrêter la tâche
+status_date: statut date
+str_month.10: Octobre
+str_month.11: Novembre
+str_month.12: Décembre
+str_month.1: Janvier
+str_month.2: Février
+str_month.3: Mars
+str_month.4: Avril
+str_month.5: Mai
+str_month.6: Juin
+str_month.7: Juillet
+str_month.8: Août
+str_month.9: Septembre
+Supervisor: Superviseur
+Suspend order: Suspendre l'ordre
+System: Système
+Target dir: Répertoire destination
+Target host: Hôte destination
+Team Management: Gestion des équipes
+Team must be empty!: L'équipe doit être vide !
+Team Name: Nom de l'équipe
+team.description.note: S'il vous plait donner une description rapide à cette équipe
+team.message.delete: Voulez vous vraiment supprimer cette équipe ?
+team.message.save: équipe enregistrée.
+team.title.note: Donner un titre à cette équipe
+Team: Equipe
+Time Zone: Fuseau horaire
+Timeout (s): Timeout (s)
+Timeline.: Chrono.
+Timeline: Chronogramme
+Timestamp: Heure
+Timezone: Fuseau horaire
+Title: Titre
+To do list: À faire
+To first Page: Vers la première page
+To last Page: Vers la dernière page
+To: à
+to: à
+Today: Aujourd'hui
+Tomorrow: Demain
+Tools: Outils
+Type: Type
+until: jusqu'à
+Unknown error !: Erreur inconnue !
+Unskip node: Réactiver le noeud
+Unstop job chain: Débloquer la chaîne de traitements
+Unstop job: Débloquer le traitement
+Unstop node: Débloquer le noeud
+Unstop task: Débloquer le traitement
+Update: Mettre à jour
+Uloader: Zone de téléchargement
+Use database: Utiliser une base de données
+User change: Changement de l'utilisateur
+User guide: Guide utilisateur
+User Management: Gestion des utilisateurs
+User Name: Nom d'Utilisateur
+User path: Répertoire utilisateur
+User saved: Utilisateur sauvegardé
+user.mail.note: __user.mail.note
+user.mail.tooltip: Enter votre Email valide ici
+user.message.delete: Voulez vous vraiment supprimer cet utilisateur ?
+user.message.save: Utilisateur enregistré
+user.name.note: __user.name.note
+user.name.tooltip: __user.name.tooltip
+User: Utilisateur
+User: Utilisateur
+Username: Nom d'utilisateur
+Users management: Gestion des utilisateurs
+Users: Utilisateurs
+user_path: chemin d'utilisateur
+Value: Valeur
+Vectoriel file (SVG): Fichier vectoriel (SVG)
+Version: Version
+View: Visualiser
+version: version
+Wait: Attente
+Workspace: Espace de travail
+W: W
+X: X
+XLS: XLS
+XML Export: Export XML
+Yes: Oui
+Yesterday: Hier

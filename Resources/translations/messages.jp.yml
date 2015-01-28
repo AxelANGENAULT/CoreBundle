@@ -1,0 +1,244 @@
+About me: 私について
+Account: アカウント
+Add filter: フィルタの追加
+Admin Map: 管理地図
+Administration: 管理地図
+Advanced Search: 高度な検索
+All: すべて
+Allowed Host: 可ホスト
+Authentication: 認証
+Available: 利用できる
+Backup server: バックアップサーバ
+Database: データベース
+Batch Installer: バッチインストーラ
+Change command: コマンドを変更します
+Change password: パスワードを変更
+Check for update: アップデートをチェックする
+Commercial: コマーシャル
+connection.category.note: connection.category.note
+connection.description.note: connection.description.note
+connection.host.note: connection.host.note
+connection.message.delete: connection.message.delete
+connection.message.save: connection.message.save
+connection.title.note: connection.title.note
+Connector: コネクタ
+Cron adapter: クーロン·アダプタ
+Cron System: cronのシステム
+Custom: カスタム
+custom_filter: custom_filter
+dashboard.Admin: dashboard.Admin
+dashboard.Event: dashboard.Event
+dashboard.GVZ: dashboard.GVZ
+dashboard.Home: dashboard.Home
+dashboard.JID: dashboard.JID
+dashboard.JOC: dashboard.JOC
+dashboard.JOE: dashboard.JOE
+dashboard.MFT: dashboard.MFT
+dashboard.Simile: dashboard.Simile
+dashboard.Time: dashboard.Time
+Database: データベース
+database: データベース
+date.reference: date.reference
+day.d: day.d
+DBDRIVER.CHANGE: DBDRIVER.CHANGE
+DBDRIVER.ERROR: DBDRIVER.ERROR
+Delete package: パッケージを削除する
+Delete: Delete
+Description: Description
+Do you really want to delete this queue ?: あなたは本当に、このキューを削除しますか？
+dow.Friday: dow.Friday
+dow.Monday: dow.Monday
+dow.Saturday: dow.Saturday
+dow.Sunday: dow.Sunday
+dow.Thursday: dow.Thursday
+dow.Tuesday: dow.Tuesday
+dow.Wednesday: dow.Wednesday
+Driver: ドライバー
+Edit: 編集
+Filter management: フィルタ管理
+Filter: フィルタリング
+Filters: フィルタ
+First name: ファーストネーム
+Free text: フリーテキスト
+From: From
+General: 一般的な
+Global administration: グローバル管理
+GPL: GPL
+h: h
+history.list: history.list
+history.pie: history.pie
+history.timeline: history.timeline
+history: 歴史
+Host: ホスト
+hour: 時間
+Id: Id
+Informations: 情報
+Install path: インストールパス
+Installation: インストール
+JDBC driver: JDBCドライバ
+Job chain: Job chain
+Job events: ジョブイベント
+Job information: 求人情報
+Job information: 求人情報
+Job: Job
+job: job
+jobchain: jobchain
+JOBS.STOPPED: JOBS.STOPPED
+JOBS.STOPPED: JOBS.STOPPED
+JOBS.TO_UNSTOP: JOBS.TO_UNSTOP
+JOBS.TO_UNSTOP: JOBS.TO_UNSTOP
+Jobs: Jobs
+Jobs: Jobs
+Last name: 姓
+Licence: ライセンス
+List: リスト
+Load balancing: ロードバランシング
+Mail Bcc: メールのBccの
+Mail Cc: メールCcを
+Mail from: からのメール
+Mail on Error: エラーでメール
+Mail on Success: 成功した場合にメール
+Mail on Warning: 警告上のメール
+Mail Server: メールサーバー
+Mail to: へのメール
+Main menu: メインメニュー
+Menu: Menu
+minute: 分
+minutes: 分
+module.Admin: module.Admin
+module.Event: module.Event
+module.GVZ: module.GVZ
+module.Home: module.Home
+module.JID: module.JID
+module.JOC: module.JOC
+module.JOE: module.JOE
+module.MFT: module.MFT
+module.Simile: module.Simile
+module.Time: module.Time
+Modules: モジュール
+My account: 私のアカウント
+My.account: My.account
+Name: Name
+Need Help ?: ヘルプが必要ですか？
+Network: ネットワーク
+Never: 決して
+New package: 新しいパッケージ
+New password: 新しいパスワード
+Next day: 次の日
+No database: いいえデータベースません
+No: ノー
+Notifications: 通知
+Operating System: オペレーティングシステム
+order: order
+Order: Order
+Package: パッケージ
+Packages: パッケージ
+Password: パスワード
+Path: パス
+planned: 計画された
+planned: 計画された
+Port: Port
+Previous day: 前日
+Primary server: プライマリサーバ
+Record deleted: 削除レコード
+Record updated: 更新されたレコード
+Reference date: 基準日
+Refresh: リフレッシュ
+repository.db.note: repository.db.note
+repository.db.tooltip: repository.db.tooltip
+repository.description.note: repository.description.note
+repository.description.tooltip: repository.description.tooltip
+repository.message.delete: repository.message.delete
+repository.message.save: repository.message.save
+repository.name.note: repository.name.note
+repository.name.tooltip: repository.name.tooltip
+repository.timezone.note: repository.timezone.note
+repository.timezone.tooltip: repository.timezone.tooltip
+Repository: リポジトリー
+Save changes: 変更を保存します
+Save new password: 新しいパスワードを保存します
+Save: 保存
+Saved: 保存
+Schema: スキーマ
+seconds: seconds
+Server installation: サーバーのインストール
+Servers management: サーバーの管理
+Session: セッション
+Settings: Settings
+Shortlinks: Shortlinks
+short_dow.1: 月曜日
+short_dow.2: 火曜日
+short_dow.3: 水曜日
+short_dow.4: 木曜日
+short_dow.5: 金曜日
+short_dow.6: 土曜日
+short_dow.7: 日曜日
+site.description.note: site.description.note
+site.description.tooltip: site.description.tooltip
+site.message.delete: site.message.delete
+site.message.save: site.message.save
+site.name.note: site.name.note
+site.name.tooltip: site.name.tooltip
+site.timezone.note: site.timezone.note
+site.timezone.tooltip: site.timezone.tooltip
+Site: サイト
+Spooler name: スプーラ名
+spooler.all: spooler.all
+spooler.connection.note: spooler.connection.note
+spooler.connection.tooltip: spooler.connection.tooltip
+spooler.database.note: spooler.database.note
+spooler.event.note: spooler.event.note
+spooler.mail.note: spooler.mail.note
+spooler.message.delete: spooler.message.delete
+spooler.name.note: spooler.name.note
+spooler.site.note: spooler.site.note
+spooler.supervisor.note: spooler.supervisor.note
+spooler.transfer.note: spooler.transfer.note
+spooler.version.note: spooler.version.note
+Spooler: スプーラ
+spooler: スプーラ
+Standalone server: スタンドアロンサーバ
+Start day: 一日を開始します
+Start time: Start time
+Status: ステータス
+str_month.10: 10月
+str_month.11: 11月
+str_month.12: 12月
+str_month.1: 1月
+str_month.2: 2月
+str_month.3: 3月
+str_month.4: 4月
+str_month.5: 5月
+str_month.6: 6月
+str_month.7: 7月
+str_month.8: 8月
+str_month.9: 9月
+team.description.note: team.description.note
+team.message.delete: team.message.delete
+team.message.save: team.message.save
+team.title.note: team.title.note
+Timeout (s): タイムアウト（秒）
+Timezone: タイムゾーン
+Title: タイトル
+To do list: リストを行うには
+To do list: リストを行うには
+to: へ
+To: To
+Today: 今日
+Tomorrow: 明日
+Traitements: Traitements
+Type: タイプ
+User change: ユーザーの変更
+User path: ユーザーパス
+user.mail.note: user.mail.note
+user.mail.tooltip: user.mail.tooltip
+user.message.delete: user.message.delete
+user.message.save: user.message.save
+user.name.note: user.name.note
+user.name.tooltip: user.name.tooltip
+User: ユーザー
+Users management: ユーザ管理
+Value: 値
+XML Export: XMLエクスポート
+Yes: はい
+Yesterday: 昨日
