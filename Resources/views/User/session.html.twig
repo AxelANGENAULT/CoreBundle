@@ -1,0 +1,81 @@
+{# src/Arii/CoreBundle/Resources/views/index.html.twig #}
+{% extends "AriiCoreBundle::layout.html.twig" %}
+{% block content %}
+
+<!--[if !IE]>start section<![endif]-->	
+<div class="section">
+        <!--[if !IE]>start title wrapper<![endif]-->
+        <div class="title_wrapper">
+                <h2>{{ app.user.username }}</h2>
+                <ul  class="section_menu">
+                    <li><a href="{{ url('arii_my_account') }}" class=""><span><span><img src="{{ asset('arii/images/wa/user.png') }}"/>&nbsp;{{ "My account" | trans }}</span></span></a></li>
+                    <li><a href="{{ url('arii_filters') }}" class=""><span><span><img src="{{ asset('arii/images/wa/filter.png') }}"/>&nbsp;{{ "Filters" | trans  }}</span></span></a></li>
+                    <li><a href="{{ url('arii_my_session') }}" class="active"><span><span><img src="{{ asset('arii/images/wa/session.png') }}"/>&nbsp;{{ "Session" | trans  }}</span></span></a></li>
+                </ul>
+                <span class="title_wrapper_left"></span>
+                <span class="title_wrapper_right"></span>
+        </div>
+        <!--[if !IE]>end title wrapper<![endif]-->
+        <!--[if !IE]>start section content<![endif]-->
+        <div class="section_content">
+                <!--[if !IE]>start section content top<![endif]-->
+                <div class="sct">
+                        <div class="sct_left">
+                                <div class="sct_right">
+                                        <div class="sct_left">
+                                                <div class="sct_right">
+                                                        <!--[if !IE]>start dashboard menu<![endif]-->
+                                                        <div class="dashboard_menu_wrapper">
+    <div id="mygrid" style="height:576px;background-color:white;position:relative;overflow:hidden;"></div>
+                                                      </div>
+                                                        <!--[if !IE]>end dashboard menu<![endif]-->
+
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <!--[if !IE]>end section content top<![endif]-->
+                <!--[if !IE]>start section content bottom<![endif]-->
+                <span class="scb"><span class="scb_left"></span><span class="scb_right"></span></span>
+                <!--[if !IE]>end section content bottom<![endif]-->
+
+        </div>
+        <!--[if !IE]>end section content<![endif]-->
+</div>
+<!--[if !IE]>end section<![endif]-->
+<script>
+dhtmlx.skin = "dhx_skyblue";
+var dhxLayout = new dhtmlXLayoutObject("mygrid","1C");
+
+mygrid = dhxLayout.cells("a").attachGrid();
+var sb = dhxLayout.cells("a").attachStatusBar();
+dhxLayout.cells("a").hideHeader();
+mygrid.selMultiRows = true;
+mygrid.setImagePath( "{{ asset('arii/images/treegrid/') }}");
+mygrid.enableTreeCellEdit(false);
+mygrid.setHeader("{{ "Session" | trans }},{{ "Value" | trans }}");
+mygrid.attachHeader("#text_filter,#text_filter");
+mygrid.setInitWidths("300,*");
+mygrid.setColAlign("left,left");
+mygrid.setColTypes("tree,ro");
+mygrid.enableTreeGridLines(true);
+mygrid.setColSorting("str,str");
+mygrid.init();
+mygrid.setSkin('dhx_skyblue');
+mygrid.loadXML( "{{ url('xml_my_session') }}" );
+
+var states = new Array();
+
+mygrid.attachEvent("onOpenEnd", function(index,state){
+    mygrid.saveOpenStates();
+});
+   
+function GlobalRefresh() {
+        mygrid.loadXML( "{{ url('xml_my_session') }}?states=", function () { 
+        mygrid.loadOpenStates();
+    });
+}
+
+</script>
+{% endblock %}

@@ -1,0 +1,294 @@
+arii_Home_index:
+    pattern:  /
+    defaults: { _controller: AriiCoreBundle:Default:index }
+
+#--------------------------------------------------------------------
+# DHTMLX
+#--------------------------------------------------------------------
+xml_toolbar:
+    pattern:  /toolbar
+    defaults: { _controller: AriiCoreBundle:Toolbar:global }
+
+arii_About:
+    pattern:  /about
+    defaults: { _controller: AriiCoreBundle:Default:about }
+
+#--------------------------------------------------------------------
+# Outils communs aux modules
+#--------------------------------------------------------------------
+# Command XML
+arii_XML_Command:
+    pattern:  /XML/command
+    defaults: { _controller: AriiCoreBundle:SOS:XMLCommand }
+
+#--------------------------------------------------------------------
+# Session 
+#--------------------------------------------------------------------
+arii_session_update:
+    pattern:  /session/update
+    defaults: { _controller: AriiCoreBundle:Session:update }
+
+arii_session_view:
+    pattern:  /session/view
+    defaults: { _controller: AriiCoreBundle:Session:view }
+
+#--------------------------------------------------------------------
+# Flash bag 
+#--------------------------------------------------------------------
+arii_flash_view:
+    pattern:  /flash/view
+    defaults: { _controller: AriiCoreBundle:Flash:view }
+#--------------------------------------------------------------------
+# Gestion des filtres
+#--------------------------------------------------------------------
+arii_filters:
+    pattern:  /filters
+    defaults: { _controller: AriiCoreBundle:Filter:index }
+
+arii_filters_list:
+    pattern:  /filters/list
+    defaults: { _controller: AriiCoreBundle:Filter:list }
+
+arii_filters_edit:
+    pattern:  /filters/edit
+    defaults: { _controller: AriiCoreBundle:Filter:add }
+
+xml_filter_list:
+    pattern:  /filters/list.xml
+    defaults: { _controller: AriiCoreBundle:Filter:xml }
+
+xml_filter_toolbar:
+    pattern:  /filters/toolbar.xml
+    defaults: { _controller: AriiCoreBundle:Filter:toolbar }
+    
+xml_filter_form:
+    pattern:  /filters/form.xml
+    defaults: { _controller: AriiCoreBundle:Filter:form }
+    
+xml_filter_save:
+    pattern:  /filter/save.xml
+    defaults: { _controller: AriiCoreBundle:Filter:save }
+
+#--------------------------------------------------------------------
+# GLOBAL
+#--------------------------------------------------------------------
+arii_global_toolbar:
+    pattern:  /global/toolbar
+    defaults: { _controller: AriiCoreBundle:Toolbar:send }
+
+arii_global_toolbar_update:
+    pattern:  /global/toolbar_update
+    defaults: { _controller: AriiCoreBundle:Toolbar:update }
+
+arii_settings:
+    pattern:  /settings
+    defaults: { _controller: AriiCoreBundle:Default:settings }
+    requirements:
+        _locale: en|fr
+
+arii_form_settings_update:
+    pattern:  /settings/form
+    defaults: { _controller: AriiCoreBundle:DB:filter_form }
+
+arii_grid_filter_update:
+    pattern:  /filter/grid
+    defaults: { _controller: AriiCoreBundle:DB:filter_grid }
+
+arii_form_filter_update:
+    pattern:  /filter/form
+    defaults: { _controller: AriiCoreBundle:DB:filter_form }
+
+arii_toolbar_filters:
+    pattern:  /filter/toolbar
+    defaults: { _controller: AriiCoreBundle:Toolbar:filters }
+
+arii_toolbar_filter_add:
+    pattern:  /filter/toolbar_add
+    defaults: { _controller: AriiCoreBundle:Toolbar:filter_add }
+
+lang:
+    pattern:  /lang/{lang}
+    defaults: { _controller: AriiCoreBundle:Default:lang }
+
+xml_User_filter_save:
+    pattern:  /filter/save
+    defaults: { _controller: AriiCoreBundle:Filter:save }
+
+xml_User_filter_delete:
+    pattern:  /filter/delete
+    defaults: { _controller: AriiCoreBundle:Filter:delete }
+
+#--------------------------------------------------------------------
+# User settings
+#--------------------------------------------------------------------
+arii_my_account:
+    pattern:  /user/me
+    defaults: { _controller: AriiCoreBundle:User:index }
+
+arii_my_account_save:
+    pattern:  /user/me/save
+    defaults: { _controller: AriiCoreBundle:User:save }
+
+arii_my_account_password:
+    pattern:  /user/me/password
+    defaults: { _controller: AriiCoreBundle:User:password }
+
+arii_my_filters:
+    pattern:  /user/filters
+    defaults: { _controller: AriiCoreBundle:User:session }
+
+arii_my_session:
+    pattern:  /user/session
+    defaults: { _controller: AriiCoreBundle:User:session }
+
+xml_my_session:
+    pattern:  /user/session.xml
+    defaults: { _controller: AriiCoreBundle:User:session_xml }
+    
+xml_user_toolbar:
+    pattern:  /user/toolbar.xml
+    defaults: { _controller: AriiCoreBundle:User:toolbar }
+    
+#--------------------------------------------------------------------
+# Quick info
+#--------------------------------------------------------------------
+xml_arii_session:
+    pattern:  /quickinfo/session.xml
+    defaults: { _controller: AriiCoreBundle:QuickInfo:session }
+
+xml_arii_errors:
+    pattern:  /quickinfo/errors.xml
+    defaults: { _controller: AriiCoreBundle:QuickInfo:errors }
+
+xml_arii_audit_quick:
+    pattern:  /quickinfo/audit.xml
+    defaults: { _controller: AriiCoreBundle:QuickInfo:audit }
+
+
+#--------------------------------------------------------------------
+# Installation silencieuse
+#--------------------------------------------------------------------
+arii_Home_silent:
+    pattern:  /silent
+    defaults: { _controller: AriiCoreBundle:Silent:index }
+
+xml_Home_silent_toolbar:
+    pattern:  /silent/toolbar.xml
+    defaults: { _controller: AriiCoreBundle:Silent:toolbar }
+
+arii_Home_silent_generate:
+    pattern:  /silent/generate
+    defaults: { _controller: AriiCoreBundle:Silent:generate }
+
+arii_Home_silent_generate_direct:
+    pattern:  /silent/direct
+    defaults: { _controller: AriiCoreBundle:Silent:direct }
+
+arii_Home_silent_files:
+    pattern:  /silent/files
+    defaults: { _controller: AriiCoreBundle:Silent:files }
+
+arii_Home_get_file:
+    pattern:  /get/file
+    defaults: { _controller: AriiCoreBundle:Default:getfile }
+
+#--------------------------------------------------------------------
+# Audit & Errors
+#--------------------------------------------------------------------
+arii_Home_audit:
+    pattern:  /audit
+    defaults: { _controller: AriiCoreBundle:Audit:list }
+
+xml_Home_audit_toolbar:
+    pattern:  /audit/toolbar.xml
+    defaults: { _controller: AriiCoreBundle:Audit:toolbar }
+
+xml_Home_audit_list:
+    pattern:  /audit/list.xml
+    defaults: { _controller: AriiCoreBundle:Audit:xml }
+
+arii_Home_errors:
+    pattern:  /errors
+    defaults: { _controller: AriiCoreBundle:Errors:list }
+
+xml_Home_errors_toolbar:
+    pattern:  /audit/toolbar.xml
+    defaults: { _controller: AriiCoreBundle:Errors:toolbar }
+
+xml_Home_errors_list:
+    pattern:  /errors/list.xml
+    defaults: { _controller: AriiCoreBundle:Errors:xml }
+
+xml_arii_audit_detail:
+    pattern:  /audit/detail
+    defaults: { _controller:  AriiCoreBundle:Audit:detail }
+
+#--------------------------------------------------------------------
+# Monitoring
+#--------------------------------------------------------------------
+arii_Home_monitoring:
+    pattern:  /monitoring
+    defaults: { _controller: AriiCoreBundle:Monitoring:index }
+
+#--------------------------------------------------------------------
+# Cron converter
+#--------------------------------------------------------------------
+arii_Home_cron:
+    pattern:  /cron
+    defaults: { _controller: AriiCoreBundle:Cron:index }
+
+arii_Home_cron_convert:
+    pattern:  /cron/convert
+    defaults: { _controller: AriiCoreBundle:Cron:convert }
+
+xml_Home_cron_dirlist:
+    pattern:  /cron/dirlist.xml
+    defaults: { _controller: AriiCoreBundle:Cron:dirlist }
+
+xml_Home_cron_job_view:
+    pattern:  /cron/job/view
+    defaults: { _controller: AriiCoreBundle:Cron:job_view }
+
+json_Home_cron_upload:
+    pattern:  /cron/upload
+    defaults: { _controller: AriiCoreBundle:Cron:upload }
+
+arii_Home_cron_form:
+    pattern:  /cron/form
+    defaults: { _controller: AriiCoreBundle:Cron:form }
+
+arii_Home_task:
+    pattern:  /task_scheduler
+    defaults: { _controller: AriiCoreBundle:Cron:task_scheduler }
+
+#--------------------------------------------------------------------
+# Log analyzer
+#--------------------------------------------------------------------
+xml_Home_log_server:
+    pattern:  /log_server.xml
+    defaults: { _controller: AriiCoreBundle:Spooler:log_analyzer }
+
+arii_Home_log_toolbar:
+    pattern:  /log_server/toolbar.xml
+    defaults: { _controller: AriiCoreBundle:Spooler:toolbar }
+
+arii_Home_log_server:
+    pattern:  /log_server
+    defaults: { _controller: AriiCoreBundle:Spooler:log }
+
+xml_Home_log_dirlist:
+    pattern:  /log_server/dirlist.xml
+    defaults: { _controller: AriiCoreBundle:Spooler:dirlist }
+    
+json_Home_log_upload:
+    pattern:  /log_server/upload.json
+    defaults: { _controller: AriiCoreBundle:Spooler:upload }
+
+arii_Home_log_scheduler:
+    pattern:  /log_scheduler
+    defaults: { _controller: AriiCoreBundle:Spooler:log_scheduler }
+
+xml_Home_log_server_chart:
+    pattern:  /log_chart.xml
+    defaults: { _controller: AriiCoreBundle:Spooler:log_chart }
+    

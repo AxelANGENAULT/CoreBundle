@@ -1,0 +1,47 @@
+<!--[if !IE]>start calendar<![endif]-->
+<div class="calendar">
+    <div class="calendar_top">
+            <strong>{{ heure }}</strong>
+    </div>
+    <div class="calendar_middle">
+        <div class="calendar_data">
+        <!--[if !IE]>start calendar data<![endif]-->
+            <div class="cmonth">
+                <div class="ctrl">
+                    <table cellspacing="0" cellpadding="0" width="100%">
+                            <tr>
+                                    <td align="left" style="width: 15px;"><a class="calendar_prev" href="{{ precedent }}">&laquo; </a></td>
+                                    <td align="center"><span><strong>{{ mois | trans }} {{ annee }}</strong></span></td>
+                                    <td align="right" style="width: 15px;"><a class="calendar_next" href="{{ suivant }}">&raquo;</a></td>
+                            </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="cont">
+                <ul class="chead">
+                        <li><span>{{ "short_dow.1" | trans }}</span></li>
+                        <li><span>{{ "short_dow.2" | trans }}</span></li>
+                        <li><span>{{ "short_dow.3" | trans }}</span></li>
+                        <li><span>{{ "short_dow.4" | trans }}</span></li>
+                        <li><span>{{ "short_dow.5" | trans }}</span></li>
+                        <li><span>{{ "short_dow.6" | trans }}</span></li>
+                        <li><span>{{ "short_dow.7" | trans }}</span></li>
+                </ul>
+                    <ul class="cdays">
+                    {% for tab in jours %}
+                        <li>{{ tab | raw }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+        <!--[if !IE]>end calendar data<![endif]-->
+        </div>
+    </div>
+    <div class="calendar_bottom"></div>
+    <!--[if !IE]>start section content footer<![endif]-->
+    <div class="section_content_footer">
+        <span class="scf"></span>
+    </div>
+    <!--[if !IE]>end section content footer<![endif]-->
+</div>
+<!--[if !IE]>end calendar<![endif]-->

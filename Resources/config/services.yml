@@ -1,0 +1,77 @@
+parameters:
+#    arii_core.example.class: Arii\CoreBundle\Example
+      
+services:
+#    arii_core.example:
+#        class: %arii_core.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+services: 
+    arii_locale.locale_listener:
+        class: Arii\CoreBundle\EventListener\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber }
+            
+    arii.repository.connection:
+        class: Arii\CoreBundle\Entity\Connection
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: ['AriiCoreBundle:Connection']
+        
+    arii_core.sql:
+        class: Arii\CoreBundle\Service\AriiSQL
+        arguments: ["@arii_core.session"]
+
+    arii_core.date:
+        class: Arii\CoreBundle\Service\AriiDate
+        arguments: ["@arii_core.session"]
+
+    arii_core.session:
+        class: Arii\CoreBundle\Service\AriiSession
+        arguments: ["@session","@service_container","@arii_core.db"]
+
+    arii_core.dhtmlx:
+        class: Arii\CoreBundle\Service\AriiDHTMLX
+        arguments: [ "@arii_core.session" ]
+
+    arii_core.audit:
+        class: Arii\CoreBundle\Service\AriiAudit
+        arguments: ["@arii_core.session","@fos_user.user_manager","@doctrine.orm.default_entity_manager"]
+        
+    arii_core.sos:
+        class: Arii\CoreBundle\Service\AriiSOS
+        arguments: ["@arii_core.audit","@arii_core.log"]
+
+    arii_core.db:
+        class: Arii\CoreBundle\Service\AriiDB
+        arguments: [ %database_driver%, %database_host%, %database_port%, %database_name%, %database_user%, %database_password% ]
+    
+    arii_core.log:
+        class: Arii\CoreBundle\Service\AriiLog
+        arguments: [ "@doctrine.orm.default_entity_manager","@arii_core.session" ]
+
+    arii_core.message:
+        class: Arii\CoreBundle\Service\AriiMessage
+        arguments: [ "@doctrine.orm.default_entity_manager" ]
+
+    arii_core.tools:
+        class: Arii\CoreBundle\Service\AriiTools
+        arguments: [ "@arii_core.session", %workspace% ]
+        
+    arii_core.files:
+        class: Arii\CoreBundle\Service\AriiFiles
+        arguments: [ "@arii_core.session", %workspace% ]
+
+    arii_core.cal:
+        class: Arii\CoreBundle\Service\AriiCal
+        arguments: [ "@arii_core.session" ]
+
+    arii_core.cron:
+        class: Arii\CoreBundle\Service\AriiCron
+        arguments: [ "@arii_core.session" ]
+
+    arii_core.joe:
+        class: Arii\CoreBundle\Service\AriiJOE
+        arguments: [ "@arii_core.session" ]
+        

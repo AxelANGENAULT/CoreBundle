@@ -1,0 +1,82 @@
+{# src/Arii/CoreBundle/Resources/views/Filter/list.html.twig #}
+
+{% extends "AriiCoreBundle::layout.html.twig" %}
+{% block content %}
+<!--[if !IE]>start section<![endif]-->	
+<div class="section table_section">
+	<!--[if !IE]>start title wrapper<![endif]-->
+	<div class="title_wrapper">
+		<h2>{{ "Filters" | trans }}</h2>
+		
+		<span class="title_wrapper_left"></span>
+		<span class="title_wrapper_right"></span>
+	</div>
+	<!--[if !IE]>end title wrapper<![endif]-->
+<!--[if !IE]>start section content<![endif]-->
+	<div class="section_content">
+		<!--[if !IE]>start section content top<![endif]-->
+		<div class="sct">
+			<div class="sct_left">
+				<div class="sct_right">
+					<div class="sct_left">
+                                                <div class="sct_right">
+<table border=0 width="100%" height="730">
+<tr><td>
+    <div id="toolbarObj"></div>
+</td></tr>
+<tr><td valign="top">
+    <div id="mygrid" style="height:659px;background-color:white;overflow:hidden"></div>
+</td></tr>
+<tr><td>
+    <div id="recinfoArea"></div>
+</td></tr>
+</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<script language="javascript">
+mygrid = new dhtmlXGridObject( "mygrid" );
+//mygrid.setImagePath( "dhtmlx/dhtmlxGrid/codebase/imgs/" );
+mygrid.setImagePath( "{{ asset('arii/images/') }}");
+//mygrid.setHeader("Location,StaState,Title,Information,Next run time");
+mygrid.setHeader("{{ "Filter" | trans }},{{ "Title" | trans }},{{ "Spooler" | trans }},{{ "Job" | trans }},{{ "Job chain" | trans }},{{ "Order" | trans }},{{ "Status" | trans }}");
+mygrid.attachHeader("#text_filter,#text_filter,#select_filter,#text_filter,#text_filter,#text_filter,#select_filter");
+mygrid.setInitWidths("200,*,*,*,*,*,120");
+mygrid.setColAlign("left,left,left,left,left,left,right");
+mygrid.setColTypes("ed,ed,ed,ed,ed,ed,ed");
+mygrid.setColSorting("str,str,str,str,str,str,str");
+mygrid.enablePaging(true, 30, 20, "recinfoArea");
+mygrid.setPagingSkin("bricks");
+mygrid.init();
+mygrid.setSkin('dhx_skyblue');
+mygrid.loadXML( "{{ url('arii_db_filters') }}" );
+mygrid.enableLightMouseNavigation( true );
+
+var toolbar;
+toolbar = new dhtmlXToolbarObject("toolbarObj");
+toolbar.setIconsPath("{{ asset('arii/images/') }}");
+toolbar.loadXML("{{ url('arii_toolbar_filters') }}");
+toolbar.attachEvent("onclick",function()
+   {
+        document.location.href="{{ url('arii_filters_edit') }}";
+   }
+);
+var dp = new dataProcessor( "{{ url('arii_grid_filter_update') }}" );
+dp.init(mygrid);
+
+function GridRefresh() {
+    // rien a faire
+}
+</script>
+		<!--[if !IE]>end section content top<![endif]-->
+		<!--[if !IE]>start section content bottom<![endif]-->
+		<span class="scb"><span class="scb_left"></span><span class="scb_right"></span></span>
+		<!--[if !IE]>end section content bottom<![endif]-->
+		
+	</div>
+	<!--[if !IE]>end section content<![endif]-->
+</div>
+<!--[if !IE]>end section<![endif]-->
+{% endblock %}

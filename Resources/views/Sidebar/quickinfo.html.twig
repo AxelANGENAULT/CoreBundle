@@ -1,0 +1,17 @@
+<!--[if !IE]>start quick info<![endif]-->
+<div class="quick_info">
+        <div class="quick_info_top">
+                <h2>{{ "Informations" | trans }}</h2>
+        </div>
+        <div id="QuickInfo" class="quick_info_content" style="position:absolute; width:234px; height:200px;padding: 0; margin: 10;">
+        </div>
+        <br/>&nbsp;
+        <span class="quick_info_bottom"></span>
+</div>
+<!--[if !IE]>end quick info<![endif]-->
+<script>
+var QILayout = new dhtmlXLayoutObject( 'QuickInfo','1C','dhx_skyblue');
+QILayout.cells("a").hideHeader();
+QILayout.cells("a").setHeight(100);
+QILayout.cells("a").attachURL("{{ url('arii_flash_view') }}");
+</script>

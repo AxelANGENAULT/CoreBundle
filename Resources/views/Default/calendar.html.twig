@@ -1,0 +1,97 @@
+<!--[if !IE]>start calendar<![endif]-->
+<div class="calendar">
+    <div class="calendar_top">
+            <strong>{{ heure }}</strong>
+    </div>
+    <div class="calendar_middle">
+        <div class="calendar_data">
+        <!--[if !IE]>start calendar data<![endif]-->
+            <div class="cmonth">
+                <div class="ctrl">
+                    <table cellspacing="0" cellpadding="0" width="100%">
+                            <tr>
+                                    <td align="left" style="width: 15px;"><a class="calendar_prev" href="{{ precedent }}">&laquo; </a></td>
+                                    <td align="center"><span><strong>{{ mois | trans }} {{ annee }}</strong></span></td>
+                                    <td align="right" style="width: 15px;"><a class="calendar_next" href="{{ suivant }}">&raquo;</a></td>
+                            </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="cont">
+                <ul class="chead">
+                        <li><span>{{ "short_dow.1" | trans }}</span></li>
+                        <li><span>{{ "short_dow.2" | trans }}</span></li>
+                        <li><span>{{ "short_dow.3" | trans }}</span></li>
+                        <li><span>{{ "short_dow.4" | trans }}</span></li>
+                        <li><span>{{ "short_dow.5" | trans }}</span></li>
+                        <li><span>{{ "short_dow.6" | trans }}</span></li>
+                        <li><span>{{ "short_dow.7" | trans }}</span></li>
+                </ul>
+                    <ul class="cdays">
+                    {% for tab in jours %}
+                        <li>{{ tab | raw }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+        <!--[if !IE]>end calendar data<![endif]-->
+        </div>
+    </div>
+    <div class="calendar_bottom"></div>
+    <!--[if !IE]>start section content footer<![endif]-->
+    <div class="section_content_footer">
+        <ul>
+            <li>
+        <table width="100%"> 
+            <tr><td align="right">{{ "From" | trans }} </td><td align="right"><div id="past"></div></td><td>h</td><td align="right">{{ "Until" | trans }} </td><td align="right"><div id="future"></div></td><td>h</td></tr>
+            <tr><td colspan=3><div id="slider"></div></td><td colspan=3><div id="slider2"></div></td></tr>
+        </table>
+            </li>
+        </ul>
+        <span class="scf"></span>
+    </div>
+    <!--[if !IE]>end section content footer<![endif]-->
+</div>
+<script>
+var slider = new dhtmlxSlider("slider", {
+    skin: "arrowgreen",
+    min: -48,
+    max: -2,
+    step: 2,
+    size: 80,
+    value: "{{ ref_past }}"
+});
+slider.setImagePath("{{ asset('arii/dhtmlx/dhtmlxSlider/codebase/imgs/') }}");
+slider.linkTo('past');
+slider.init();
+slider.attachEvent("onSlideEnd", function (value) { 
+    alert(value);
+    dhtmlxAjax.get( "{{ url('arii_global_toolbar_update') }}?ref_past="+value,function(loader){ 
+        GlobalRefresh();
+    });
+});
+
+var slider2 = new dhtmlxSlider("slider2", {
+    skin: "arrowgreen",
+    min: 2,
+    max: 48,
+    step: 2,
+    size: 80,
+    value: "{{ ref_future }}"
+});
+slider2.setImagePath("{{ asset('arii/dhtmlx/dhtmlxSlider/codebase/imgs/') }}");
+slider2.linkTo('future');
+slider2.init();
+slider2.attachEvent("onSlideEnd", function (value) { 
+    dhtmlxAjax.get( "{{ url('arii_global_toolbar_update') }}?ref_future="+value,function(loader){ 
+        GlobalRefresh();
+    });
+});
+
+function GlobalRefresh()
+{
+    GridRefresh();
+}
+
+</script>
+<!--[if !IE]>end calendar<![endif]-->

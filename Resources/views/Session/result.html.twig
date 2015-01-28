@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<data>
+    <user id="{{ app.session.get('user_id') }}">
+        <enterprise name="{{ app.session.get('enterprise') }}" id="{{ app.session.get('enterprise_id') }}"/>
+        <modules>{{ app.session.get('arii.modules') }}</modules>
+    </user>
+<ref_date>{{ app.session.get('ref_date') }}</ref_date>
+<filters>
+{% set filters = app.session.get('Filters') %}     
+{% for k,v in filters %}
+    <filter name="{{ v.name }}" id="{{ v.id }}">
+        <repository>{{ v.repository }}</repository>
+        <spooler>{{ v.spooler }}</spooler>
+        <job_chain>{{ v.job_chain }}</job_chain>
+        <job>{{ v.job }}</job>
+        <order>{{ v.order_id }}</order>
+    </filter>
+{% endfor %}
+</filters>
+<user_filters>
+{% set filters = app.session.get('UserFilters') %}     
+{% for k,v in filters %}
+    <user_filter id="{{ v.id }}">{{ v.name }}</user_filter>
+{% endfor %}
+<current>
+{% for k,v in  app.session.get('user_filter') %}
+    <{{ k }}>{{ v }}</{{ k }}>
+{% endfor %}
+<str>{{ app.session.get('filter_str') }}</str>
+</current>
+</user_filters>
+<databases>
+    {% set databases = app.session.get('Databases') %}     
+    {% for k,v in databases %}
+        <database id="{{ v.id }}">{{ v.name }}</database>
+    {% endfor %}
+    <current>
+        {% for k,v in  app.session.get('database') %}
+            <{{ k }}>{{ v }}</{{ k }}>
+        {% endfor %}
+    </current>
+</databases>
+<spoolers>
+{% set spoolers = app.session.get('Spoolers') %}     
+{% for k,v in spoolers %}
+    <spooler id="{{ v.id }}">{{ v.name }}</spooler>
+{% endfor %}
+</spoolers>
+{% set spooler = app.session.get('spooler') %}
+{% if spooler|length > 0 %}
+<spooler>{{ spooler.name }}</spooler>
+{% else %}        
+<spooler>{{ "spooler.all" }}</spooler>
+{% endif %}        
+<sites>
+{% set Sites = app.session.get('Sites') %}     
+{% for k,v in Sites %}
+    <site id="{{ v.id }}">{{ v.name }}</site>
+{% endfor %}
+</sites>
+{% set site = app.session.get('site') %}     
+<site>{{ site.name }}</site>
+<timezone>{{ site.timezone }}</timezone>
+{% set header = app.session.get('layout_header') %}     
+{% set sidebar = app.session.get('layout_sidebar') %}     
+<layout>
+    <header>{{ header }}</header>
+    <sidebar>{{ sidebar }}</sidebar>    
+</layout>
+</data>

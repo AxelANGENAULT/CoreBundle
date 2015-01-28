@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<toolbar>
+    <item id="date_select" type="buttonSelect" img="date.png" text="">
+                <item type="button" id="previous"  text="{{ "Previous day" | trans }}" />
+                <item type="button" id="yesterday" text="{{ "Yesterday" | trans }}" />
+                <item type="button" id="today"     text="{{ "Today" | trans }}" selected="true" />
+                <item type="button" id="tomorrow"  text="{{ "Tomorrow" | trans }}" />
+                <item type="button" id="next"      text="{{ "Next day" | trans }}" />
+    </item>
+    <item id="ref_date" type="buttonInput" value="{{ ref_date }}" width="110" title="{{ "Reference date" | trans }}"/>
+
+    <item id="sep1" type="separator"/>
+    <item id="ref_past" type="slider" length="50" valueMin="1" valueMax="48" valueNow="{{ ref_past }}" textMin="Past" textMax="" toolTip="%v hours"/>
+    <item id="sep2" type="separator"/>
+    <item id="ref_future" type="slider" length="50" valueMin="1" valueMax="48" valueNow="{{ ref_future }}" textMin="Future" textMax="" toolTip="%v hours"/>
+    <item id="sep3" type="separator"/>    
+
+    <item type="buttonSelect" id="refresh" text="{{ "Refresh" | trans }}" img="refresh.png" imgdis="filter.png">
+        <item type="button" id="never" text="{{ "Never" | trans }}" {{ refresh_36000 | raw }}/>
+        <item id="sep31" type="separator"/>    
+        <item type="button" id="5s" text="5 {{ "seconds" | trans }}" {{ refresh_5 | raw }}/>
+        <item type="button" id="30s" text="30 {{ "seconds" | trans }}" {{ refresh_30 | raw  }}/>
+        <item type="button" id="1m" text="1 {{ "minute" | trans }}" {{ refresh_60 | raw }}/>
+        <item type="button" id="5m" text="5 {{ "minutes" | trans }}" {{ refresh_300 | raw }}/>
+        <item type="button" id="15m" text="15 {{ "minutes" | trans }}" {{ refresh_900 | raw }}/>
+        <item type="button" id="1h" text="1 {{ "hour" | trans }}" {{ refresh_3600 | raw }}/>
+    </item>
+    <item id="sep4" type="separator"/>
+
+    <item id="spooler" type="buttonSelect" img="spooler.png" text="{{ "Custom" | trans }}" >
+        <item type="button" id="all_spooler" text="{{ "All" | trans }}" img="custom.png"/>
+        <item id="sep41a" type="separator"/>
+        {% for spooler,status in spoolers %}
+            <item type="button" id="spooler_{{ spooler }}" text="{{ spooler }}" {{ status | raw }} />
+        {% endfor %}
+        <item id="sep41" type="separator"/>
+        <item type="button" id="spooler_custom" text="{{ "Custom" | trans }}" img="custom.png"/>
+    </item>
+    <item id="custom_spooler" type="buttonInput" value="{{ custom_spooler }}" width="100" title="{{ "Spooler name" | trans }}"/>
+    
+    <item id="sep5" type="separator"/>
+    <item type="buttonTwoState" id="STOPPED" title="STOPPED" img="stopped.png" {{ status.STOPPED | raw }} />
+    <item type="buttonTwoState" id="FAILURE" title="FAILURE" img="failure.png" {{ status.FAILURE | raw }} />
+    <item type="buttonTwoState" id="SUCCESS" title="SUCCESS" img="success.png" {{ status.SUCCESS | raw }} />
+    <item type="buttonTwoState" id="RUNNING" title="RUNNING" img="running.png" {{ status.RUNNING | raw }} />
+    <item type="buttonTwoState" id="LATE" title="LATE" img="late.png" {{ status.LATE | raw }} />
+
+    <item id="sep6" type="separator"/>
+    <item id="filter" type="buttonSelect" img="filter.png" text="{{ "Filter" | trans }}">
+        <item type="button" id="filter_custom" text="Custom" img="custom.png"/>
+        <item id="sep61" type="separator"/>    
+        {% for k,v in filters %}
+            <item type="button" id="filter_{{ k }}" text="{{ v }}" />
+        {% endfor %}
+        
+    </item>
+    <item id="custom_filter" type="buttonInput" value="%" width="100" title="{{ "custom_filter" | trans }}"/>
+ </toolbar>

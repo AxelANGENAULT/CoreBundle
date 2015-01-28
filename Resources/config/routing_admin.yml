@@ -1,0 +1,3 @@
+arii_Admin_index:
+    pattern:  /
+    defaults: { _controller: AriiCoreBundle:Admin:index }

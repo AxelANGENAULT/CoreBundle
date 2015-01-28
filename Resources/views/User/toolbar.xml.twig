@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbar>
+    <item type="buttonTwoState" id="USER" text="{{ "ROLE_USER" | trans }}" {% if is_granted('ROLE_USER') %}selected="true"{% endif %} readonly="true"/>
+    <item type="buttonTwoState" id="OPERATOR" text="{{ "ROLE_OPERATOR" | trans }}" {% if is_granted('ROLE_OPERATOR') %}selected="true"{% endif %} readonly="true"/>
+    <item type="buttonTwoState" id="DEVELOPPER" text="{{ "ROLE_DEVELOPPER" | trans }}" {% if is_granted('ROLE_DEVELOPPER') %}selected="true"{% endif %} readonly="true"/>
+    <item type="buttonTwoState" id="MANAGER" text="{{ "ROLE_MANAGER" | trans }}" {% if is_granted('ROLE_MANAGER') %}selected="true"{% endif %} readonly="true"/>
+    <item type="buttonTwoState" id="ADMIN" text="{{ "ROLE_ADMIN" | trans }}" {% if is_granted('ROLE_ADMIN') %}selected="true"{% endif %} readonly="true"/>
+    <item type="buttonTwoState" id="SYSADMIN" text="{{ "ROLE_SYSADMIN" | trans }}" {% if is_granted('ROLE_SYSADMIN') %}selected="true"{% endif %} readonly="true"/>
+</toolbar>

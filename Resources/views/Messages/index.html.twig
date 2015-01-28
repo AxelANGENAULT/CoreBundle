@@ -1,0 +1,105 @@
+{# src/Arii/CoreBundle/Resources/views/index.html.twig #}
+{% extends "AriiCoreBundle::layout.html.twig" %}
+{% block content %}
+
+<!--[if !IE]>start section<![endif]-->	
+<div class="section">
+        <!--[if !IE]>start title wrapper<![endif]-->
+        <div class="title_wrapper">
+                <h2>{{ app.user.username }}</h2>
+                <ul  class="section_menu">
+                    <li><a href="{{ url('arii_my_account') }}" class="active"><span><span>{{ "My account" | trans }}</span></span></a></li>
+                    <li><a href="{{ url('arii_my_filters') }}" class=""><span><span>{{ "My filters" | trans  }}</span></span></a></li>
+                    <li><a href="{{ url('arii_my_session') }}" class=""><span><span>{{ "Session" | trans  }}</span></span></a></li>
+                </ul>
+                <span class="title_wrapper_left"></span>
+                <span class="title_wrapper_right"></span>
+        </div>
+        <!--[if !IE]>end title wrapper<![endif]-->
+        <!--[if !IE]>start section content<![endif]-->
+        <div class="section_content">
+                <!--[if !IE]>start section content top<![endif]-->
+                <div class="sct">
+                        <div class="sct_left">
+                                <div class="sct_right">
+                                        <div class="sct_left">
+                                                <div class="sct_right">
+                                                        <!--[if !IE]>start dashboard menu<![endif]-->
+                                                        <div class="dashboard_menu_wrapper">
+{% for type, flashMessages in app.session.flashbag.all() %}
+    {% for flashMessage in flashMessages %}
+        <div class="alert alert-{{ type }}">
+            {{ flashMessage|trans }}
+        </div>
+    {% endfor %}
+{% endfor %}
+                                                                
+    <form class="form-horizontal" action="{{ url('arii_my_account_save') }}" method="POST">
+    <fieldset>
+    <legend>{{ "About me" | trans }}</legend>
+    <div class="control-group">
+    <label class="control-label" for="inputEmail">Email</label>
+    <div class="controls">
+    <input type="email" id="inputEmail" name="inputEmail" value="{{ email }}"/>
+    </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="inputFirstName">{{ "First name" | trans }}</label>
+    <div class="controls">
+    <input type="text" id="inputFirstName" name="inputFirstName" value="{{ first_name }}"/>
+    </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="inputLastName">{{ "Last name" | trans }}</label>
+    <div class="controls">
+    <input type="text" id="inputLastName" name="inputLastName" value="{{ last_name }}"/>
+    </div>
+    </div>
+    <div class="control-group">
+    <div class="controls">
+    <button type="submit" class="btn btn-primary">{{ "Save changes" | trans }}</button>
+    </div>
+    </div>
+    <fieldset>
+    </form>
+    <form class="form-horizontal" action="{{ url('arii_my_account_password') }}" method="POST">
+    </fieldset>
+    <fieldset>
+    <legend>{{ "Change password" | trans }}</legend>
+    <div class="control-group">
+    <label class="control-label" for="inputPassword">Password</label>
+    <div class="controls">
+    <input type="password" id="inputPassword" name="inputPassword" placeholder="{{ "New password" | trans }}"/>
+    </div>
+    </div>
+    <div class="control-group">
+    <div class="controls">
+    <button type="submit" class="btn btn-primary">{{ "Save new password" | trans }}</button>
+    </div>
+    </div>
+    </fieldset>
+    </form>
+
+                                                        
+                                                        </div>
+                                                        <!--[if !IE]>end dashboard menu<![endif]-->
+
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <!--[if !IE]>end section content top<![endif]-->
+                <!--[if !IE]>start section content bottom<![endif]-->
+                <span class="scb"><span class="scb_left"></span><span class="scb_right"></span></span>
+                <!--[if !IE]>end section content bottom<![endif]-->
+
+        </div>
+        <!--[if !IE]>end section content<![endif]-->
+</div>
+<!--[if !IE]>end section<![endif]-->
+<script>
+function GlobalRefresh() { };
+</script>    
+{% endblock %}
+

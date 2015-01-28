@@ -1,0 +1,97 @@
+{# src/Arii/CoreBundle/Resources/views/Filter/list.html.twig #}
+
+{% extends "AriiCoreBundle::layout.html.twig" %}
+{% block content %}
+<!--[if !IE]>start section<![endif]-->	
+<div class="section table_section">
+	<!--[if !IE]>start title wrapper<![endif]-->
+	<div class="title_wrapper">
+		<h2>{{ "Filters" | trans }}</h2>
+		
+		<span class="title_wrapper_left"></span>
+		<span class="title_wrapper_right"></span>
+	</div>
+	<!--[if !IE]>end title wrapper<![endif]-->
+<!--[if !IE]>start section content<![endif]-->
+	<div class="section_content">
+		<!--[if !IE]>start section content top<![endif]-->
+		<div class="sct">
+			<div class="sct_left">
+				<div class="sct_right">
+					<div class="sct_left">
+                                                <div class="sct_right">
+<table border=0 width="100%" valign="top">
+<tr><td>
+    <div id="toolbarObj"></div>
+</td></tr>
+<tr><td valign="top">
+    <div id="form_container" width="100%"></div>
+</td></tr>
+<tr><td valign="top">
+    <div id="recinfoArea"></div>
+</td></tr>
+</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<script language="javascript">
+var myForm, formData;
+formData = [
+   { type: "settings", position: "label-left", labelWidth: 100, inputWidth: 500, labelAlign: "right", readonly: 1, position: "label-left" },
+   { type: "fieldset", name: "filter", label: "Filter", inputWidth: "auto", list:[
+        {type:"input", name: 'filter', label:'{{ 'Name' | trans }}'},
+        {type:"input", name: 'spooler', label:'{{ 'Spooler' | trans }}'},
+        {type:"input", name: 'job', label:'{{ 'Job' | trans }}'},
+        {type:"input", name: 'job_chain', label:'{{ 'Job chain' | trans }}'},
+        {type:"input", name: 'order_id', label:'{{ 'Order' | trans }}'},
+        {type:"input", name: 'status', label:'{{ 'Status' | trans }}'}
+        ] }
+    ];
+myForm = new dhtmlXForm("form_container", formData);
+
+var dp = new dataProcessor( "{{ url('arii_db_filters') }}" );
+dp.setUpdateMode("off");
+dp.init(myForm);
+
+var toolbar;
+toolbar = new dhtmlXToolbarObject("toolbarObj");
+toolbar.setIconsPath("{{ asset('arii/images/') }}");
+toolbar.loadXML("{{ url('arii_form_filter_update') }}");
+toolbar.loadXML("{{ url('arii_toolbar_filter_add') }}");
+toolbar.attachEvent( "onClick", function(id, value) {
+    switch (id) {
+        case "save":
+            dp.sendData();
+            toolbar.setItemText('save', '{{ "Saved" | trans }}' );
+            toolbar.disableItem('save');
+        break;
+        case "list":
+            document.location.href= "{{ url('arii_filters_list') }}"; 
+        break;
+        default:
+            alert(id);
+    }
+});
+myForm.attachEvent( "onChangeValue", function(id, value) {
+    toolbar.enableItem('save');
+});
+myForm.attachEvent( "onEnter", function(id, value) {
+    toolbar.enableItem('save');
+});
+
+function GridRefresh() {
+    // rien a faire
+}
+</script>
+		<!--[if !IE]>end section content top<![endif]-->
+		<!--[if !IE]>start section content bottom<![endif]-->
+		<span class="scb"><span class="scb_left"></span><span class="scb_right"></span></span>
+		<!--[if !IE]>end section content bottom<![endif]-->
+		
+	</div>
+	<!--[if !IE]>end section content<![endif]-->
+</div>
+<!--[if !IE]>end section<![endif]-->
+{% endblock %}

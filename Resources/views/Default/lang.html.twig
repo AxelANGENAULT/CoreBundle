@@ -1,0 +1,8 @@
+{# src/Arii/CoreBundle/Resources/views/Default/menu.html.twig #}
+
+<ul>
+  {% for tab in menu %}
+    <li><a href="{{ path( 'arii_' ~ tab.module ~ '_index') }}" class="{{ tab.class }}"><span><span>{{ tab.title | trans }}</span></span></a></li>
+  {% endfor %}
+</ul>
+
