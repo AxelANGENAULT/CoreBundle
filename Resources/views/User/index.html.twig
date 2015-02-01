@@ -8,9 +8,11 @@
         <div class="title_wrapper">
                 <h2>{{ app.user.username }}</h2>
                 <ul  class="section_menu">
-                    <li><a href="{{ url('arii_my_account') }}" class="active"><span><span><img src="{{ asset('arii/images/wa/user.png') }}"/>&nbsp;{{ "My account" | trans }}</span></span></a></li>
-                    <li><a href="{{ url('arii_filters') }}" class=""><span><span><img src="{{ asset('arii/images/wa/filter.png') }}"/>&nbsp;{{ "Filters" | trans  }}</span></span></a></li>
-                    <li><a href="{{ url('arii_my_session') }}" class=""><span><span><img src="{{ asset('arii/images/wa/session.png') }}"/>&nbsp;{{ "Session" | trans  }}</span></span></a></li>
+                    <li><a href="{{ url('arii_my_account') }}" class="active"><span><span><img src="{{ asset('bundles/ariicore/images/wa/user.png') }}"/>&nbsp;{{ "My account" | trans }}</span></span></a></li>
+                    <li><a href="{{ url('arii_filters') }}" class=""><span><span><img src="{{ asset('bundles/ariicore/images/wa/filter.png') }}"/>&nbsp;{{ "Filters" | trans  }}</span></span></a></li>
+{% if arii_pro %}
+                    <li><a href="{{ url('arii_my_session') }}" class=""><span><span><img src="{{ asset('bundles/ariicore/images/wa/session.png') }}"/>&nbsp;{{ "Session" | trans  }}</span></span></a></li>
+{% endif %}
                 </ul>
                 <span class="title_wrapper_left"></span>
                 <span class="title_wrapper_right"></span>
@@ -111,18 +113,18 @@ var dhxLayout = new dhtmlXLayoutObject("mygrid","1C");
 
 
 dhxTabbar = dhxLayout.cells("a").attachTabbar();
-dhxTabbar.setImagePath("{{ asset("arii/dhtmlx/dhtmlxTabbar/codebase/imgs/") }}");
+// dhxTabbar.setImagePath("{{ asset("arii/dhtmlx/dhtmlxTabbar/codebase/imgs/") }}");
 dhxTabbar.setSkin("dhx_skyblue");
 dhxTabbar.addTab("a1", "{{ "Profile" | trans }}", 120);
 dhxTabbar.addTab("a2", "{{ "Password" | trans }}", 120);
 
-dhxTabbar.setTabActive("a1");
-dhxTabbar.cells("a1").style.backgroundColor= "#cbe2ed";
+dhxTabbar.tabs("a1").setActive();
+// dhxTabbar.cells("a1").style.backgroundColor= "#cbe2ed";
 
 var toolbar = dhxTabbar.cells("a1").attachToolbar();
 
-toolbar.setIconsPath("{{ asset('arii/images/toolbar/') }}");
-toolbar.loadXML("{{ url('xml_user_toolbar') }}");
+toolbar.setIconsPath("{{ asset('bundles/ariicore/images/toolbar/') }}");
+toolbar.loadStruct("{{ url('xml_user_toolbar') }}");
 /* 
  toolbar.attachEvent( "onClick", function(id, value) {
 });

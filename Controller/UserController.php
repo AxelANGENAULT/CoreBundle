@@ -54,7 +54,7 @@ class UserController extends Controller
     {        
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml');
-        return $this->render('AriiCoreBundle:User:toolbar.xml.twig');
+        return $this->render('AriiCoreBundle:User:toolbar.xml.twig', array(), $response );
     }
 
     public function sessionAction()

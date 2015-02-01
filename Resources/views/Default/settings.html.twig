@@ -52,8 +52,8 @@ dp.init(myForm);
 
 var toolbar;
 toolbar = new dhtmlXToolbarObject("toolbarObj");
-toolbar.setIconsPath("{{ asset('arii/images/') }}");
-toolbar.loadXML("{{ url('arii_form_settings_update') }}"); 
+toolbar.setIconsPath("{{ asset('bundles/ariicore/images/') }}");
+toolbar.loadStruct("{{ url('arii_form_settings_update') }}"); 
 toolbar.attachEvent( "onClick", function(id, value) {
     switch (id) {
         case "save":

@@ -39,7 +39,7 @@
 <script language="javascript">
 mygrid = new dhtmlXGridObject( "mygrid" );
 //mygrid.setImagePath( "dhtmlx/dhtmlxGrid/codebase/imgs/" );
-mygrid.setImagePath( "{{ asset('arii/images/') }}");
+mygrid.setImagePath( "{{ asset('bundles/ariicore/images/') }}");
 //mygrid.setHeader("Location,StaState,Title,Information,Next run time");
 mygrid.setHeader("{{ "Filter" | trans }},{{ "Title" | trans }},{{ "Spooler" | trans }},{{ "Job" | trans }},{{ "Job chain" | trans }},{{ "Order" | trans }},{{ "Status" | trans }}");
 mygrid.attachHeader("#text_filter,#text_filter,#select_filter,#text_filter,#text_filter,#text_filter,#select_filter");
@@ -51,13 +51,13 @@ mygrid.enablePaging(true, 30, 20, "recinfoArea");
 mygrid.setPagingSkin("bricks");
 mygrid.init();
 mygrid.setSkin('dhx_skyblue');
-mygrid.loadXML( "{{ url('arii_db_filters') }}" );
+mygrid.loadStruct( "{{ url('arii_db_filters') }}" );
 mygrid.enableLightMouseNavigation( true );
 
 var toolbar;
 toolbar = new dhtmlXToolbarObject("toolbarObj");
-toolbar.setIconsPath("{{ asset('arii/images/') }}");
-toolbar.loadXML("{{ url('arii_toolbar_filters') }}");
+toolbar.setIconsPath("{{ asset('bundles/ariicore/images/') }}");
+toolbar.loadStruct("{{ url('arii_toolbar_filters') }}");
 toolbar.attachEvent("onclick",function()
    {
         document.location.href="{{ url('arii_filters_edit') }}";

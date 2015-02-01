@@ -8,7 +8,7 @@
             <li>
                 <div style="float: right; margin-right: 5px;">
                 {% for locale in ['en', 'fr'] %}
-                <a href="{{ path(app.request.attributes.get('_route'), app.request.get('_route_params')|merge({'_locale' : locale})) }}"><img src="{{ asset('arii/images/flags/') }}{{ locale }}.png"/></a>
+                <a href="{{ path(app.request.attributes.get('_route'), app.request.get('_route_params')|merge({'_locale' : locale})) }}"><img src="{{ asset('bundles/ariicore/images/flags/') }}{{ locale }}.png"/></a>
                 {% endfor %}
                 </div>
             </li>
@@ -29,7 +29,7 @@
             <li>
                     <ul id="user_access">
                             <li class="first">{{ "Anonymous" | trans }}</li>
-                            <li class="last"><a href="{{ path('fos_user_security_login') }}"><img src="{{ asset('arii/images/wa/login.png') }}"/>&nbsp;{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                            <li class="last"><a href="{{ path('fos_user_security_login') }}"><img src="{{ asset('bundles/ariicore/images/wa/login.png') }}"/>&nbsp;{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
                     </ul>
             </li>
             {% endif %}

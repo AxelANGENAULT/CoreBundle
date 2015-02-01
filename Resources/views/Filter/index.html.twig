@@ -1,16 +1,17 @@
 {# src/Arii/CoreBundle/Resources/views/index.html.twig #}
 {% extends "AriiCoreBundle::layout.html.twig" %}
 {% block content %}
-
 <!--[if !IE]>start section<![endif]-->	
 <div class="section">
         <!--[if !IE]>start title wrapper<![endif]-->
         <div class="title_wrapper">
                 <h2>{{ app.user.username }}</h2>
                 <ul  class="section_menu">
-                    <li><a href="{{ url('arii_my_account') }}" class=""><span><span><img src="{{ asset('arii/images/wa/user.png') }}"/>&nbsp;{{ "My account" | trans }}</span></span></a></li>
-                    <li><a href="{{ url('arii_filters') }}" class="active"><span><span><img src="{{ asset('arii/images/wa/filter.png') }}"/>&nbsp;{{ "Filters" | trans  }}</span></span></a></li>
-                    <li><a href="{{ url('arii_my_session') }}" class=""><span><span><img src="{{ asset('arii/images/wa/session.png') }}"/>&nbsp;{{ "Session" | trans  }}</span></span></a></li>
+                    <li><a href="{{ url('arii_my_account') }}" class=""><span><span><img src="{{ asset('bundles/ariicore/images/wa/user.png') }}"/>&nbsp;{{ "My account" | trans }}</span></span></a></li>
+                    <li><a href="{{ url('arii_filters') }}" class="active"><span><span><img src="{{ asset('bundles/ariicore/images/wa/filter.png') }}"/>&nbsp;{{ "Filters" | trans  }}</span></span></a></li>
+{% if arii_pro %}
+                    <li><a href="{{ url('arii_my_session') }}" class=""><span><span><img src="{{ asset('bundles/ariicore/images/wa/session.png') }}"/>&nbsp;{{ "Session" | trans  }}</span></span></a></li>
+{% endif %}
                 </ul>
                 <span class="title_wrapper_left"></span>
                 <span class="title_wrapper_right"></span>
@@ -50,7 +51,7 @@ var dhxLayout = new dhtmlXLayoutObject("mygrid","2U");
 
 mygrid = dhxLayout.cells("a").attachGrid();
 dhxLayout.cells("a").hideHeader();
-mygrid.setImagePath( "{{ asset('arii/images/treegrid/') }}");
+mygrid.setImagePath( "{{ asset('bundles/ariicore/images/treegrid/') }}");
 // mygrid.enableTreeCellEdit(false);
 mygrid.setHeader("{{ "Filter" | trans }},{{ "Description" | trans }}");
 mygrid.attachHeader("#text_filter,#text_filter");
@@ -68,8 +69,8 @@ mygrid.attachEvent("onRowDblClicked", function (rid) {
 dhxLayout.cells("b").hideHeader();
 dhxLayout.cells("b").setWidth(400);
 var toolbar = dhxLayout.cells("b").attachToolbar();
-toolbar.setIconsPath("{{ asset('arii/images/toolbar/') }}");
-toolbar.loadXML("{{ url('xml_filter_toolbar') }}");
+toolbar.setIconsPath("{{ asset('bundles/ariicore/images/toolbar/') }}");
+toolbar.loadStruct("{{ url('xml_filter_toolbar') }}");
 toolbar.attachEvent("onClick",onClick);
 
 var myForm, formData;

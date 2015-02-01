@@ -166,33 +166,6 @@ xml_arii_audit_quick:
 
 
 #--------------------------------------------------------------------
-# Installation silencieuse
-#--------------------------------------------------------------------
-arii_Home_silent:
-    pattern:  /silent
-    defaults: { _controller: AriiCoreBundle:Silent:index }
-
-xml_Home_silent_toolbar:
-    pattern:  /silent/toolbar.xml
-    defaults: { _controller: AriiCoreBundle:Silent:toolbar }
-
-arii_Home_silent_generate:
-    pattern:  /silent/generate
-    defaults: { _controller: AriiCoreBundle:Silent:generate }
-
-arii_Home_silent_generate_direct:
-    pattern:  /silent/direct
-    defaults: { _controller: AriiCoreBundle:Silent:direct }
-
-arii_Home_silent_files:
-    pattern:  /silent/files
-    defaults: { _controller: AriiCoreBundle:Silent:files }
-
-arii_Home_get_file:
-    pattern:  /get/file
-    defaults: { _controller: AriiCoreBundle:Default:getfile }
-
-#--------------------------------------------------------------------
 # Audit & Errors
 #--------------------------------------------------------------------
 arii_Home_audit:
@@ -222,73 +195,4 @@ xml_Home_errors_list:
 xml_arii_audit_detail:
     pattern:  /audit/detail
     defaults: { _controller:  AriiCoreBundle:Audit:detail }
-
-#--------------------------------------------------------------------
-# Monitoring
-#--------------------------------------------------------------------
-arii_Home_monitoring:
-    pattern:  /monitoring
-    defaults: { _controller: AriiCoreBundle:Monitoring:index }
-
-#--------------------------------------------------------------------
-# Cron converter
-#--------------------------------------------------------------------
-arii_Home_cron:
-    pattern:  /cron
-    defaults: { _controller: AriiCoreBundle:Cron:index }
-
-arii_Home_cron_convert:
-    pattern:  /cron/convert
-    defaults: { _controller: AriiCoreBundle:Cron:convert }
-
-xml_Home_cron_dirlist:
-    pattern:  /cron/dirlist.xml
-    defaults: { _controller: AriiCoreBundle:Cron:dirlist }
-
-xml_Home_cron_job_view:
-    pattern:  /cron/job/view
-    defaults: { _controller: AriiCoreBundle:Cron:job_view }
-
-json_Home_cron_upload:
-    pattern:  /cron/upload
-    defaults: { _controller: AriiCoreBundle:Cron:upload }
-
-arii_Home_cron_form:
-    pattern:  /cron/form
-    defaults: { _controller: AriiCoreBundle:Cron:form }
-
-arii_Home_task:
-    pattern:  /task_scheduler
-    defaults: { _controller: AriiCoreBundle:Cron:task_scheduler }
-
-#--------------------------------------------------------------------
-# Log analyzer
-#--------------------------------------------------------------------
-xml_Home_log_server:
-    pattern:  /log_server.xml
-    defaults: { _controller: AriiCoreBundle:Spooler:log_analyzer }
-
-arii_Home_log_toolbar:
-    pattern:  /log_server/toolbar.xml
-    defaults: { _controller: AriiCoreBundle:Spooler:toolbar }
-
-arii_Home_log_server:
-    pattern:  /log_server
-    defaults: { _controller: AriiCoreBundle:Spooler:log }
-
-xml_Home_log_dirlist:
-    pattern:  /log_server/dirlist.xml
-    defaults: { _controller: AriiCoreBundle:Spooler:dirlist }
-    
-json_Home_log_upload:
-    pattern:  /log_server/upload.json
-    defaults: { _controller: AriiCoreBundle:Spooler:upload }
-
-arii_Home_log_scheduler:
-    pattern:  /log_scheduler
-    defaults: { _controller: AriiCoreBundle:Spooler:log_scheduler }
-
-xml_Home_log_server_chart:
-    pattern:  /log_chart.xml
-    defaults: { _controller: AriiCoreBundle:Spooler:log_chart }
     

@@ -51,14 +51,14 @@
 <!--[if !IE]>end section<![endif]-->
 <script language="javascript">
 var menu = new dhtmlXMenuObject();
-menu.setIconsPath( "{{ asset('arii/images/menu/') }}" );
+menu.setIconsPath( "{{ asset('bundles/ariicore/images/menu/') }}" );
 menu.renderAsContextMenu();
 menu.attachEvent("onClick", onButtonClick);
 menu.loadXML("{{ url('arii_batchinstaller_contextmenu') }}");
 
 var mygrid;
 mygrid = new dhtmlXGridObject( "mygrid" );
-mygrid.setImagePath( "{{ asset('arii/images/grid/') }}");
+mygrid.setImagePath( "{{ asset('bundles/ariicore/images/grid/') }}");
 mygrid.enableTreeCellEdit(false);
 mygrid.setHeader("{{ "Name" | trans }},{{ "Title" | trans }}");
 mygrid.attachHeader("#text_filter,#text_filter");
@@ -70,7 +70,7 @@ mygrid.enablePaging(true, 30, 20, "recinfoArea");
 mygrid.setPagingSkin("bricks");
 mygrid.init();
 mygrid.setSkin('dhx_skyblue');
-mygrid.loadXML( "{{ url('arii_batchinstaller_grid') }}" );
+mygrid.loadStruct( "{{ url('arii_batchinstaller_grid') }}" );
 mygrid.enableLightMouseNavigation( true );
 
 mygrid.enableContextMenu(menu);
@@ -81,18 +81,18 @@ mygrid.attachEvent( "onRowDblClicked", function(id) {
 
 var toolbar;
 toolbar = new dhtmlXToolbarObject("toolbarObj");
-toolbar.setIconsPath("{{ asset('arii/images/toolbar/') }}");
-toolbar.loadXML("{{ url('arii_batchinstaller_toolbar_list') }}");
+toolbar.setIconsPath("{{ asset('bundles/ariicore/images/toolbar/') }}");
+toolbar.loadStruct("{{ url('arii_batchinstaller_toolbar_list') }}");
 toolbar.attachEvent( "onClick", function(id, value) {
     switch (id) {
         case "add":
             document.location.href= "{{ url('arii_batchinstaller_new') }}"; 
         break;
         case "pdf":
-            mygrid.toPDF('{{ asset('arii/grid-pdf/generate.php') }}');
+            mygrid.toPDF('{{ asset('bundles/ariicore/grid-pdf/generate.php') }}');
         break;
         case "xls":
-            mygrid.toExcel('{{ asset('arii/grid-excel/generate.php') }}');
+            mygrid.toExcel('{{ asset('bundles/ariicore/grid-excel/generate.php') }}');
         break;
         default:
             alert(id);

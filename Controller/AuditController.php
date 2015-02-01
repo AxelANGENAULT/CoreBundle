@@ -18,7 +18,9 @@ class AuditController extends Controller
 
     public function toolbarAction()   
     {
-        return $this->render('AriiCoreBundle:Audit:toolbar.xml.twig');
+        $response = new Response();
+        $response->headers->set('Content-Type', 'text/xml');
+        return $this->render('AriiCoreBundle:Audit:toolbar.xml.twig', array(), $response );
     }
 
     public function xmlAction()   
