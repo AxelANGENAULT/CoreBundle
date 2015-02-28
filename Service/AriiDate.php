@@ -153,6 +153,7 @@ class AriiDate
     }
 
     public function Time2Local($time,$spooler) {
+        print "($time)";
         if (isset($this->TZOffset[$spooler])) 
             $offset = $this->TZOffset[$spooler];
         else 
@@ -165,7 +166,7 @@ class AriiDate
             $offset = $this->TZOffset[$spooler];
         else 
             $offset = $this->DefaultOffset; // heure GMT par defaut
-            $time = strtotime( substr($date,0,10).' '.substr($date,11,8 ));
+        $time = strtotime( substr($date,0,10).' '.substr($date,11,8 ));
         return date( 'Y-m-d H:i:s', $time + $offset);
     }
 }

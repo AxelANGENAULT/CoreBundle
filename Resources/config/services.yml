@@ -74,4 +74,5 @@ services:
     arii_core.joe:
         class: Arii\CoreBundle\Service\AriiJOE
         arguments: [ "@arii_core.session" ]
+
         
