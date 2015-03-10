@@ -106,7 +106,7 @@ class SOSController extends Controller
                 $at = $request->get('time');
                 $job_id = $request->get('job_id');   
                 // informations du job
-                list($spooler_id,$job) = $this->getJobInfos($job_id);
+                list($spooler_id,$job) = $sos->getJobInfos($job_id);
                 // construction de la commande
                 $cmd  = '<start_job job="'.$job.'"';
                 if ($at == '') $at = 'now';
@@ -128,7 +128,7 @@ class SOSController extends Controller
                 //   job_id: identifiant du traitement
                 $job_id = $request->get('job_id');
                 // informations du job
-                list($spooler_id,$job) = $this->getJobInfos($job_id);
+                list($spooler_id,$job) = $sos->getJobInfos($job_id);
                 // construction de la commande
                 $cmd  = '<job.why job="'.$job.'"/>';
                 break;
@@ -137,7 +137,7 @@ class SOSController extends Controller
                  if (($p=strpos($job_id,'#'))>0) {
                      $job_id=substr($job_id,0,$p);
                  }
-                 list($spooler_id,$job) = $this->getJobInfos($job_id);
+                 list($spooler_id,$job) = $sos->getJobInfos($job_id);
                  $cmd  = '<kill_task job="'.$job.'"';
                  $cmd .= ' id="'.$job_id.'"';
 //                 if ($request->request->get( 'immediately' )=='yes')
@@ -150,7 +150,7 @@ class SOSController extends Controller
                  if (($p=strpos($job_id,'#'))>0) {
                      $job_id=substr($job_id,0,$p);
                  }
-                 list($spooler_id,$job) = $this->getTaskInfos($job_id);
+                 list($spooler_id,$job) = $sos->getTaskInfos($job_id);
                  $cmd  = '<kill_task job="'.$job.'"';
                  $cmd .= ' id="'.$job_id.'"';
 //                 if ($request->request->get( 'immediately' )=='yes')
@@ -164,7 +164,7 @@ class SOSController extends Controller
                 //   job_id: identifiant du traitement
                 $job_id = $request->request->get( 'job_id' );
                 // informations du job
-                list($spooler_id,$job) = $this->getJobInfos($job_id);
+                list($spooler_id,$job) = $sos->getJobInfos($job_id);
                 // construction de la commande
                 if ($xml_command=="stop_job")
                 {
@@ -180,7 +180,7 @@ class SOSController extends Controller
             case 'suspend_order':
                 $id = $request->get('id');
                 
-                 list($spooler_id,$order,$job_chain) = $this->getOrderInfos($id);                 
+                 list($spooler_id,$order,$job_chain) = $sos->getOrderInfos($id);                 
                  if($xml_command=="suspend_order")
                 {
                     $cmd = '<modify_order job_chain="'.$job_chain.'" order="'.$order.'" suspended="yes" />';
@@ -230,7 +230,7 @@ class SOSController extends Controller
             case 'skip_node':
             case 'unskip_node':
                 $id = $request->get('id');
-                list($spooler_id,$order,$job_chain,$state) = $this->getStateInfos($id); 
+                list($spooler_id,$order,$job_chain,$state) = $sos->getStateInfos($id); 
                 switch($xml_command){
                     case "stop_node":
                         $cmd = '<job_chain_node.modify job_chain="'.$job_chain.'" state="'.$state.'" action="stop" />';
@@ -280,7 +280,7 @@ class SOSController extends Controller
             case 'stop_chain':
             case 'unstop_chain':
                 $id = $request->get('id');
-                list($spooler_id,$order_id,$job_chain) = $this->getOrderInfos($id);
+                list($spooler_id,$order_id,$job_chain) = $sos->getOrderInfos($id);
                 
                 // Cas particulier de la nested job chain qui n'est pas dans la DB
                 if ($request->get( 'chain' ) != 'undefined') {

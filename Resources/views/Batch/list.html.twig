@@ -50,11 +50,11 @@
 </div>
 <!--[if !IE]>end section<![endif]-->
 <script language="javascript">
-var menu = new dhtmlXMenuObject();
+var menu = new dhtmlXMenuObject(null);
 menu.setIconsPath( "{{ asset('bundles/ariicore/images/menu/') }}" );
 menu.renderAsContextMenu();
 menu.attachEvent("onClick", onButtonClick);
-menu.loadXML("{{ url('arii_batchinstaller_contextmenu') }}");
+menu.loadStruct("{{ url('arii_batchinstaller_contextmenu') }}");
 
 var mygrid;
 mygrid = new dhtmlXGridObject( "mygrid" );
@@ -70,7 +70,7 @@ mygrid.enablePaging(true, 30, 20, "recinfoArea");
 mygrid.setPagingSkin("bricks");
 mygrid.init();
 mygrid.setSkin('dhx_skyblue');
-mygrid.loadStruct( "{{ url('arii_batchinstaller_grid') }}" );
+mygrid.loadXML( "{{ url('arii_batchinstaller_grid') }}" );
 mygrid.enableLightMouseNavigation( true );
 
 mygrid.enableContextMenu(menu);

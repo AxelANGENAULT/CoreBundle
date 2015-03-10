@@ -63,7 +63,7 @@ mygrid.enableTreeGridLines(true);
 mygrid.setColSorting("str,str");
 mygrid.init();
 mygrid.setSkin('dhx_skyblue');
-mygrid.loadStruct( "{{ url('xml_my_session') }}" );
+mygrid.loadXML( "{{ url('xml_my_session') }}" );
 
 var states = new Array();
 
@@ -72,7 +72,7 @@ mygrid.attachEvent("onOpenEnd", function(index,state){
 });
    
 function GlobalRefresh() {
-        mygrid.loadStruct( "{{ url('xml_my_session') }}?states=", function () { 
+        mygrid.loadXML( "{{ url('xml_my_session') }}?states=", function () { 
         mygrid.loadOpenStates();
     });
 }
