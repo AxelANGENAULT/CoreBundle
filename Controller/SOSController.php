@@ -71,7 +71,7 @@ class SOSController extends Controller
                 // En entrée:
                 //   order_id: identifiant du traitement
                 //   at: heure de depart
-                 $id = $request->get('order_id');
+                 $id = $request->get('id');
                  $at = $request->get('time');
                  
                  list($spooler_id,$order_id,$job_chain) = $sos->getOrderInfos($id);                 

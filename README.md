@@ -1,8 +1,11 @@
-CoreBundle
-==========
-Fonction:  Module de gestion du portail 
-Nécessite: UserBundle,ToolsBundle
-Paramètres:
+# CoreBundle
+
+##  Module de gestion du portail 
+
+Nécessite les modules UserBundle,ToolsBundle
+
+## Paramètres
+```
     arii_modules:   JOC(ROLE_USER),JID(ROLE_USER),GVZ(ROLE_USER),Input(ROLE_USER),Git(ROLE_USER),Time(ROLE_USER),Config(ROLE_ADMIN),Admin(ROLE_ADMIN)
     arii_tmp: c:\temp
     arii_save_states: false
@@ -13,3 +16,4 @@ Paramètres:
     perl:      c:/xampp/perl/bin/perl
     
     arii_pro: false
+```
