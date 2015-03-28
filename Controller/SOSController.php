@@ -229,7 +229,7 @@ class SOSController extends Controller
             case 'unstop_node':
             case 'skip_node':
             case 'unskip_node':
-                $id = $request->get('id');
+                $id = $request->get('node_id');
                 list($spooler_id,$order,$job_chain,$state) = $sos->getStateInfos($id); 
                 switch($xml_command){
                     case "stop_node":
@@ -246,48 +246,11 @@ class SOSController extends Controller
                         break;
                 }
                 break;
-/* A corriger pour postgres ! */
-                $state_id = $request->get('id');
-                $qry = 'SELECT sjcn.spooler_id,sjcn.job_chain,sjcn.order_state,ac.interface as hostname,ac.port as tcp_port,ac.path,an.protocol
-                        FROM SCHEDULER_JOB_CHAIN_NODES sjcn
-                        LEFT JOIN ARII_SPOOLER asp
-                        ON sjcn.spooler_id=asp.scheduler
-                        LEFT JOIN ARII_CONNECTION ac
-                        ON asp.connection_id = ac.id
-                        LEFT JOIN ARII_NETWORK an
-                        ON ac.network_id = an.id
-                        WHERE CONCAT(sjcn.spooler_id,"/",sjcn.job_chain,"/",sjcn.order_state) = "'.$state_id.'"';
-                $res = $data->sql->query($qry);
-                $line = $data->sql->get_next($res);
-
-                $job_chain = $line['job_chain'];
-                $state = $line['order_state'];
-                switch($xml_command){
-                    case "stop_node_job":
-                        $cmd = '<job_chain_node.modify job_chain="'.$job_chain.'" state="'.$state.'" action="stop" />';
-                        break;
-                    case "skip_node_job":
-                        $cmd = '<job_chain_node.modify job_chain="'.$job_chain.'" state="'.$state.'" action="next_state" />';
-                        break;
-                    case "unstop_node_job":
-                    case "unskip_node_job":
-                        $cmd = '<job_chain_node.modify job_chain="'.$job_chain.'" state="'.$state.'" action="process" />';
-                        break;
-                    default:
-                        break;
-                }
-                break;
             case 'stop_chain':
             case 'unstop_chain':
                 $id = $request->get('id');
-                list($spooler_id,$order_id,$job_chain) = $sos->getOrderInfos($id);
-                
+                list($spooler_id,$job_chain,$order_id) = $sos->getJobChainInfos($id);
                 // Cas particulier de la nested job chain qui n'est pas dans la DB
-                if ($request->get( 'chain' ) != 'undefined') {
-                    $chain = trim($request->get( 'chain' ));
-                    $job_chain = dirname($job_chain).'/'.$chain;
-                }
-
                 if($xml_command == "stop_chain")
                 {
                     $cmd = '<job_chain.modify job_chain="'.$job_chain.'" state="stopped" />';

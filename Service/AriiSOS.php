@@ -16,7 +16,7 @@ class AriiSOS
     }
 
     public function XMLCommand($spooler, $host,$port,$path,$protocol,$cmd, $priority = 'tag')
-    {        
+    {       
         if ($path =='') $path='/';
 
         //$url = $protocol.'://'.$_SERVER['SERVER_NAME'].'/js/'.$spooler.'/'.$cmd;

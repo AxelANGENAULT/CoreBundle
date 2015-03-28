@@ -129,7 +129,7 @@ class AriiDHTMLX
                 $dsn = substr($this->driver,4).':host='. $this->host.';dbname='.$this->database;
                 // $dsn = 'oci:host='. $this->host.';dbname='.$this->database;
                 try {
-                    $conn = new \PDO( $dsn, $this->user, $this->password );
+                    $conn = new \PDO( $dsn, $this->user, $this->password, array( \PDO::ATTR_PERSISTENT => true ));
                 } catch ( Exception $e ) {
                     echo $e->getMessage();
                     die();
