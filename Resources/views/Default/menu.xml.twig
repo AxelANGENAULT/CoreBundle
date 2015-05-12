@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<menu>
+	<item id="home" img="public.png">
+                <item id="jid" text="{{ "module.JID" | trans }}" img="jid.png">
+                <href><![CDATA[{{ path('arii_JID_index') }}]]></href>
+                </item>
+                <item id="mft" text="{{ "module.MFT" | trans }}" img="mft.png">
+                <href><![CDATA[{{ path('arii_MFT_index') }}]]></href>
+                </item>
+	</item>
+	<item id="toolbox" img="toolbox.png">
+                <item id="silent_install" text="{{ "Silent install" | trans }}" >
+                <href><![CDATA[{{ path('arii_Tools_silent') }}]]></href>
+                </item>
+                <item id="cron" text="{{ "Cron converter" | trans }}" >
+                <href><![CDATA[{{ path('arii_Tools_cron') }}]]></href>
+                </item>
+	</item>
+	<item type="separator"/>
+	<!-- top disabled -->
+{% if is_granted('ROLE_OPERATOR') %}
+	<item id="topdis" text="{{ app.user.username }}" img="role_operator.png">
+{% endif %}
+        <item id="my_account" text="{{ "My account" | trans }}">
+        <href><![CDATA[{{ path('arii_my_account') }}]]></href>
+        </item>
+        <item id="logout" text="{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}">
+        <href><![CDATA[{{ path('fos_user_security_logout') }}]]></href>
+        </item>
+{% if is_granted('ROLE_OPERATOR') %}
+        </item>
+{% else %}
+	<item id="topdis" text="{{ app.user.username }}" img="role_operator.png">        
+{% endif %}
+
+</menu>
