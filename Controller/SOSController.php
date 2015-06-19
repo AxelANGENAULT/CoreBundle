@@ -15,6 +15,7 @@ class SOSController extends Controller
         $audit = $this->container->get('arii_core.audit');
         $errorlog = $this->container->get('arii_core.log');
         $sos = $this->container->get('arii_jid.sos');
+        $plan = $this->container->get('arii_ds.sos');
         
         $request = Request::createFromGlobals();
         $xml_command = $request->get( 'command' );
@@ -31,7 +32,7 @@ class SOSController extends Controller
                 $end_state = $request->request->get('end_state');
                 // informations du job
                 list($spooler_id,$oid,$job_chain) = $sos->getOrderInfos($id);
-                
+
                 // Cas particulier de la nested job chain qui n'est pas dans la DB
                 if ($request->get( 'chain' ) != 'undefined') {
                     $chain = trim($request->get( 'chain' ));
@@ -71,7 +72,7 @@ class SOSController extends Controller
                 // En entrée:
                 //   order_id: identifiant du traitement
                 //   at: heure de depart
-                 $id = $request->get('id');
+                 $id = $request->get('order_id');
                  $at = $request->get('time');
                  
                  list($spooler_id,$order_id,$job_chain) = $sos->getOrderInfos($id);                 
@@ -104,9 +105,16 @@ class SOSController extends Controller
                 //   params: paramètres
                 $params_string = $request->get('params');
                 $at = $request->get('time');
-                $job_id = $request->get('job_id');   
+                
                 // informations du job
-                list($spooler_id,$job) = $sos->getJobInfos($job_id);
+                if ($request->get('job_id')!='') {
+                    $job_id = $request->get('job_id');
+                    list($spooler_id,$job) = $sos->getJobInfos($job_id);
+                }
+                else {
+                    $job_id = $request->get('plan_id');                    
+                    list($spooler_id,$job) = $plan->getJobInfos($job_id);
+                }
                 // construction de la commande
                 $cmd  = '<start_job job="'.$job.'"';
                 if ($at == '') $at = 'now';
@@ -178,7 +186,7 @@ class SOSController extends Controller
             case 'reset_order':
             case 'remove_setback':
             case 'suspend_order':
-                $id = $request->get('id');
+                $id = $request->get('order_id');
                 
                  list($spooler_id,$order,$job_chain) = $sos->getOrderInfos($id);                 
                  if($xml_command=="suspend_order")
@@ -248,7 +256,7 @@ class SOSController extends Controller
                 break;
             case 'stop_chain':
             case 'unstop_chain':
-                $id = $request->get('id');
+                $id = $request->get('order_id');
                 list($spooler_id,$job_chain,$order_id) = $sos->getJobChainInfos($id);
                 // Cas particulier de la nested job chain qui n'est pas dans la DB
                 if($xml_command == "stop_chain")

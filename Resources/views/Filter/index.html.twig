@@ -1,99 +1,65 @@
 {# src/Arii/CoreBundle/Resources/views/index.html.twig #}
 {% extends "AriiCoreBundle::layout.html.twig" %}
-{% block content %}
-<!--[if !IE]>start section<![endif]-->	
-<div class="section">
-        <!--[if !IE]>start title wrapper<![endif]-->
-        <div class="title_wrapper">
-                <h2>{{ app.user.username }}</h2>
-                <ul  class="section_menu">
-                    <li><a href="{{ url('arii_my_account') }}" class=""><span><span><img src="{{ asset('bundles/ariicore/images/wa/user.png') }}"/>&nbsp;{{ "My account" | trans }}</span></span></a></li>
-                    <li><a href="{{ url('arii_filters') }}" class="active"><span><span><img src="{{ asset('bundles/ariicore/images/wa/filter.png') }}"/>&nbsp;{{ "Filters" | trans  }}</span></span></a></li>
-{% if arii_pro %}
-                    <li><a href="{{ url('arii_my_session') }}" class=""><span><span><img src="{{ asset('bundles/ariicore/images/wa/session.png') }}"/>&nbsp;{{ "Session" | trans  }}</span></span></a></li>
-{% endif %}
-                </ul>
-                <span class="title_wrapper_left"></span>
-                <span class="title_wrapper_right"></span>
-        </div>
-        <!--[if !IE]>end title wrapper<![endif]-->
-        <!--[if !IE]>start section content<![endif]-->
-        <div class="section_content">
-                <!--[if !IE]>start section content top<![endif]-->
-                <div class="sct">
-                        <div class="sct_left">
-                                <div class="sct_right">
-                                        <div class="sct_left">
-                                                <div class="sct_right">
-                                                        <!--[if !IE]>start dashboard menu<![endif]-->
-                                                        <div class="dashboard_menu_wrapper">
-    <div id="mygrid" style="height:400px;background-color:white;position:relative;overflow:hidden;"></div>
-                                                      </div>
-                                                        <!--[if !IE]>end dashboard menu<![endif]-->
-
-                                                </div>
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-                <!--[if !IE]>end section content top<![endif]-->
-                <!--[if !IE]>start section content bottom<![endif]-->
-                <span class="scb"><span class="scb_left"></span><span class="scb_right"></span></span>
-                <!--[if !IE]>end section content bottom<![endif]-->
-
-        </div>
-        <!--[if !IE]>end section content<![endif]-->
-</div>
-<!--[if !IE]>end section<![endif]-->
+{% block body %}
 <script>
-dhtmlx.skin = "dhx_skyblue";
-var dhxLayout = new dhtmlXLayoutObject("mygrid","2U");
+dhtmlxEvent(window,"load",function(){ 
+    globalLayout = new dhtmlXLayoutObject(document.body,"3L");
 
-mygrid = dhxLayout.cells("a").attachGrid();
-dhxLayout.cells("a").hideHeader();
-mygrid.setImagePath( "{{ asset('bundles/ariicore/images/treegrid/') }}");
-// mygrid.enableTreeCellEdit(false);
-mygrid.setHeader("{{ "Filter" | trans }},{{ "Description" | trans }}");
-mygrid.attachHeader("#text_filter,#text_filter");
-mygrid.setInitWidths("200,*");
-mygrid.setColAlign("left,left");
-mygrid.setColTypes("ro,ro");
-mygrid.setColSorting("str,str");
-mygrid.init();
-mygrid.setSkin('dhx_skyblue');
-mygrid.loadXML( "{{ url('xml_filter_list') }}" );
-mygrid.attachEvent("onRowDblClicked", function (rid) {
-    EditFilter(rid);
+    globalMenu = globalLayout.cells("a").attachMenu();
+    globalMenu.setIconsPath( "{{ asset('/bundles/ariicore/images/menu/') }}" );
+    globalMenu.loadStruct("{{ url('xml_menu') }}");
+
+    myRibbon = globalLayout.cells("a").attachRibbon(); 
+    globalLayout.cells("a").hideHeader();
+    globalLayout.cells("a").setWidth(400);
+    myRibbon.setIconPath( "{{ asset('bundles/ariicore/images/ribbon/') }}" );
+    myRibbon.loadStruct("{{ url('json_my_account_ribbon') }}");
+    myRibbon.attachEvent("onStateChange", StateRibbon );
+    myRibbon.attachEvent("onClick", ClickRibbon );
+    
+    myGrid = globalLayout.cells("b").attachGrid();
+    globalLayout.cells("b").hideHeader();
+    myGrid.setImagePath( "{{ asset('bundles/ariicore/images/treegrid/') }}");
+    myGrid.setHeader("{{ "Filter" | trans }},{{ "Description" | trans }}");
+    myGrid.attachHeader("#text_filter,#text_filter");
+    myGrid.setInitWidths("200,*");
+    myGrid.setColAlign("left,left");
+    myGrid.setColTypes("ro,ro");
+    myGrid.setColSorting("str,str");
+    myGrid.init();
+    myGrid.loadXML( "{{ url('xml_filter_list') }}" );
+    myGrid.attachEvent("onRowDblClicked", function (rid) {
+        EditFilter(rid);
+    });
+
+    globalLayout.cells("c").hideHeader();
+    globalLayout.cells("c").setHeight(230);
+    
+    toolbar = globalLayout.cells("c").attachToolbar();
+    toolbar.setIconsPath("{{ asset('bundles/ariicore/images/toolbar/') }}");
+    toolbar.loadStruct("{{ url('xml_filter_toolbar') }}");
+    toolbar.attachEvent("onClick",onClick);
+
+    var myForm, formData;
+    formData = [
+       { type: "settings", position: "label-left", labelWidth: 100, inputWidth: 240, labelAlign: "right", readonly: 1, position: "label-left" },
+             {type:"hidden", name: 'id' },
+            {type:"input", name: 'name', label:'{{ 'Name' | trans }}', required: true },
+            {type:"input", name: 'description', label:'{{ 'Description' | trans }}', rows: 4},
+            {type:"newcolumn"},
+            {type:"input", name: 'spooler', label:'{{ 'Spooler' | trans }}', value: '*' },
+            {type:"input", name: 'job', label:'{{ 'Job' | trans }}', value: '*' },
+            {type:"input", name: 'job_chain', label:'{{ 'Chain' | trans }}', value: '*' },
+            {type:"input", name: 'order_id', label:'{{ 'Order' | trans }}', value: '*' },
+            {type:"input", name: 'status', label:'{{ 'Status' | trans }}', value: '*'}
+        ];
+    myform = globalLayout.cells("c").attachForm(formData);
+    myform.enableLiveValidation(true);
+
+    var dp = new dataProcessor("{{ url('xml_filter_form') }}");
+    dp.init(myform);
 });
-
-dhxLayout.cells("b").hideHeader();
-dhxLayout.cells("b").setWidth(400);
-var toolbar = dhxLayout.cells("b").attachToolbar();
-toolbar.setIconsPath("{{ asset('bundles/ariicore/images/toolbar/') }}");
-toolbar.loadStruct("{{ url('xml_filter_toolbar') }}");
-toolbar.attachEvent("onClick",onClick);
-
-var myForm, formData;
-formData = [
-   { type: "settings", position: "label-left", labelWidth: 100, inputWidth: 240, labelAlign: "right", readonly: 1, position: "label-left" },
-   { type: "fieldset", name: "filter", label: "{{ 'Filter' | trans }}", inputWidth: "auto", list:[
-        {type:"hidden", name: 'id' },
-        {type:"input", name: 'name', label:'{{ 'Name' | trans }}', required: true },
-        {type:"input", name: 'description', label:'{{ 'Description' | trans }}', rows: 3},
-        {type:"input", name: 'spooler', label:'{{ 'Spooler' | trans }}', value: '*' },
-        {type:"input", name: 'job', label:'{{ 'Job' | trans }}', value: '*' },
-        {type:"input", name: 'job_chain', label:'{{ 'Job chain' | trans }}', value: '*' },
-        {type:"input", name: 'order_id', label:'{{ 'Order' | trans }}', value: '*' },
-        {type:"input", name: 'status', label:'{{ 'Status' | trans }}', value: '*'}
-        ] }
-    ];
-myform = dhxLayout.cells("b").attachForm(formData);
-myform.enableLiveValidation(true);
-myform.setSkin("dhx_skyblue");
-
-var dp = new dataProcessor("{{ url('xml_filter_form') }}");
-dp.init(myform);
-
+    
 function onClick(id){
     switch (id){
         case "add_filter":
@@ -104,7 +70,7 @@ function onClick(id){
             DeleteFilter(id);
             break;
         case "save_filter":
-            dhxLayout.cells("a").progressOn();
+            globalLayout.cells("a").progressOn();
             if(!myform.validate())
             {
                 dhtmlx.message({
@@ -135,7 +101,7 @@ function onClick(id){
                     text: response
                  });
                }
-                dhxLayout.cells("a").progressOff();
+                globalLayout.cells("a").progressOff();
             });
         break;
         default:
@@ -151,17 +117,17 @@ function NewFilter() {
 }
 
 function EditFilter(id) {
-    dhxLayout.cells("b").progressOn();
+    globalLayout.cells("b").progressOn();
     toolbar.showItem("delete_filter");
     myform.setItemLabel("fieldset","{{ "Edit filter" | trans }}");
     myform.clear();
     myform.load("{{ url('xml_filter_form') }}?id="+id, function () {
-        dhxLayout.cells("b").progressOff();
+        globalLayout.cells("b").progressOff();
     });
 }
 
 function DeleteFilter(id) {
-    dhxLayout.cells("a").progressOn();
+    globalLayout.cells("a").progressOn();
     dhtmlx.confirm({
      title: "{{ "Delete filter" | trans }}",
      type: "confirm-error",
@@ -186,8 +152,8 @@ function DeleteFilter(id) {
                     text: response
                  });
                }
-                    mygrid.deleteRow(id);
-                    dhxLayout.cells("a").progressOff();
+                    myGrid.deleteRow(id);
+                    globalLayout.cells("a").progressOff();
 
                 })
         }
@@ -198,12 +164,11 @@ function DeleteFilter(id) {
  
 function GridRefresh()
 {
-    mygrid.clearAll();
-    mygrid.load("{{ url('xml_filter_list') }}");
+    myGrid.clearAll();
+    myGrid.load("{{ url('xml_filter_list') }}");
 }
 
 function GlobalRefresh() {
 }
-
 </script>
 {% endblock %}

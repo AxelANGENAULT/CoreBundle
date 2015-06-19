@@ -1,189 +1,210 @@
 {# src/Arii/CoreBundle/Resources/views/index.html.twig #}
 {% extends "AriiCoreBundle::layout.html.twig" %}
-{% block content %}
-
-<!--[if !IE]>start section<![endif]-->	
-<div class="section">
-        <!--[if !IE]>start title wrapper<![endif]-->
-        <div class="title_wrapper">
-                <h2>{{ app.user.username }}</h2>
-                <ul  class="section_menu">
-                    <li><a href="{{ url('arii_my_account') }}" class="active"><span><span><img src="{{ asset('bundles/ariicore/images/wa/user.png') }}"/>&nbsp;{{ "My account" | trans }}</span></span></a></li>
-                    <li><a href="{{ url('arii_filters') }}" class=""><span><span><img src="{{ asset('bundles/ariicore/images/wa/filter.png') }}"/>&nbsp;{{ "Filters" | trans  }}</span></span></a></li>
-{% if arii_pro %}
-                    <li><a href="{{ url('arii_my_session') }}" class=""><span><span><img src="{{ asset('bundles/ariicore/images/wa/session.png') }}"/>&nbsp;{{ "Session" | trans  }}</span></span></a></li>
-{% endif %}
-                </ul>
-                <span class="title_wrapper_left"></span>
-                <span class="title_wrapper_right"></span>
-        </div>
-        <!--[if !IE]>end title wrapper<![endif]-->
-        <!--[if !IE]>start section content<![endif]-->
-        <div class="section_content">
-                <!--[if !IE]>start section content top<![endif]-->
-                <div class="sct">
-                        <div class="sct_left">
-                                <div class="sct_right">
-                                        <div class="sct_left">
-                                                <div class="sct_right">
-                                                        <!--[if !IE]>start dashboard menu<![endif]-->
-                                                        <div class="dashboard_menu_wrapper">
-<div id="mygrid" style="position: relative; height: 380px; padding: 0;"></div>
-                                                        </div>
-                                                        <!--[if !IE]>end dashboard menu<![endif]-->
-
-                                                </div>
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-                <!--[if !IE]>end section content top<![endif]-->
-                <!--[if !IE]>start section content bottom<![endif]-->
-                <span class="scb"><span class="scb_left"></span><span class="scb_right"></span></span>
-                <!--[if !IE]>end section content bottom<![endif]-->
-
-        </div>
-        <!--[if !IE]>end section content<![endif]-->
-</div>
-<!--[if !IE]>end section<![endif]-->
+{% block body %}
 <style>
-.dhtmlx_validation_error {
-background-color: red;
+.dhx_dataview {
+	overflow-y: auto !important;
 }
-.dhtmlx-success {
-        font-weight:bold;
-        color: green;
-        background-color: #00FF00 !important;
+.dhx_dataview_default_item,
+.dhx_dataview_default_item_selected {
+	position: relative;
+	border-width: 0px !important;
+	background: none !important;
+	cursor: default;
 }
-.success {
-background-color: #00FF00 !important;
+.dhx_dataview div.dhxdataview_placeholder:first-child {
+	margin-top: 2px;
 }
-fieldset
-{
-  background-color:#EEE;
-  padding-left: 0px;
-  margin-left: 0px;
+.menu_item {
+	position: relative;
+	height: 60px;
+	background-color: #f5f5f5;
+	margin: 3px 2px 0px 5px;
+	border-bottom: 1px dotted #ccc;
+	background-repeat: no-repeat;
+	background-position: 18px 4px;
+	color: #333333;  
+        width: 100%
 }
+.menu_item:hover {
+	background-color: #f0f0f0;
+	border-color: #bbb;
+}
+.dhx_dataview_default_item_selected .menu_item {
+	background-color: #B6BADF;
+	border-color: #aaa;
+	color: #2e2e2e;
+}
+.menu_item_text {
+	position: relative;
+	margin-left: 12px;
+	height: 60px;
+	line-height: 56px;
+	font-family: "Open Sans", sans-serif, Arial;
+	font-weight: 400;
+	font-size: 16px;
+	color: inherit;
+}
+label { display: block; width: 200px; }
 </style>
 <script language="javascript">
-var myForm,
-formData,
-formData2;
+dhtmlxEvent(window,"load",function(){ 
+    var myForm,
+    formData,
+    formData2;
 
-formData = 
-    [
-        {   type: "settings",
-            position: "label-left",
-            labelWidth: 120,
-            inputWidth: 450
-        }, 
-        {   type: "fieldset", 
-            label: "{{ "About me" | trans }}",
-            width: 700,
-            list: [
-            {   type: "input", 
-                label: "{{ "First name" | trans }}", 
-                name: "inputFirstName",
-                value:  '{{ first_name }}'
+    formData = 
+        [
+            {   type: "settings",
+                position: "label-left",
+                labelWidth: 120,
+                inputWidth: 450
             }, 
-            {   type: "input", 
-                label: "{{ "Last name" | trans }}", 
-                name: "inputLastName",
-                value:  '{{ last_name }}'
-            }, 
-            {   type: "input", 
-                label: "{{ "Email" | trans }}", 
-                name: "inputEmail",
-                value:  '{{ email }}'
-            },
-            {   type: "button",
-                name: 'profile',
-                value: "{{ "Save changes" | trans }}"
-            }
-          ]
-       }
-    ];
+            {   type: "fieldset", 
+                label: "{{ "About me" | trans }}",
+                width: 700,
+                list: [
+                {   type: "input", 
+                    label: "{{ "First name" | trans }}", 
+                    name: "inputFirstName",
+                    value:  '{{ first_name }}'
+                }, 
+                {   type: "input", 
+                    label: "{{ "Last name" | trans }}", 
+                    name: "inputLastName",
+                    value:  '{{ last_name }}'
+                }, 
+                {   type: "input", 
+                    label: "{{ "Email" | trans }}", 
+                    name: "inputEmail",
+                    value:  '{{ email }}'
+                },
+                {   type: "button",
+                    name: 'profile',
+                    value: "{{ "Save changes" | trans }}"
+                }
+              ]
+           }
+        ];
 
-dhtmlx.skin = "dhx_skyblue";
+    globalLayout = new dhtmlXLayoutObject(document.body,"2U");  
+    globalLayout.cells("a").setWidth(330); 
+    globalLayout.cells("a").hideHeader(); 
+    globalLayout.cells("b").hideHeader(); 
 
-var dhxLayout = new dhtmlXLayoutObject("mygrid","1C");
-// dhxLayout.cells("a").hideHeader();
+    globalMenu = globalLayout.cells("a").attachMenu();
+    globalMenu.setIconsPath( "{{ asset('/bundles/ariicore/images/menu/') }}" );
+    globalMenu.loadStruct("{{ url('xml_menu') }}");
 
-// var toolbar = dhxLayout.cells("a").attachToolbar();
+    myRibbon = globalLayout.cells("a").attachRibbon(); 
+    myRibbon.setIconPath( "{{ asset('bundles/ariicore/images/ribbon/') }}" );
+    myRibbon.loadStruct("{{ url('json_my_account_ribbon') }}");
+    myRibbon.attachEvent("onStateChange", StateRibbon );
+    myRibbon.attachEvent("onClick", ClickRibbon );
 
+    myLinks = globalLayout.cells("a").attachDataView({
+                    type: {
+                            template: "<div width='100%' class='menu_item #id#'>"+
+                                            "<div class='menu_item_text'>#text#</div>"+
+                                    "</div>",
+                            margin: 0,
+                            padding: 0,
+                            height: 50,
+                            width: 320
+                    },
+                    drag: false,
+                    select: true
+            });
+        
+    myLinks.parse([
+                    {id: "profile", text: "{{ "Profile" | trans }}"},
+                    {id: "filters", text: "{{ "Filter" | trans }}"}
+            ], "json");
 
-dhxTabbar = dhxLayout.cells("a").attachTabbar();
-// dhxTabbar.setImagePath("{{ asset("arii/dhtmlx/dhtmlxTabbar/codebase/imgs/") }}");
-dhxTabbar.setSkin("dhx_skyblue");
-dhxTabbar.addTab("a1", "{{ "Profile" | trans }}", 120);
-dhxTabbar.addTab("a2", "{{ "Password" | trans }}", 120);
-
-dhxTabbar.tabs("a1").setActive();
-// dhxTabbar.cells("a1").style.backgroundColor= "#cbe2ed";
-
-var toolbar = dhxTabbar.cells("a1").attachToolbar();
-
-toolbar.setIconsPath("{{ asset('bundles/ariicore/images/toolbar/') }}");
-toolbar.loadStruct("{{ url('xml_user_toolbar') }}");
-/* 
- toolbar.attachEvent( "onClick", function(id, value) {
-});
-*/
-
-myForm = dhxTabbar.cells("a1").attachForm(formData);  
-
-formData2 = 
-    [
-        {   type: "settings",
-            position: "label-left",
-            labelWidth: 120,
-            inputWidth: 450
-        }, 
-        {   type: "fieldset", 
-            label: "{{ "Change password" | trans }}",
-            width: 700,
-            list: [
-            {   type: "password", 
-                label: "{{ "New password" | trans }}", 
-                name: "inputPassword",
-                value:  ''
-            },
-            {   type: "button", 
-                name: 'password',
-                value: "{{ "Save new password" | trans }}"
-            }
-          ]
-       }
-    ];
-myForm.attachEvent("onButtonClick", function(name){
-    dhxLayout.cells("a").progressOn();
-    myForm.send("{{ url('arii_my_account_save') }}", "POST", function (xml) {
-        dhtmlx.message({
-                        type: "Notice",
-                        expire: 5000,
-                        width: "500px",
-                        text: xml.xmlDoc.responseText });
-        dhxLayout.cells("a").progressOff();
+    myLinks.attachEvent("onSelectChange", function(itemid) {
+        switch (itemid.toString()) {            
+            case 'profile':
+                document.location.href = "{{ url('arii_my_account') }}";
+                break;
+            case 'filters':
+                document.location.href = "{{ url('arii_filters') }}";
+                break;                    
+             default:
+                alert("("+itemid+")");
+        }
     });
 
-});
+    dhxTabbar = globalLayout.cells("b").attachTabbar();
+    // dhxTabbar.setImagePath("{{ asset("arii/dhtmlx/dhtmlxTabbar/codebase/imgs/") }}");
+    dhxTabbar.addTab("a1", "{{ "Profile" | trans }}", 120);
+    dhxTabbar.addTab("a2", "{{ "Password" | trans }}", 120);
 
-var myForm2 = dhxTabbar.cells("a2").attachForm(formData2);                                                        
-dhxTabbar.cells("a2").style.backgroundColor= "#cbe2ed";
-myForm2.attachEvent("onButtonClick", function(name){
-    dhxLayout.cells("a").progressOn();
-    myForm2.send("{{ url('arii_my_account_password') }}", "POST", function (xml) {
-        dhtmlx.message({
-                        type: "Notice",
-                        expire: 5000,
-                        width: "500px",
-                        text: xml.xmlDoc.responseText });
-        dhxLayout.cells("a").progressOff();
+    dhxTabbar.tabs("a1").setActive();
+    // dhxTabbar.cells("a1").style.backgroundColor= "#cbe2ed";
+
+    var toolbar = dhxTabbar.cells("a1").attachToolbar();
+
+    toolbar.setIconsPath("{{ asset('bundles/ariicore/images/toolbar/') }}");
+    toolbar.loadStruct("{{ url('xml_user_toolbar') }}");
+    /* 
+     toolbar.attachEvent( "onClick", function(id, value) {
+    });
+    */
+
+    myForm = dhxTabbar.cells("a1").attachForm(formData);  
+
+    formData2 = 
+        [
+            {   type: "settings",
+                position: "label-left",
+                labelWidth: 120,
+                inputWidth: 450
+            }, 
+            {   type: "fieldset", 
+                label: "{{ "Change password" | trans }}",
+                width: 700,
+                list: [
+                {   type: "password", 
+                    label: "{{ "New password" | trans }}", 
+                    name: "inputPassword",
+                    value:  ''
+                },
+                {   type: "button", 
+                    name: 'password',
+                    value: "{{ "Save new password" | trans }}"
+                }
+              ]
+           }
+        ];
+    myForm.attachEvent("onButtonClick", function(name){
+        globalLayout.cells("a").progressOn();
+        myForm.send("{{ url('arii_my_account_save') }}", "POST", function (xml) {
+            dhtmlx.message({
+                            type: "Notice",
+                            expire: 5000,
+                            width: "500px",
+                            text: xml.xmlDoc.responseText });
+            globalLayout.cells("a").progressOff();
+        });
+
     });
 
+    var myForm2 = dhxTabbar.cells("a2").attachForm(formData2);                                                        
+    dhxTabbar.cells("a2").style.backgroundColor= "#cbe2ed";
+    myForm2.attachEvent("onButtonClick", function(name){
+        globalLayout.cells("a").progressOn();
+        myForm2.send("{{ url('arii_my_account_password') }}", "POST", function (xml) {
+            dhtmlx.message({
+                            type: "Notice",
+                            expire: 5000,
+                            width: "500px",
+                            text: xml.xmlDoc.responseText });
+            globalLayout.cells("a").progressOff();
+        });
+
+    });
 });
 
 function GlobalRefresh() { };
-</script>    
-{% endblock %}
-
+</script>
+{% endblock body %}

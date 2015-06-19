@@ -1,3 +1,59 @@
+module.Admin: Administration
+module.BPM: Suivi de processus
+module.Cloud: Cloud
+module.Config: Installation
+module.DS: Plan
+module.Event: Evènements
+module.GVZ: Cartographie
+module.Home: Accueil
+module.JID: Suivi
+module.JOC: Opérations
+module.JOE: Conception
+module.MFT: Transferts
+module.Public: Information
+module.Report: Rapports
+module.Simile: Simile
+module.Time: Planification
+summary.JID: Historique des traitements
+text.JID: Suivi de l'historique des traitements à partir des informations envoyées dans la base de données par les moteurs d'ordonnancement.
+summary.DS: Plan prévisionnel et vérification des exécutions
+text.DS: Calcul du plan et vérification des exécutions en utilisant les informations fournies respectivement par le CreateDaysSchedule et le CheckDaysSchedule.
+summary.JOC: Synchronisation des moteurs
+text.JOC: Synchronisation des données avec les moteurs distants pour une vision globale et en temps réel des traitements.
+summary.GVZ: Visualisation graphiques des fichiers XML
+text.GVZ: Affichage des fichiers XML sous forme graphique pour concevoir ou auditer les chaînes de traitements.
+summary.MFT: Suivi des transferts de fichiers
+text.MFT: Gestion et suivi des transferts de fichiers exécutés par Jade ou à travers les moteurs.
+summary.JOE: Conception des traitements et des chaînes
+text.JOE: Aide à la conception des objets d'ordonnancement et déploiement vers les moteurs distants.
+summary.Time: Calcul de dates complexes
+text.Time: Gestion des calendriers de dates à partir de règles de calculs.
+module.GIT: GIT
+summary.GIT: Gestionnaire de versions
+text.GIT: Gère les versions en local ou sur un référentiel distant.
+text.Time: Gestion des calendriers de dates à partir de règles de calculs.
+module.Tools: Outils
+summary.Tools: Boite à outils pour installer, configurer et concevoir les traitements.
+text.Tools: Les outils sont utilisables sans connexion aux moteurs ou à la base de données. 
+module.Report: Rapports
+summary.Report: Publication des données sous forme de rapport
+text.Report: Utilisation de Jasper pour publier des données au format PDF. 
+summary.Admin: Gestion des environnements d'ordonnancement
+text.Admin: Configuration des environnement et gestion des objets d'ordonnancement (utilisateurs, machines, connexions...).
+summary.Config: Installation du portail
+text.Config: Installation et configration du portail Ari'i.
+module.Event: Evènements
+summary.Event: Gestionnaire d'évènements pour orchestrer les traitements
+text.Event: Gestion des rêgles d'évènements pour l'orchestration des moteurs et des applications tierces.
+module.Archive: Archivage
+summary.Archive: Transfert des données vers une base de données de stockage
+text.Archive: L'archivage permet de purger les données de la base tout en les conservant à des fins de statistiques sur le long termes. 
+module.Input: Saisie
+summary.Input: Conception des traitements à partir d'une feuille Excel
+text.Input: Conception simplifiée des objets par l'utilisation de modèles et de feuilles Excel.
+module.Notifier: Alertes
+summary.Notifier: Surveillance des processus et notifications des erreurs
+text.Notifier: Configuration du module de notifications pour la surveillance des processus.
 About me: À propos de moi
 About Ari'i: A propos de Ari'i
 Account: Compte
@@ -32,6 +88,7 @@ Bitmap image (PNG): Image bitmap (PNG)
 Blocked: Bloqué
 Cancel: Abandon
 Category: Categorie
+Chain: Chaîne
 Chains: Chaînes
 Change command: Changement de commande
 Change password: Changer le mot de passe
@@ -53,6 +110,7 @@ Connections: Connexions
 Connector: Connecteur
 Continue: Continuer
 Continue spooler: Débloquer la pause
+Count: Nb.
 Country Code: Code du Pays
 Country code: Code du pays
 Country: Pays
@@ -77,6 +135,7 @@ dashboard.JOE: Conception des traitements
 dashboard.MFT: Transferts de fichiers
 dashboard.Simile: Simile
 dashboard.Time: Calcul de planification
+days: jours
 Data: Données
 Database Connection: Connexion base de données
 Database: Base de données
@@ -112,7 +171,15 @@ dow.Sunday: Dimanche
 dow.Thursday: Jeudi
 dow.Tuesday: Mardi
 dow.Wednesday: Mercredi
+short_dow.Friday: Ven.
+short_dow.Monday: Lun.
+short_dow.Saturday: Sam.
+short_dow.Sunday: Dim.
+short_dow.Thursday: Jeu.
+short_dow.Tuesday: Mar.
+short_dow.Wednesday: Mer.
 Download: Télécharger
+Draft: Brouillon
 Driver: Pilote
 Duration: Durée
 Duration: Durée
@@ -160,7 +227,8 @@ Filter deleted: Filtre supprimé
 Filter saved: Filtre sauvé
 Filters: Filtres
 First Name: Prénom
-Folders: Répertoires
+Folder: Dossier
+Folders: Dossiers
 Found records: Enregistrements trouvés
 Free text: Texte Libre
 from: de
@@ -223,6 +291,7 @@ jobs: Tâches
 Jobs: Traitements
 Jobs per hour: Traitements par heure
 job_chains: Séquence
+Kill: Tuer la tâche
 Kill task: Tuer la tâche
 Kill job: Arrêt brutal du traitement
 Last Login: Dernière Connexion
@@ -230,6 +299,7 @@ Last name: Nom
 Last update: Dernière mise à jour
 Latitude: Latitude
 Launch scheduler: Démarrer le moteur
+Legend: Légende
 Licence: Licence
 Line: Lignes droites
 List: Index
@@ -266,25 +336,12 @@ minutes: minutes
 Modified.by: Modifié par
 Modified: Modification
 Modify order: Modifier l'ordre
-module.Admin: Administration
-module.BPM: Suivi de processus
-module.Cloud: Cloud
-module.Config: Installation
-module.Event: Evènements
-module.GVZ: Cartographie
-module.Home: Accueil
-module.JID: Suivi
-module.JOC: Opérations
-module.JOE: Conception
-module.MFT: Transferts
-module.Public: Information
-module.Report: Rapports
-module.Simile: Simile
-module.Time: Planification
 Module: Module
 Modules: Modules
 Monitoring: Surveillance
 Monitor: Suivi
+month: mois
+months: mois
 My account: Mon compte
 My filters: Mes filtres
 My.account: Mon compte
@@ -339,10 +396,12 @@ Orders status: Etat des ordres
 Organisation: Organisation
 Ortho: Lignes perpendiculaires
 os_target: os cible
+Output: Sortie
 Overview: Vue globale
 Package: Package
-Packages: Packages
-Parameters: Arguments
+Packages: Paquets
+Parameter: Paramètre
+Parameters: Paramètres
 Password: Mot de passe
 Path: Chemin
 Pause spooler: Mettre le moteur en pause
@@ -352,7 +411,8 @@ Planned schedule: Planifications
 planned.list: Liste
 planned.pie: Graphiques
 planned.timeline: Chronogramme
-planned: Planifié
+planned: planifié
+Planned: Planifié
 Planning: Planifications
 Password updated: Mot de passe mis à jour
 Port: Port
@@ -377,6 +437,7 @@ Record updated: Enregistrement mis à jour
 Reference date: Date de référence
 Refresh: Actualiser
 Refreshing: Actualiser
+Remote: Distant
 Remote scheduler: Moteur distant
 Remote schedulers: Moteurs distants
 Remove filter: Supprimer le filtre
@@ -406,9 +467,10 @@ Right_R: Lecture
 Right_W: Ecriture
 Right_X: Exécution
 ROLE_ADMIN: Administrateur
-ROLE_DEVELOPER: Concepteur
+ROLE_BUILDER: Concepteur
+ROLE_DEVELOPER: Développeur
 ROLE_MANAGER: Gestionnaire
-ROLE_OPERATOR: Operateur
+ROLE_OPERATOR: Opérateur
 ROLE_SYSADMIN: Admin. Sys.
 ROLE_USER: Utilisateur
 rows per page: Lignes par page
@@ -417,6 +479,7 @@ Save changes: Sauvegarder les changements
 Save new password: Sauvegarder le nouveau mot de passe
 Save: Sauver
 Saved: Enregistré
+Schedule: Planification
 scheduler_id: Automate
 schedules: Planifications
 Schema: Schéma
@@ -462,9 +525,9 @@ Source host: Hôte source
 Source IP: IP source
 Source user: Utilisateur
 Source: Source
-Spooler Name: Nom du Spooler
-Spooler Saved: Spooler Enregistré
-spooler.all: Tous les spooler
+Spooler Name: Nom du moteur
+Spooler Saved: Moteur Enregistré
+spooler.all: Tous les moteurs
 spooler.connection.note: __spooler.connection.note
 spooler.connection.tooltip: spécifiez une connexion d'accès à la file d'attente
 spooler.connection: 
@@ -484,6 +547,7 @@ Spoolers: Moteurs
 Standalone server: Serveur Autonome
 Standalone jobs: Traitements indépendants
 standalone: Tâches libres
+Start: Démarrer
 Start day: Jour de départ
 Start job: Exécution du traitement
 Start time: Heure de départ
@@ -496,28 +560,43 @@ State: Etat
 Status: Statut
 status: statut
 States: Etapes
+Step: Pas
+Steps: Pas
 Steps purged: Etapes purgées
 Stop job chain: Bloquer la chaîne de traitements
 Stop job: Bloquer le traitement
 Stop node: Bloquer le noeud de la chaîne
 Stop task: Arrêter la tâche
 status_date: statut date
-str_month.10: Octobre
-str_month.11: Novembre
-str_month.12: Décembre
-str_month.1: Janvier
-str_month.2: Février
-str_month.3: Mars
-str_month.4: Avril
-str_month.5: Mai
-str_month.6: Juin
-str_month.7: Juillet
-str_month.8: Août
-str_month.9: Septembre
+month.10: Octobre
+month.11: Novembre
+month.12: Décembre
+month.1: Janvier
+month.2: Février
+month.3: Mars
+month.4: Avril
+month.5: Mai
+month.6: Juin
+month.7: Juillet
+month.8: Août
+month.9: Septembre
+short_month.10: Oct.
+short_month.11: Nov.
+short_month.12: Déc.
+short_month.1: Jan.
+short_month.2: Fév.
+short_month.3: Mar.
+short_month.4: Avr.
+short_month.5: Mai
+short_month.6: Juin
+short_month.7: Jui.
+short_month.8: Août
+short_month.9: Sep.
 Supervisor: Superviseur
 Suspend order: Suspendre l'ordre
 System: Système
 System monitoring: Surveillance du système
+Target: Cible
 Target dir: Répertoire destination
 Target host: Hôte destination
 Team Management: Gestion des équipes
@@ -528,6 +607,7 @@ team.message.delete: Voulez vous vraiment supprimer cette équipe ?
 team.message.save: équipe enregistrée.
 team.title.note: Donner un titre à cette équipe
 Team: Equipe
+Time: Heure
 Time Zone: Fuseau horaire
 Timeout (s): Timeout (s)
 Timeline.: Chrono.
@@ -546,6 +626,7 @@ Tools: Outils
 Type: Type
 until: jusqu'à
 Unknown error !: Erreur inconnue !
+Unstop: Reprendre
 Unskip node: Réactiver le noeud
 Unstop job chain: Débloquer la chaîne de traitements
 Unstop job: Débloquer le traitement
@@ -578,10 +659,13 @@ Version: Version
 View: Visualiser
 version: version
 Wait: Attente
+week: semaine
+weeks: semaines
 Workspace: Espace de travail
 W: W
 X: X
 XLS: XLS
 XML Export: Export XML
+year: année
 Yes: Oui
 Yesterday: Hier

@@ -4,6 +4,8 @@ namespace Arii\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Translation\Translator;
 
 class DefaultController extends Controller
 {
@@ -21,6 +23,150 @@ class DefaultController extends Controller
         return $this->render('AriiCoreBundle:Default:index.html.twig');            
     }
     
+    public function ribbonAction()
+    {
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $this->render('AriiCoreBundle:Default:ribbon.json.twig',array(), $response );
+    }
+
+   public function toolbarAction()
+    {
+        $response = new Response();
+        $response->headers->set('Content-Type', 'text/xml');
+        return $this->render("AriiCoreBundle:Default:toolbar.xml.twig",array(), $response );
+    }
+
+    public function modulesAction()
+    {   
+        $response = new Response();
+        $response->headers->set('Content-Type', 'text/xml');
+        $list = '<?xml version="1.0" encoding="UTF-8"?>';
+        $list .= "<data>\n";
+        foreach ($this->getModules() as $k=>$v) {
+            $list .= "  <item id=\"$k\">\n";
+            foreach(array('BUNDLE','role','summary','name','desc','img', 'url') as $t) {
+                $list .= "      <$t>".$v[$t]."</$t>\n";
+            }
+            $list .= "  </item>\n";
+        }
+        $list .= "</data>\n";
+
+        $response->setContent($list);
+        return $response;
+    }
+        
+    private function getModules() {
+        $sc = $this->get('security.context');
+        $Params = array();
+        $Result = array();
+        # Les modules pour tout le monde
+        $session = $this->container->get('arii_core.session');
+        $param = $session->getModules(); 
+        if ($param != '')
+            foreach (explode(',',$param) as $p)
+                array_push($Params, $p);
+                
+        # On retrouve l'url active 
+        foreach ($Params as $p) {
+            // Modules limites à un droit ?
+            if (($d = strpos($p,'('))>0) {
+                $module = substr($p,0,$d);
+                $f = strpos($p,')',$d+1);
+                $role = substr($p,$d+1,$f-$d-1);
+                $p = '';
+                if (($sc->isGranted('IS_AUTHENTICATED_FULLY')) 
+              or ($sc->isGranted('IS_AUTHENTICATED_REMEMBERED'))) {
+                    if ($sc->isGranted($role))
+                        $p = $module;
+                }
+                else {
+                    if ($role == 'ANONYMOUS')
+                        $p = $module;
+                }
+            }
+            else {
+                $role = '';
+            }
+            if ($p!='') 
+                $Result[$p] = array(
+                    'BUNDLE'=>$p,
+                    'role' => $this->get('translator')->trans($role), 
+                    'mod' => strtolower($p), 
+                    'name' => $this->get('translator')->trans('module.'.$p), 
+                    'desc' => $this->get('translator')->trans('text.'.$p), 
+                    'summary' => $this->get('translator')->trans('summary.'.$p), 
+                    'img' => "$p.png",
+                    'url' => $this->generateUrl('arii_'.$p.'_index') );
+        } 
+        return $Result;
+    }
+    
+    public function cover_toolbarAction()
+    {
+        $response = new Response();
+        $response->headers->set('Content-Type', 'text/xml');
+        return $this->render("AriiCoreBundle:Default:cover_toolbar.xml.twig",array(), $response );
+    }
+
+    public function menuAction($route='arii_homepage')
+    {
+        $here = $url = $this->generateUrl($route);
+        
+        $session = $this->container->get('arii_core.session');
+        $liste = array();
+        
+        # Les utilisateur non authentifiés sont dans public
+        # Les autres dans home
+        $sc = $this->get('security.context');
+/*
+        if (($sc->isGranted('IS_AUTHENTICATED_FULLY')) 
+              or ($sc->isGranted('IS_AUTHENTICATED_REMEMBERED')))
+            $Params = array('Home');        
+        else
+            $Params = array('Public');        
+*/        
+        $Params = array();
+        # Les modules pour tout le monde
+
+        $param = $session->getModules(); 
+        if ($param != '')
+            foreach (explode(',',$param) as $p)
+                array_push($Params, $p);
+                
+        # On retrouve l'url active 
+        foreach ($Params as $p) {
+            // Modules limites à un droit ?
+            if (($d = strpos($p,'('))>0) {
+                $module = substr($p,0,$d);
+                $f = strpos($p,')',$d+1);
+                $role = substr($p,$d+1,$f-$d-1);
+                $p = '';
+                if (($sc->isGranted('IS_AUTHENTICATED_FULLY')) 
+              or ($sc->isGranted('IS_AUTHENTICATED_REMEMBERED'))) {
+                    if ($sc->isGranted($role))
+                        $p = $module;
+                }
+                else {
+                    if ($role == 'ANONYMOUS')
+                        $p = $module;
+                }
+            }
+            if ($p == '') continue;
+            $class='';
+            $url = $this->generateUrl('arii_'.$p.'_index');
+            $len = strlen($url);
+            if (substr($here,0,$len)==$url) $class='selected';
+            
+            array_push($liste, array( 'mod' => strtolower($p), 'module' => $p, 'url' => $url, 'class' => $class, 'title' => 'module.'.$p ) );
+        }   
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'text/xml');   
+        return $this->render('AriiCoreBundle:Default:menu.xml.twig',array('MENU' => $liste), $response );
+    }
+
     public function aboutAction()
     {
         return $this->render('AriiCoreBundle:Default:about.html.twig');
@@ -74,13 +220,6 @@ class DefaultController extends Controller
             array_push($liste, array( 'module' => $p, 'class' => $class, 'title' => 'module.'.$p ) );
         }   
         return $liste;
-    }
-    
-    public function menuAction($route='arii_homepage')
-    {
-        return $this->render('AriiCoreBundle:Default:menu.html.twig', array(
-          'menu' => $this->Modules($route)
-        ));
     }
     
     public function dashboardAction($route)
@@ -253,6 +392,42 @@ class DefaultController extends Controller
         if ($nb==0)
             exit();
         return $this->render('AriiCoreBundle:Sidebar:todo.html.twig', array('Todo' => $Todo ) );
+    }
+
+    public function favoritesPPAction()
+    {
+        $db = $this->container->get('arii_core.db');
+        $data = $db->Connector('dataview');
+        $sql = $this->container->get('arii_core.sql');
+        
+        $qry = $sql->Select(array('ID,BUNDLE')) 
+        .$sql->From(array('ARII_FAVORITE'))
+        .$sql->OrderBy(array('LEVEL'));
+        
+        $data->render_sql($qry,"ID","BUNDLE");
+    }
+
+    public function favoritesAction()
+    {
+        $db = $this->container->get('arii_core.db');
+        $data = $db->Connector('dataview');
+        $sql = $this->container->get('arii_core.sql');
+        
+        $qry = $sql->Select(array('ID,BUNDLE')) 
+        .$sql->From(array('ARII_FAVORITE'))
+        .$sql->OrderBy(array('LEVEL'));
+        
+        $data->event->attach("beforeRender",array($this,"addColumn"));
+        $data->render_sql($qry,"ID","BUNDLE,name");
+    }
+    
+    public function addColumn($row)
+    {
+        $p = $row->get_value("BUNDLE");
+        $row->set_value("ID",$p);
+        $row->set_value("name",$this->get('translator')->trans('module.'.$p));
+        $row->set_value("desc",$this->get('translator')->trans('text.'.$p));
+        $row->set_value("summary",$this->get('translator')->trans('summary.'.$p));
     }
 
 }

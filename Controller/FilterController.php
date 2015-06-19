@@ -13,6 +13,14 @@ class FilterController extends Controller
         return $this->render('AriiCoreBundle:Filter:index.html.twig');
     }
 
+    public function ribbonAction()
+    {
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $this->render('AriiCoreBundle:Filter:ribbon.json.twig',array(), $response );
+    }
+
     public function listAction()
     {
         return $this->render('AriiCoreBundle:Filter:list.html.twig');

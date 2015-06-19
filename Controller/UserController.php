@@ -19,6 +19,14 @@ class UserController extends Controller
         return $this->render('AriiCoreBundle:User:index.html.twig', $line );
     }
 
+    public function ribbonAction()
+    {
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $this->render('AriiCoreBundle:User:ribbon.json.twig',array(), $response );
+    }
+
     public function saveAction()
     {   
         $me = $this->container->get('security.context')->getToken()->getUsername();    

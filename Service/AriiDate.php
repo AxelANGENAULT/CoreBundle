@@ -144,7 +144,7 @@ class AriiDate
        return $str;        
     }
     
-    private function Duration($start,$end = '' ) {
+    public function Duration($start,$end = '' ) {
        if ($end == '') {
            $end = time();
        }
@@ -153,7 +153,6 @@ class AriiDate
     }
 
     public function Time2Local($time,$spooler) {
-        print "($time)";
         if (isset($this->TZOffset[$spooler])) 
             $offset = $this->TZOffset[$spooler];
         else 
@@ -161,12 +160,15 @@ class AriiDate
         return $this->ShortDate( date( 'Y-m-d H:i:s', $time + $offset) );
     }
     
-    public function Date2Local($date,$spooler) {
+    public function Date2Local($date,$spooler,$short=false) {
         if (isset($this->TZOffset[$spooler])) 
             $offset = $this->TZOffset[$spooler];
         else 
             $offset = $this->DefaultOffset; // heure GMT par defaut
         $time = strtotime( substr($date,0,10).' '.substr($date,11,8 ));
-        return date( 'Y-m-d H:i:s', $time + $offset);
+        if ($short)
+            return $this->ShortDate(date( 'Y-m-d H:i:s', $time + $offset));
+        else 
+            return date( 'Y-m-d H:i:s', $time + $offset);            
     }
 }

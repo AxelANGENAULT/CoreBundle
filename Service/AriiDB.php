@@ -96,6 +96,9 @@ class AriiDB
             case 'gantt':
                 require_once $this->dhtmlx_path.'/gantt_connector.php';
                 break;
+            case 'dataview':
+                require_once $this->dhtmlx_path.'/dataview_connector.php';
+                break;
             case 'chart':
                 require_once $this->dhtmlx_path.'/chart_connector.php';
             default:
@@ -149,6 +152,9 @@ class AriiDB
                 break;
             case 'gantt':
                 return new \JSONGanttConnector($conn,$driver);
+                break;
+            case 'dataview':
+                return new \DataViewConnector($conn,$driver);
                 break;
             default:
                 break;

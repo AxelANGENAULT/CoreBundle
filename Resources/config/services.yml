@@ -13,6 +13,12 @@ services:
         tags:
             - { name: kernel.event_subscriber }
             
+    core.twig.core_extension:
+        class: Arii\CoreBundle\Twig\CoreExtension
+        arguments: ["%locale%"]
+        tags:
+            - { name: twig.extension }
+
     arii.repository.connection:
         class: Arii\CoreBundle\Entity\Connection
         factory_service: doctrine.orm.entity_manager
@@ -63,9 +69,9 @@ services:
         class: Arii\CoreBundle\Service\AriiFiles
         arguments: [ "@arii_core.session", %workspace% ]
 
-    arii_core.cal:
-        class: Arii\CoreBundle\Service\AriiCal
-        arguments: [ "@arii_core.session" ]
+    arii_core.folder:
+        class: Arii\CoreBundle\Service\AriiFolder
+        arguments: [ "@arii_core.session", %osjs_config% ]
 
     arii_core.cron:
         class: Arii\CoreBundle\Service\AriiCron

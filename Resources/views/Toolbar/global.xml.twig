@@ -23,7 +23,7 @@
     </item>
     {% endif %}
     <item id="sep1" type="separator"/>
-    <item id="date_select" type="button" img="date.png" text="" />
+    <item id="date_select" type="button" img="date.png" />
     <item id="ref_date" type="buttonInput" value="{{ app.session.get('ref_date') }}" width="140" title="{{ "date.reference" | trans }}"/>
     {% if (app.session.get('UserFilters')|length) >0 %}
     {% set filter = app.session.get('user_filter') %}     
@@ -55,8 +55,8 @@
     </item>
     <item id="sep8" type="separator"/>
     {% endif %}
-    <item type="buttonTwoState" id="layout_sidebar" text="" img="layout_sidebar.png" {% if app.session.get('layout_sidebar')=='true' %}selected="true"{% endif %} />
-    <item type="buttonTwoState" id="layout_header"  text="" img="layout_header.png" {% if app.session.get('layout_header')=='true' %}selected="true"{% endif %} />
+    <item type="buttonTwoState" id="layout_sidebar" img="layout_sidebar.png" {% if app.session.get('layout_sidebar')=='true' %}selected="true"{% endif %} />
+    <item type="buttonTwoState" id="layout_header"  img="layout_header.png" {% if app.session.get('layout_header')=='true' %}selected="true"{% endif %} />
     <item id="sep9" type="separator"/>
     <item id="help" type="buttonSelect" img="help.png" text="">
     <item id="about" type="button" text="{{ "About Ari'i" | trans }}" img="arii.png"/>

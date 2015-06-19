@@ -162,6 +162,9 @@ class AriiSQL
                case '{!(spooler)}':
                    array_push($Where, '( '.$this->Column($Fields['{!(spooler)}'])." <> '(Spooler)' )" );
                    break;
+               case '{!pending}':
+                   array_push($Where, '( '.$this->Column($Fields['{!pending}'])." <> 'pending' )" );
+                   break;
                case '{start_time}':
 /*
                     // Les tranches consomment et n'apportent rien
@@ -307,6 +310,20 @@ class AriiSQL
             array_push($Order,$this->Column(trim($c)));
         }
         return ' group by '.implode(',',$Order);
+   }
+
+   public function Limit( $size, $offset=0 ) {
+        switch ($this->driver) {
+            case 'pdo_pgsql':
+                return " limit $size offset $offset";
+                break;
+            case 'pdo_oci':
+                return ""; // il faudra intégrer le row num!
+                break;            
+            default:
+                return " limit $offset, $size";
+        }
+
    }
 
    public function ColumnSelect($col,$as='') {

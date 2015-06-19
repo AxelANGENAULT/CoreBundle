@@ -12,50 +12,80 @@ class AriiSOS
     public function __construct( \Arii\CoreBundle\Service\AriiAudit $audit,  \Arii\CoreBundle\Service\AriiLog $log ) {
         $this->audit = $audit;
         $this->log = $log;
-        $this->method = 'POST';
+        $this->method = 'CURL';
     }
 
-    public function XMLCommand($spooler, $host,$port,$path,$protocol,$cmd, $priority = 'tag')
-    {       
+    public function XMLCommand($spooler,$host,$port,$path,$protocol,$cmd, $priority = 'tag')
+    {   
+        if ($spooler=='') {
+            print "Spooler ?!";
+            exit();
+        }
         if ($path =='') $path='/';
-
-        //$url = $protocol.'://'.$_SERVER['SERVER_NAME'].'/js/'.$spooler.'/'.$cmd;
-        //return $url;
         // Nouveauté 1.7
-        if ($this->method=='POST') {
-            $url = $protocol."://".$host.":".$port;
-            $opts = array (
-                    'http' => array (
-                      'method' => "POST",
-                      'header'=>"Content-Type: text/xml\r\n",
-                      'content' => $cmd          
-            //             'header' => $auth,
-            //            'user_agent' => RESTClient :: USER_AGENT,
-                    )
-            );
-            $context = stream_context_create($opts);
-            $fp = @fopen($url,'r', false, $context);
-        } 
+        $url = $protocol."://".$host.":".$port;        
+        if ($this->method=='CURL') {
+            $ch = curl_init();
+
+            //set the url, number of POST vars, POST data
+            curl_setopt($ch,CURLOPT_URL,$url);
+            curl_setopt($ch,CURLOPT_POST,1);
+            curl_setopt($ch,CURLOPT_POSTFIELDS,$cmd);
+            curl_setopt($ch, CURLOPT_VERBOSE, true);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            //execute post
+            $content = curl_exec($ch);
+            if ($content === FALSE) {
+                printf("cUrl error (#%d): %s<br/>$spooler<br/>$url\n", curl_errno($ch),
+                htmlspecialchars(curl_error($ch)));
+                $this->audit->AuditLog($host, $cmd, "ERROR","JID", sprintf("cUrl error (#%d): %s<br>\n", curl_errno($ch),
+                htmlspecialchars(curl_error($ch))));
+                $this->log->createLog("!ERROR: Can not Open URL: ".$url, 0, __FILE__, __LINE__, "ERROR at: ".__FILE__." function: ".__FUNCTION__." line: ".__LINE__.": !ERROR: Connection failed! Please make sure the JobScheduler have started!", $_SERVER['REMOTE_ADDR']);
+                return array('ERROR'=>'CONNECT ON '.$url);
+            }
+            curl_close($ch);
+
+            if ($priority=='xml') {
+                return $content;
+            }
+            
+        }
         else {
-            $url = $protocol."://".$host.":".$port.$path.\rawurlencode($cmd);
-            $fp = @fopen($url,'r');
+            if ($this->method=='POST') {
+                $opts = array (
+                        'http' => array (
+                          'method' => "POST",
+                          'header'=>"Content-Type: text/xml\r\n",
+                          'content' => $cmd          
+                //             'header' => $auth,
+                //            'user_agent' => RESTClient :: USER_AGENT,
+                        )
+                );
+                $context = stream_context_create($opts);
+                $fp = @fopen($url,'r', false, $context);
+            } 
+            else {
+                $url .= $path.\rawurlencode($cmd);
+                $fp = @fopen($url,'r');
+            }
+            
+            if (!$fp)
+            {
+                $this->audit->AuditLog($host, $cmd, "ERROR","JID", "!ERROR: Can not Open URL: ".$url);
+                $this->log->createLog("!ERROR: Can not Open URL: ".$url, 0, __FILE__, __LINE__, "ERROR at: ".__FILE__." function: ".__FUNCTION__." line: ".__LINE__.": !ERROR: Connection failed! Please make sure the JobScheduler have started!", $_SERVER['REMOTE_ADDR']);
+                return array('ERROR'=>'CONNECT ON '.$url);
+            }
+            $content = "";
+            while (!feof($fp))
+            {
+                $content .= fgets($fp);
+            }
+            if ($priority=='xml') {
+                return $content;
+            }
         }
         
-        if (!$fp)
-        {
-            $this->audit->AuditLog($host, $cmd, "ERROR","JID", "!ERROR: Can not Open URL: ".$url);
-            $this->log->createLog("!ERROR: Can not Open URL: ".$url, 0, __FILE__, __LINE__, "ERROR at: ".__FILE__." function: ".__FUNCTION__." line: ".__LINE__.": !ERROR: Connection failed! Please make sure the JobScheduler have started!", $_SERVER['REMOTE_ADDR']);
-            return array('ERROR'=>'CONNECT ON '.$url);
-        }
-        $content = "";
-        while (!feof($fp))
-        {
-            $content .= fgets($fp);
-        }
-        if ($priority=='xml') {
-            return $content;
-        }
-
         // probleme de trim
         if ($content=='') return '';
         $msg = '';

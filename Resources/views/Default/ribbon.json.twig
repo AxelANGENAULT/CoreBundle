@@ -1,0 +1,34 @@
+{
+   "items":
+   [
+      {   "type":"block", 
+          text:"{{ "Home" | trans }}", 
+          "text_pos": "top", 
+          "list":
+          [
+             {   "type": "buttonSelect", 
+                 text:"", 
+                 "isbig": true, 
+                 "img": "48/home.png", 
+                 items:
+                 [ 
+                    { id:"favorites", text: "{{ "Favorites" | trans }}", img: "favorite.png" },
+                    { id:"docs", text: "{{ "Documents" | trans }}", img: "book.png" }
+                ]
+              },
+          ]
+      },
+      {   "type":"block", 
+          text:"{{ "Favorite" | trans }}", 
+          "text_pos": "bottom", 
+          "list":
+          [
+             {   "type": "button", 
+                 text:"", 
+                 "isbig": true, 
+                 "img": "48/favorite.png"
+              }            
+          ]
+      }
+   ]
+}

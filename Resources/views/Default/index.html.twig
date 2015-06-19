@@ -1,45 +1,214 @@
-{# src/Arii/CoreBundle/Resources/views/index.html.twig #}
+{# src/Arii/JIDBundle/Resources/views/Default/history.html.twig #}
 {% extends "AriiCoreBundle::layout.html.twig" %}
-{% block content %}
+{% block body %}
+<style>
+.dhx_dataview_bundle1_item, .dhx_dataview_bundle1_item_selected{
+        background-image:url({{ asset('/bundles/ariicore/images/cover/bg_1.gif') }});height:136px;width:577px;cursor:default;background-repeat : no-repeat;
+}
+.dhx_dataview_bundle2_item, .dhx_dataview_bundle2_item_selected{
+        background-image:url({{ asset('/bundles/ariicore/images/cover/bg_2.gif') }});height:136px;width:288px;cursor:default;float:left;background-repeat : no-repeat;
+}
+.dhx_dataview_bundle3_item, .dhx_dataview_bundle3_item_selected{
+        background-image:url({{ asset('/bundles/ariicore/images/cover/bg_3.gif') }});height:136px;width:141px;cursor:default;float:left;background-repeat : no-repeat;
+}
 
-<!--[if !IE]>start section<![endif]-->	
-<div class="section">
-        <!--[if !IE]>start title wrapper<![endif]-->
-        <div class="title_wrapper">
-                <h2>{{ "Modules" | trans }}</h2>
-                <span class="title_wrapper_left"></span>
-                <span class="title_wrapper_right"></span>
-        </div>
-        <!--[if !IE]>end title wrapper<![endif]-->
-        <!--[if !IE]>start section content<![endif]-->
-        <div class="section_content">
-                <!--[if !IE]>start section content top<![endif]-->
-                <div class="sct">
-                        <div class="sct_left">
-                                <div class="sct_right">
-                                        <div class="sct_left">
-                                                <div class="sct_right">
-                                                        <!--[if !IE]>start dashboard menu<![endif]-->
-                                                        <div class="dashboard_menu_wrapper">
-                                                     {{ render(controller("AriiCoreBundle:Default:dashboard", { '_locale': app.request.locale, 'route': app.request.attributes.get('_route') } )) }}
-                                                        </div>
-                                                        <!--[if !IE]>end dashboard menu<![endif]-->
+.dhx_dataview_bundle1_item_selected, .dhx_dataview_bundle2_item_selected, .dhx_dataview_bundle3_item_selected{
+        background-position: 0px -136px;
+}
 
-                                                </div>
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-                <!--[if !IE]>end section content top<![endif]-->
-                <!--[if !IE]>start section content bottom<![endif]-->
-                <span class="scb"><span class="scb_left"></span><span class="scb_right"></span></span>
-                <!--[if !IE]>end section content bottom<![endif]-->
+.bundle1 .bundle_img, .bundle2 .bundle_img, .bundle3 .bundle_img{
+        margin:5px 0px 0px 0px;height:128px;width:128px;
+}
+.bundle1 .body, .bundle2 .body{
+        float:left;margin-left:20px;
+}
+.bundle1 .nm, .bundle2 .nm, .bundle3 .nm{
+        font-family:Arial;
+        font-size:1.5em;
+        font-weight:normal;
+        padding:20px 0 5px;
+line-height:28px;
+}
 
-        </div>
-        <!--[if !IE]>end section content<![endif]-->
+.bundle1 .desc{
+        font-family: Arial;
+        font-size:1em;
+        line-height: 18px;
+}
+.bundle1 .summary {
+        font-family: Arial;
+        font-size:1em;
+        line-height: 18px;
+}
+.bundle1 .role, .bundle2 .role, .bundle3 .role{
+/*      background-image:url(./images/role.png);
+        background-repeat : no-repeat;
+*/      padding:1px 0px 0px 12px;
+        font-weight:normal;
+        font-family:Georgia;
+        font-size:22px;
+        color:#a9a9a9;
+        height:33px;width:58px;
+line-height:26px;
+}
+.dhx_strong {
+        font-family:Arial;
+        font-size:1.4em;
+        vertical-align: top;
+        margin-left: 50px;
+        margin-top: 1px;
+        line-height: 30px;
+        font-weight: normal;
+}
+</style>
+<textarea id="type_bundle1" style="display:none;">
+<div class="bundle1">
+	<div class="bundle_img" style="float:left;{common.image()}"></div>
+	<div class="body" style="width:350px;">
+		<div class="nm">{obj.name}</div>
+		<div class="desc">{obj.desc}</div>
+	</div>
+<!--	<div class="role" style="float:left;margin-top:55px;">{obj.role}</div>
+-->
 </div>
-<!--[if !IE]>end section<![endif]-->
-<script>
-function GlobalRefresh() {}
+</textarea>
+<textarea id="type_bundle2" style="display:none;">
+<div class="bundle2">
+	<div class="bundle_img" style="float:left;{common.image()}"></div>
+	<div class="body" style="height:70px;width:100px;">
+		<div class="nm">{obj.name}</div>
+		<div class="desc">{obj.summary}</div>
+        </div>
+<!--	<div class="role" style="float:left;margin:5px 0px 0px 20px;">{obj.role}</div>
+-->
+</div>
+</textarea>
+<textarea id="type_bundle3" style="display:none;">
+<div class="bundle3">
+	<div class="bundle_img" style="margin:5px 0px 0px 10px;{common.image()}"></div>
+<!--	<div class="role" style="margin:5px 0px 0px 40px;">{obj.role}</div>
+-->
+</div>
+</textarea>
+<script type="text/javascript">
+dhtmlxEvent(window,"load",function() { 
+    globalLayout = new dhtmlXLayoutObject(document.body,"2U");  
+    globalLayout.cells("a").hideHeader();
+
+    globalMenu = globalLayout.cells("a").attachMenu();
+    globalMenu.setIconsPath( "{{ asset('/bundles/ariicore/images/menu/') }}" );
+    globalMenu.loadStruct("{{ url('xml_menu') }}");    
+
+    myRibbon = globalLayout.cells("a").attachRibbon(); 
+    myRibbon.setIconPath( "{{ asset('bundles/ariicore/images/ribbon/') }}" );
+    myRibbon.loadStruct("{{ url('json_Home_ribbon') }}");
+    myRibbon.attachEvent("onStateChange", StateRibbon );
+    myRibbon.attachEvent("onClick", ClickRibbon );
+
+    globalLayout.cells("a").setWidth(250);
+    globalLayout.cells("b").hideHeader();
+
+    myToolbar = globalLayout.cells("b").attachToolbar();
+
+    myToolbar.setIconsPath("{{ asset('bundles/ariicore/images/cover/') }}");
+    myToolbar.loadStruct("{{ url('xml_toolbar') }}");
+    myToolbar.attachEvent( "onStateChange", function(id, value) {
+        switch (id) {
+            case "2":
+                dhxView.define("type","bundle1");
+                myToolbar.setItemState(4,false)
+                myToolbar.setItemState(8,false)
+                break;
+            case "4":
+                dhxView.define("type","bundle2");
+                myToolbar.setItemState(2,false)
+                myToolbar.setItemState(8,false)
+                break;
+            case "8":
+                dhxView.define("type","bundle3");
+                myToolbar.setItemState(2,false)
+                myToolbar.setItemState(4,false)
+                break;
+            break;
+            default:
+                alert(id);
+        }
+    });
+ 
+    myDataView = globalLayout.cells("a").attachDataView({
+//        edit:true,
+        drag: true,
+        type:{
+                template:"<div><img src='{{ asset('/bundles/ariicore/images/cover/32/') }}#BUNDLE#.png' style='float: left;'/><span class='dhx_strong'> #name#</span></div>",
+//              template_edit:"<input class='dhx_item_editor' bind='obj.BUNDLE'>",
+                height:30,
+        }
+    });
+    myDataView.load("{{ url('xml_favorites') }}");
+    var myDataProcessor = new dataProcessor("{{ url('xml_favoritesPP') }}");
+    myDataProcessor.init(myDataView);
+
+// Menu principal
+    dhtmlx.Type.add(dhtmlXDataView,{
+    name:"bundle1",
+    css: "bundle1",
+    template:"html->type_bundle1",
+            width: 577,
+            height: 137,
+            margin: 2,
+            image:getImageStyle
+    });
+   dhtmlx.Type.add(dhtmlXDataView,{
+            name:"bundle2",
+            css: "bundle2",
+            template:"html->type_bundle2",
+            width: 288,
+            height: 137,
+            margin: 2,
+            image:getImageStyle
+    });
+    dhtmlx.Type.add(dhtmlXDataView,{
+            name:"bundle3",
+            css: "bundle3",
+            template:"html->type_bundle3",
+            width: 141,
+            height: 137,
+            margin: 2,
+            image:getImageStyle
+    });
+    dhxView = globalLayout.cells("b").attachDataView(
+            { type:"bundle2",
+    drag: true, 
+    select:true });
+    dhxView.load("{{ url('xml_modules') }}?"+(new Date()).valueOf(),
+    function () {},"xml");
+    
+    dhxView.attachEvent("onSelectChange", function(sid) {
+        var d = dhxView.get(sid);
+	window.location.href = d.url;
+    });
+/*    
+    myTree = myAccordion.cells("docs").attachTree();
+    myTree.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
+    myTree.loadXML("{{ url('xml_docs_tree') }}");
+    myTree.attachEvent("onClick",function(id) {
+        globalLayout.cells("b").attachUrl("{{ url('xml_doc_view') }}?doc="+id);        
+    });
+*/
+});
+
+function remove_data(){
+        myDataView.remove(myDataView.getSelected());
+}
+
+function getImageStyle(obj){
+    if(window._isIE){
+        return "background-image: none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='{{ asset('bundles/ariicore/images/cover/') }}"+obj.img+"',sizingMethod='crop');";
+    }
+    else{
+        return "background-image:url({{ asset('bundles/ariicore/images/cover/') }}"+obj.img+");";	
+    }
+}	
 </script>
+</body>
 {% endblock %}

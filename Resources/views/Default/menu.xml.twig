@@ -1,30 +1,52 @@
 <?xml version="1.0"?>
 <menu>
-	<item id="home" img="public.png">
-                <item id="jid" text="{{ "module.JID" | trans }}" img="jid.png">
-                <href><![CDATA[{{ path('arii_JID_index') }}]]></href>
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}                
+	<item id="menu" img="house.png">
+            {% for menu in MENU %}
+                <item id="{{ menu.mod }}" text="{{ menu.title | trans }}" img="{{ menu.mod }}.png">
+                <href><![CDATA[{{ menu.url }}]]></href>
                 </item>
-                <item id="mft" text="{{ "module.MFT" | trans }}" img="mft.png">
-                <href><![CDATA[{{ path('arii_MFT_index') }}]]></href>
-                </item>
+            {% endfor %}
 	</item>
+{% else %}
+	<item id="login" img="lock.png"/>
+{% endif %}
+	<item id="help" img="help.png">
+            <item id="en" text="{{ "Documents" | trans }}" img="book.png">
+                <href><![CDATA[{{ url("arii_docs" ) }}]]></href>
+            </item>             
+            <item id="sos" img="sosp.gif" text="{{ "Web site" | trans }}">
+                <href><![CDATA[http://www.sos-paris.com]]></href>
+            </item>
+<!--            <item id="about" img="about.png" text="{{ "About Ari'i" | trans }}">
+                <href><![CDATA[http://www.sos-paris.com]]></href>
+            </item>
+-->      </item>        
+<!--
 	<item id="toolbox" img="toolbox.png">
                 <item id="silent_install" text="{{ "Silent install" | trans }}" >
-                <href><![CDATA[{{ path('arii_Tools_silent') }}]]></href>
+                <href><![CDATA[{{ url('arii_Tools_silent') }}]]></href>
                 </item>
                 <item id="cron" text="{{ "Cron converter" | trans }}" >
-                <href><![CDATA[{{ path('arii_Tools_cron') }}]]></href>
+                <href><![CDATA[{{ url('arii_Tools_cron') }}]]></href>
                 </item>
 	</item>
+-->
+<!--	<item id="help" img="help.png">
+                <item id="about" text="{{ "About" | trans }}" >
+                <href><![CDATA[{{ path('arii_About') }}]]></href>
+                </item>
+	</item>
+-->
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}                
 	<item type="separator"/>
-	<!-- top disabled -->
 {% if is_granted('ROLE_OPERATOR') %}
 	<item id="topdis" text="{{ app.user.username }}" img="role_operator.png">
 {% endif %}
-        <item id="my_account" text="{{ "My account" | trans }}">
+        <item id="my_account" text="{{ "My account" | trans }}"  img="profile.png">
         <href><![CDATA[{{ path('arii_my_account') }}]]></href>
         </item>
-        <item id="logout" text="{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}">
+        <item id="logout" text="{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}"  img="logout.png">
         <href><![CDATA[{{ path('fos_user_security_logout') }}]]></href>
         </item>
 {% if is_granted('ROLE_OPERATOR') %}
@@ -32,5 +54,23 @@
 {% else %}
 	<item id="topdis" text="{{ app.user.username }}" img="role_operator.png">        
 {% endif %}
+{% endif %}
+<!--
+    <item type="separator"/>        
+    <item id="lang" img="world.png">
+        <item id="fr" text="{{ "fr" | trans }}" >
+        <href><![CDATA[{{ path('arii_About') }}]]></href>
+        </item>
+    </item>
+-->
+	<item id="lang" img="fr.png">
+<!--            <item id="en" text="{{ "English" | trans }}" img="en.png">
+                <href><![CDATA[{{ app.request.getUri | langSwitchTo('en')}}]]></href>
+            </item>    
+            <item id="fr" text="{{ "French" | trans }} {{ app.request.pathInfo }}" img="fr.png">
+                <href><![CDATA[{{ app.request.getUri | langSwitchTo('fr')}}]]></href>
+            </item>             
+-->        </item>
+
 
 </menu>
