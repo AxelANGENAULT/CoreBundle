@@ -135,6 +135,14 @@ class DefaultController extends Controller
             foreach (explode(',',$param) as $p)
                 array_push($Params, $p);
                 
+        # On moins un home
+        array_push($liste, array(
+                'mod' => 'navigation', 
+                'module' => 'Core', 
+                'url' => $this->generateUrl('arii_Home_index'), 
+                'class' => '', 
+                'title' => 'Navigation' ) );
+ 
         # On retrouve l'url active 
         foreach ($Params as $p) {
             // Modules limites à un droit ?
@@ -402,23 +410,27 @@ class DefaultController extends Controller
         
         $qry = $sql->Select(array('ID,BUNDLE')) 
         .$sql->From(array('ARII_FAVORITE'))
+        .$sql->Where(array("USER_ID"=>$user_id))
         .$sql->OrderBy(array('LEVEL'));
         
-        $data->render_sql($qry,"ID","BUNDLE");
+        $data->render_sql($qry,"ID","BUNDLE","USER_ID");
     }
 
     public function favoritesAction()
     {
+        $sc = $this->get('security.context');
+        $user_id = $sc->getToken()->getUser()->getId();
         $db = $this->container->get('arii_core.db');
         $data = $db->Connector('dataview');
         $sql = $this->container->get('arii_core.sql');
         
-        $qry = $sql->Select(array('ID,BUNDLE')) 
+        $qry = $sql->Select(array('ID,BUNDLE,LEVEL')) 
         .$sql->From(array('ARII_FAVORITE'))
+        .$sql->Where(array("USER_ID"=>$user_id))
         .$sql->OrderBy(array('LEVEL'));
         
         $data->event->attach("beforeRender",array($this,"addColumn"));
-        $data->render_sql($qry,"ID","BUNDLE,name");
+        $data->render_sql($qry,"ID","BUNDLE,LEVEL,name");
     }
     
     public function addColumn($row)

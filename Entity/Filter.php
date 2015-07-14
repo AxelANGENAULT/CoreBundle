@@ -20,6 +20,7 @@ class Filter
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
    /**
     *  @ORM\OneToMany(targetEntity="Arii\CoreBundle\Entity\TeamFilter",mappedBy="filter",cascade={"all"})
     * 

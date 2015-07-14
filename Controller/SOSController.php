@@ -68,11 +68,12 @@ class SOSController extends Controller
                  }
                  $cmd .= '</add_order>';
                 break;
+            case 'start_order':
             case 'modify_order':
                 // En entrée:
                 //   order_id: identifiant du traitement
                 //   at: heure de depart
-                 $id = $request->get('order_id');
+                 $id = $request->get('id');
                  $at = $request->get('time');
                  
                  list($spooler_id,$order_id,$job_chain) = $sos->getOrderInfos($id);                 

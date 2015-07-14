@@ -22,6 +22,11 @@ class Favorite
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Arii\UserBundle\Entity\User")
+     */
+    private $user;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="bundle", type="string", length=10)
@@ -34,7 +39,6 @@ class Favorite
      * @ORM\Column(name="level", type="smallint")
      */
     private $level;
-
 
     /**
      * Get id
