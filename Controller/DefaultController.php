@@ -18,8 +18,14 @@ class DefaultController extends Controller
         }
     }
     
-    public function indexAction()
+    public function defaultAction()
     {        
+        $locale = $this->get('request')->getLocale();        
+        return $this->redirect($this->generateUrl('arii_home'));
+    }
+
+    public function indexAction()
+    {   
         return $this->render('AriiCoreBundle:Default:index.html.twig');            
     }
     
@@ -110,10 +116,20 @@ class DefaultController extends Controller
         return $this->render("AriiCoreBundle:Default:cover_toolbar.xml.twig",array(), $response );
     }
 
-    public function menuAction($route='arii_homepage')
+    public function menuAction($route='arii_home')
     {
         $here = $url = $this->generateUrl($route);
         
+        $request = $this->container->get('request');
+        $route = $request->get('route');
+                
+        $locale =  $this->get('request')->getLocale();
+        foreach (array('en','fr') as $l ) {
+            if ($l == $locale) continue;            
+            $lang[$l]['string'] = $this->get('translator')->trans("lang.$l");     
+            $lang[$l]['url'] = $this->generateUrl($route,array('_locale' => $l)); 
+        }
+                
         $session = $this->container->get('arii_core.session');
         $liste = array();
         
@@ -172,7 +188,7 @@ class DefaultController extends Controller
 
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml');   
-        return $this->render('AriiCoreBundle:Default:menu.xml.twig',array('MENU' => $liste), $response );
+        return $this->render('AriiCoreBundle:Default:menu.xml.twig',array('MENU' => $liste, 'LANG' => $lang ), $response );
     }
 
     public function aboutAction()
@@ -440,6 +456,28 @@ class DefaultController extends Controller
         $row->set_value("name",$this->get('translator')->trans('module.'.$p));
         $row->set_value("desc",$this->get('translator')->trans('text.'.$p));
         $row->set_value("summary",$this->get('translator')->trans('summary.'.$p));
+    }
+
+    public function docAction() {
+        $request = Request::createFromGlobals();
+        $lang = $this->getRequest()->getLocale();
+
+        $doc = $request->get('doc');
+        if ($doc != '')
+            $file = "../src/Arii/ATSBundle/Docs/$lang/$doc.md";
+        else 
+            $file = "../src/Arii/ATSBundle/README.md";
+
+        $content = @file_get_contents($file);
+        if ($content == '') {
+            print "$doc ?!";
+            exit();
+        }
+
+        $doc = $this->container->get('arii_core.doc');
+        $parsedown =  $doc->Parsedown($content);
+
+        return $this->render('AriiCoreBundle:Default:bootstrap.html.twig',array( 'content' => $parsedown ) );
     }
 
 }

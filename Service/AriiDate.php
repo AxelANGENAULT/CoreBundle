@@ -20,9 +20,10 @@ class AriiDate
         
         // date par defaut
         $this->CurrentDate = date('Y-m-d');
-                
+            
         $Site =  $session->getSite();
         $this->TZLocal = $Site['timezone'];
+
         // si le timezone est vide, on prend le timezone php
         if ($this->TZLocal=='') {
             $this->TZLocal = date_default_timezone_get ();
@@ -152,11 +153,17 @@ class AriiDate
        return $this->FormatTime($d);
     }
 
-    public function Time2Local($time,$spooler) {
-        if (isset($this->TZOffset[$spooler])) 
-            $offset = $this->TZOffset[$spooler];
-        else 
-            $offset = $this->DefaultOffset; // heure GMT par defaut
+    public function Time2Local($time,$spooler,$gmt=false) {
+        if (!$gmt) {
+            if ((isset($this->TZOffset[$spooler])) and ($this->TZOffset[$spooler]!='')) {
+                $offset = $this->TZOffset[$spooler];
+            }
+            else 
+                $offset = $this->DefaultOffset; // heure GMT par defaut
+        }
+        else {
+            $offset=0;
+        }
         return $this->ShortDate( date( 'Y-m-d H:i:s', $time + $offset) );
     }
     

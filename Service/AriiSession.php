@@ -121,6 +121,7 @@ class AriiSession
         // environnement technique
         if ($this->getRefDate() == '') {
             $Time = localtime(time(),true);
+            $this->setRefTimestamp(time());
             $this->setRefDate( sprintf("%04d-%02d-%02d %02d:%02d:%02d", $Time['tm_year']+1900, $Time['tm_mon']+1, $Time['tm_mday'], $Time['tm_hour'], $Time['tm_min'], $Time['tm_sec']) );
         }
 
@@ -570,6 +571,16 @@ class AriiSession
         // on recalcule les bornes inferieurs et superieures
         $this->setPast($this->CalcDate( $date, $this->get('ref_past') ));
         $this->setFuture($this->CalcDate( $date, $this->get( 'ref_future') ));
+    }
+
+    public function getRefTimestamp()
+    {
+        return $this->get( 'ref_timestamp' );
+    }
+
+    public function setRefTimestamp($timestamp)
+    {
+        $this->set( 'ref_timestamp', $timestamp );
     }
 
  /* Passé */

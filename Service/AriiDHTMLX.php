@@ -53,6 +53,8 @@ class AriiDHTMLX
                 require_once  $this->dhtmlx_path.'/db_postgre.php';
                 $driver = "Postgre";
                 break;
+            case 'oci8':
+            case 'oracle':
             case 'pdo_oci':
                 require_once  $this->dhtmlx_path.'/db_oracle.php';
                 $driver = "Oracle";

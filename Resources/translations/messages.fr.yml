@@ -121,6 +121,7 @@ Created: Création
 Create table: Créer les tables
 Cron adapter: Connecteur CRON
 Cron System: Système Cron
+Current: Courant
 Curved: Lignes courbes
 Custom: Custom
 custom_filter: filtre personnalisé
@@ -294,6 +295,8 @@ job_chains: Séquence
 Kill: Tuer la tâche
 Kill task: Tuer la tâche
 Kill job: Arrêt brutal du traitement
+lang.en: Anglais
+lang.fr: Français
 Last Login: Dernière Connexion
 Last name: Nom
 Last update: Dernière mise à jour
@@ -422,6 +425,7 @@ Previous Page: Page précédente
 Primary server: Serveur principal
 Process: Processus
 Processing: Traitement en cours...
+Processed: Traité
 process_class: Agent d'exécution
 process_classes: Agents d'exécution
 Profile: Profil
@@ -669,3 +673,36 @@ XML Export: Export XML
 year: année
 Yes: Oui
 Yesterday: Hier
+Silent install: Installation silencieuse
+Cron converter: Convertisseur Cron
+Favorite: Favoris
+Favorites: Favoris
+Home: Accueil
+Web site: Site web
+Last exécutions: Dernières exécutions
+All: Tout
+Show spooler: Afficher moteur
+Show times: Afficher fin
+Printer format: Format d’impression
+Rss feed: Flux RSS
+Refresh data: Actualiser les données
+Repeat: Relance
+now: Maintenant
+Day: Jour
+Week: Semaine
+Month: Mois
+Forecast: Prévisions
+IP ADRESS: Adresse IP
+Ordered job: Traitement ordonné
+Stendhalien job: Traitement indépendant
+Picture: Image
+Job chains: Chaînes de traitement
+Report: Rapport
+Comments: Commentaires
+FILE: FICHIER
+COMMENT: COMMENTAIRE
+Size (bytes): Taille (bytes)
+Calendar: Calendrier
+Parameters file: Paramètres
+Config file: Configuration
+First name: Prénom

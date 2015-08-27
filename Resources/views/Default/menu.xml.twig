@@ -63,14 +63,13 @@
         </item>
     </item>
 -->
-	<item id="lang" img="fr.png">
-<!--            <item id="en" text="{{ "English" | trans }}" img="en.png">
-                <href><![CDATA[{{ app.request.getUri | langSwitchTo('en')}}]]></href>
-            </item>    
-            <item id="fr" text="{{ "French" | trans }} {{ app.request.pathInfo }}" img="fr.png">
-                <href><![CDATA[{{ app.request.getUri | langSwitchTo('fr')}}]]></href>
-            </item>             
--->        </item>
+    <item id="lang" img="{{ app.request.locale }}.png">
+            {% for lang,info in LANG %}
+               <item id="{{ lang }}" text="{{ info.string }}" img="{{ lang }}.png">
+                <href>{{ info.url }}</href>
+               </item>    
+            {% endfor %}
+    </item>
 
 
 </menu>

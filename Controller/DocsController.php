@@ -22,13 +22,13 @@ class DocsController extends Controller
         return $this->render('AriiCoreBundle:Docs:ribbon.json.twig',array(), $response );
     }
 
-    public function treeAction($path='docs')
+    public function treeAction($bundle='Core')
     {        
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml');
         $xml = "<?xml version='1.0' encoding='utf-8'?>";                
-        $xml .= '<tree id="0">';        
-        $xml .= $this->TreeXML('docs/fr','');
+        $xml .= '<tree id="0" text="root">';
+        $xml .= $this->TreeXML('../src/Arii/'.$bundle.'Bundle/Docs/'.$this->getRequest()->getLocale(),'');
         $xml .= '</tree>';        
         $response->setContent($xml);
         return $response;
@@ -54,8 +54,8 @@ class DocsController extends Controller
             
             sort($Files);
             foreach ($Files as $file) {
-                // on ne s'intéresse qu'aux pdfs
-                if (substr($file,-4)=='.pdf') {
+                // on ne s'intéresse qu'aux md
+                if (substr($file,-3)=='.md') {
                     $f = substr($file,0,strlen($file)-4);
                     $xml .= '<item id="'.utf8_encode("$basedir/$dir$file").'" text="'.utf8_encode($f).'" im0="pdf.png"/>';
                 }
@@ -75,7 +75,7 @@ class DocsController extends Controller
         return $xml;
     }
 
-    public function docAction()
+    public function doc2Action()
     {
         $request = Request::createFromGlobals();
         $this->charset = $this->container->getParameter('charset');

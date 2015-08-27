@@ -18,6 +18,7 @@ class AriiSQL
     protected $ref_date;
     protected $ref_past;
     protected $ref_future;
+    protected $ref_timestamp;
     
     protected $past;
     protected $future;
@@ -53,6 +54,7 @@ class AriiSQL
         $this->ref_date   = $session->getRefDate();
         $this->ref_past   = $session->getRefPast();
         $this->ref_future = $session->getRefFuture();
+        $this->ref_timestamp = $session->getRefTimestamp();
 
         // Correction des dates 
         if ($this->driver == 'pdo_oci') {
@@ -174,6 +176,10 @@ class AriiSQL
  */
                     array_push( $Where, 
                            '( '.$this->Date($Fields['{start_time}'],' >= ',$this->past).' )' );
+                   break;
+               case '{start_timestamp}':
+                    array_push( $Where, 
+                           '( '.$this->Date($Fields['{start_timestamp}'],' >= ',($this->ref_timestamp+($this->ref_past*86400))).' )' );
                    break;
                case '{next_start_time}':
                     array_push( $Where, 
@@ -317,6 +323,8 @@ class AriiSQL
             case 'pdo_pgsql':
                 return " limit $size offset $offset";
                 break;
+            case 'oci8':
+            case 'oracle':
             case 'pdo_oci':
                 return ""; // il faudra intégrer le row num!
                 break;            
@@ -360,6 +368,8 @@ class AriiSQL
         
         // Dates
         switch ($this->driver) {
+            case 'oci8':
+            case 'oracle':
             case 'pdo_oci':
                 // Fonction de date Oracle
                 if (in_array($var,array('START_TIME','END_TIME'))) {
@@ -425,8 +435,32 @@ class AriiSQL
                 switch ($this->driver) {
                     case 'pdo_pgsql':
                         return 'extract( day from '.$col.')';
+                    case 'oci8':
+                    case 'oracle':
+                    case 'pdo_oci':
+                        return "TO_CHAR( $col, 'YYYY-MM-DD HH24:MI')"; 
                     default:
                         return 'day('.$col.')';
+                }
+                break;
+            case 'max_day':
+                switch ($this->driver) {
+                    case 'oci8':
+                    case 'oracle':
+                    case 'pdo_oci':
+                        return "TO_CHAR( MAX($col), 'YYYY-MM-DD HH24:MI')"; 
+                    default:
+                        return 'max(day('.$col.'))';
+                }
+                break;
+            case 'max_date':
+                switch ($this->driver) {
+                    case 'oci8':
+                    case 'oracle':
+                    case 'pdo_oci':
+                        return "TO_CHAR( MAX($col), 'YYYY-MM-DD')"; 
+                    default:
+                        return 'max(left('.$col.'))';
                 }
                 break;
             case 'getdate':

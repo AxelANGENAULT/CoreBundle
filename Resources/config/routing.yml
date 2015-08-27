@@ -30,7 +30,7 @@ json_Home_docs_ribbon:
 
 xml_doc_view:
     pattern:  /doc
-    defaults: { _controller: AriiCoreBundle:Docs:doc }
+    defaults: { _controller: AriiCoreBundle:Default:doc }
 
 
 #--------------------------------------------------------------------
