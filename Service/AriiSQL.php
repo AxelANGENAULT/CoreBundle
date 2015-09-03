@@ -244,13 +244,22 @@ class AriiSQL
                    break;
                case '{status}':
                case '{error}':
-                   break; 
+                   break;
                default:
                    if ($v == '(null)') {
                         array_push($Where,'(isnull('.$this->Column($k)."))");
                    }
                    elseif ($v == '(!null)') {
-                        array_push($Where,'(not(isnull('.$this->Column($k).")))");
+                        switch ($this->driver) {
+                             case 'postgre':
+                             case 'postgres':
+                             case 'pdo_pgsql':
+                                 array_push($Where,'('.$this->Column($k).' is not null'.")");
+                                 break;
+                             default:
+                                 array_push($Where,'(not(isnull('.$this->Column($k).")))");
+                                 break;
+                        }
                    }
                    elseif (strpos(" $v",'%'))  {
                         array_push($Where,'( '.$this->Column($k)." like '".$v."')");
@@ -320,6 +329,8 @@ class AriiSQL
 
    public function Limit( $size, $offset=0 ) {
         switch ($this->driver) {
+            case 'postgre':
+            case 'postgres':
             case 'pdo_pgsql':
                 return " limit $size offset $offset";
                 break;
@@ -335,6 +346,7 @@ class AriiSQL
    }
 
    public function ColumnSelect($col,$as='') {
+
         // est ce que c'est une fonction ?
         $fct = $params = '';
         if (($p = strpos($col,'('))>0) {
@@ -348,6 +360,8 @@ class AriiSQL
         }
         // gestion des guillements
         switch ($this->driver) {
+            case 'postgre':
+            case 'postgres':
             case 'pdo_pgsql':
                 $q = '"';
                 break;
@@ -406,6 +420,8 @@ class AriiSQL
         }
         // gestion des guillements
         switch ($this->driver) {
+            case 'postgre':
+            case 'postgres':
             case 'pdo_pgsql':
                 $q = '"';
                 break;
@@ -433,6 +449,8 @@ class AriiSQL
         switch ($fct) {
             case 'day':
                 switch ($this->driver) {
+                    case 'postgre':
+                    case 'postgres':
                     case 'pdo_pgsql':
                         return 'extract( day from '.$col.')';
                     case 'oci8':
@@ -465,6 +483,8 @@ class AriiSQL
                 break;
             case 'getdate':
                 switch ($this->driver) {
+                    case 'postgre':
+                    case 'postgres':
                     case 'pdo_pgsql':
                         return 'date('.$col.')';
                     default:
@@ -473,6 +493,8 @@ class AriiSQL
                 break;            
             case 'getmonth':
                 switch ($this->driver) {
+                    case 'postgre':
+                    case 'postgres':
                     case 'pdo_pgsql':
                         return 'extract( month from '.$col.')';
                     default:
@@ -501,6 +523,8 @@ class AriiSQL
       private function Date($col,$ope,$val) {
         $date = '';
         switch ($this->driver) {
+            case 'postgre':
+            case 'postgres':
             case 'pdo_pgsql':
                 $date = $this->Column($col).' '.$ope." '$val'";
                 break;

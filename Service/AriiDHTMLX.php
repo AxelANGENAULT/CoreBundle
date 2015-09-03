@@ -50,6 +50,7 @@ class AriiDHTMLX
         }
         switch ($this->driver) {
             case 'postgre':
+            case 'postgres':
                 require_once  $this->dhtmlx_path.'/db_postgre.php';
                 $driver = "Postgre";
                 break;

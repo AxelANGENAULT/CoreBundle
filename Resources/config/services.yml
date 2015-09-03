@@ -80,9 +80,4 @@ services:
     arii_core.joe:
         class: Arii\CoreBundle\Service\AriiJOE
         arguments: [ "@arii_core.session" ]
-
-    arii_core.doc:
-        class: Arii\CoreBundle\Service\AriiDoc
-        arguments: [ "@arii_core.session" ]
-        scope: request
         

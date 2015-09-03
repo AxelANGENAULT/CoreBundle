@@ -10,6 +10,7 @@ use Symfony\Component\Translation\Translator;
 class DefaultController extends Controller
 {
     public function homepageAction() {
+
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirect($this->generateUrl('arii_Home_index'));
         }
@@ -19,8 +20,9 @@ class DefaultController extends Controller
     }
     
     public function defaultAction()
-    {        
-        $locale = $this->get('request')->getLocale();        
+    {   
+        // est-ce que la langue est en session
+        $locale = $this->get('request')->getLocale();       
         return $this->redirect($this->generateUrl('arii_home'));
     }
 
