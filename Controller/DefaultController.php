@@ -31,6 +31,11 @@ class DefaultController extends Controller
         return $this->render('AriiCoreBundle:Default:index.html.twig');            
     }
     
+    public function readmeAction()
+    {
+        return $this->render('AriiCoreBundle:Default:readme.html.twig');
+    }
+    
     public function ribbonAction()
     {
         $response = new Response();
@@ -118,12 +123,13 @@ class DefaultController extends Controller
         return $this->render("AriiCoreBundle:Default:cover_toolbar.xml.twig",array(), $response );
     }
 
-    public function menuAction($route='arii_home')
+    public function menuAction($route='arii_Home_readme')
     {
         $here = $url = $this->generateUrl($route);
         
         $request = $this->container->get('request');
-        $route = $request->get('route');
+        if ($request->get('route')!='') 
+            $route = $request->get('route');
                 
         $locale =  $this->get('request')->getLocale();
         foreach (array('en','fr') as $l ) {
@@ -161,6 +167,12 @@ class DefaultController extends Controller
                 'class' => '', 
                 'title' => 'Navigation' ) );
  
+        # Par defaut
+        $current = array( 
+            'mod' => 'Core',
+            'url'    => $this->generateUrl('arii_Core_readme'),
+            'img'  => 'navigation'
+            );
         # On retrouve l'url active 
         foreach ($Params as $p) {
             // Modules limites à un droit ?
@@ -182,15 +194,23 @@ class DefaultController extends Controller
             if ($p == '') continue;
             $class='';
             $url = $this->generateUrl('arii_'.$p.'_index');
-            $len = strlen($url);
-            if (substr($here,0,$len)==$url) $class='selected';
+            
+            $test = 'arii_'.$p;
+            if (substr($route,0,strlen($test))==$test) {
+                $class='selected';
+                $current = array( 
+                    'mod' => $p,
+                    'url'    => $this->generateUrl('arii_'.$p.'_readme'),
+                    'img'  => strtolower($p)
+                    );
+            }
             
             array_push($liste, array( 'mod' => strtolower($p), 'module' => $p, 'url' => $url, 'class' => $class, 'title' => 'module.'.$p ) );
         }   
 
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml');   
-        return $this->render('AriiCoreBundle:Default:menu.xml.twig',array('MENU' => $liste, 'LANG' => $lang ), $response );
+        return $this->render('AriiCoreBundle:Default:menu.xml.twig',array('MENU' => $liste, 'LANG' => $lang, 'BUNDLE' => $current ), $response );
     }
 
     public function aboutAction()
@@ -481,5 +501,27 @@ class DefaultController extends Controller
 
         return $this->render('AriiCoreBundle:Default:bootstrap.html.twig',array( 'content' => $parsedown ) );
     }
+
+    public function readme_htmlAction($route="arii_Core_index") 
+    {
+        $request = $this->container->get('request');
+        if ($request->get('route')!='') 
+            $route = $request->get('route');
+        // Historique...
+        if (substr($route,0,10)=='arii_Home_') {
+            $bundle = 'Core';
+        }
+        else {
+            $p = strpos($route,'_',5);
+            $bundle = substr($route,5,$p-5);
+        }
+        
+        $content = @file_get_contents('../src/Arii/'.$bundle.'Bundle/README.md');
+        $doc = $this->container->get('arii_doc.doc');
+        $value =  array('content' => $doc->Parsedown($content));
+        
+        return $this->render('AriiCoreBundle:Templates:bootstrap.html.twig', array('doc' => $value));
+    }
+
 
 }

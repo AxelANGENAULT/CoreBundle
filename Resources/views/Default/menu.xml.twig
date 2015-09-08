@@ -12,12 +12,17 @@
 	<item id="login" img="lock.png"/>
 {% endif %}
 	<item id="help" img="help.png">
-            <item id="en" text="{{ "Documents" | trans }}" img="book.png">
+            <item id="docs" text="{{ "Documents" | trans }}" img="book.png">
                 <href><![CDATA[{{ url("arii_docs" ) }}]]></href>
             </item>             
             <item id="sos" img="sosp.gif" text="{{ "Web site" | trans }}">
                 <href><![CDATA[http://www.sos-paris.com]]></href>
             </item>
+            <item type="separator"/>        
+            <item id="readme" img="{{ BUNDLE.img }}.png" text="{{ "About..." | trans }}">
+                <href><![CDATA[{{ BUNDLE.url }}]]></href>
+            </item>
+            
 <!--            <item id="about" img="about.png" text="{{ "About Ari'i" | trans }}">
                 <href><![CDATA[http://www.sos-paris.com]]></href>
             </item>

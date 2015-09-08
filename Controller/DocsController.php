@@ -13,7 +13,6 @@ class DocsController extends Controller
         return $this->render('AriiCoreBundle:Docs:index.html.twig');            
     }
     
-
     public function ribbonAction()
     {
         $response = new Response();
@@ -24,17 +23,24 @@ class DocsController extends Controller
 
     public function treeAction($bundle='Core')
     {        
+        $request = Request::createFromGlobals();
+        if ($request->query->get( 'route' )) {
+            $route = $request->query->get( 'route' );
+            $p = strpos($route,'_',5);
+            $bundle = substr($route,5,$p-5);
+        }
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml');
         $xml = "<?xml version='1.0' encoding='utf-8'?>";                
         $xml .= '<tree id="0" text="root">';
-        $xml .= $this->TreeXML('../src/Arii/'.$bundle.'Bundle/Docs/'.$this->getRequest()->getLocale(),'');
+        $xml .= $this->TreeXML($bundle,$this->getRequest()->getLocale(),'');
         $xml .= '</tree>';        
         $response->setContent($xml);
         return $response;
     }
 
-    public function TreeXML($basedir,$dir ) {
+    public function TreeXML($bundle,$lang,$dir ) {
+        $basedir = '../src/Arii/'.$bundle.'Bundle/Resources/doc/'.$lang;
         $xml ='';
         if ($dh = @opendir($basedir.'/'.$dir)) {
             $Dir = array();
@@ -55,16 +61,16 @@ class DocsController extends Controller
             sort($Files);
             foreach ($Files as $file) {
                 // on ne s'intéresse qu'aux md
-                if (substr($file,-3)=='.md') {
+                if ((substr($file,-3)=='.md') or (substr($file,-4)=='.rst')) {
                     $f = substr($file,0,strlen($file)-4);
-                    $xml .= '<item id="'.utf8_encode("$basedir/$dir$file").'" text="'.utf8_encode($f).'" im0="pdf.png"/>';
+                    $xml .= '<item id="'.$this->DocTitle($bundle.'/'.$lang.$dir.'/'.$file).'" text="'.$this->DocTitle($f).'" im0="page.png"/>';
                 }
             }
 
             sort($Dir);
             foreach ($Dir as $file) {
-                $xml .= '<item id="'."$dir/$file/".'" text="'.$file.'" im0="folder.gif">';
-                $xml .= $this->TreeXML($basedir,"$dir/$file");
+                $xml .= '<item id="'.$this->DocTitle("$bundle/$lang/$dir$file").'" text="'.$this->DocTitle($file).'" im0="folder.gif">';
+                $xml .= $this->TreeXML($bundle,$lang,$dir.'/'.$file);
                 $xml .= '</item>';
             }
             
@@ -75,6 +81,12 @@ class DocsController extends Controller
         return $xml;
     }
 
+    private function DocTitle($doc) {
+        if (preg_match('/^\d\d - /',$doc,$matches))
+                $doc = substr($doc,5);
+        return utf8_encode($doc);
+    }
+    
     public function doc2Action()
     {
         $request = Request::createFromGlobals();
@@ -120,4 +132,35 @@ class DocsController extends Controller
         return $text;
     }
 
+    public function viewAction()
+    {
+        $request = Request::createFromGlobals();
+        $doc = $request->query->get( 'doc' );
+
+        $p = strpos($doc,'/');
+        
+        $page = '../src/Arii/'.substr($doc,0,$p).'Bundle/Resources/doc/'.substr($doc,$p);
+        
+        if (!($content = @file_get_contents($this->Decodage($page)))) {
+            $error = array( 'text' =>  'File not found: '.$doc );
+            return $this->render('AriiDOCBundle:Templates:ERROR.html.twig', array('error' => $error));
+        }
+        
+        if ((substr($doc,-3)=='.md') or (substr($doc,-4)=='.rst')) {
+            $doc = $this->container->get('arii_core.doc');
+            $value =  array('content' => $doc->Parsedown($content));
+            return $this->render('AriiDOCBundle:Templates:bootstrap.html.twig', array('doc' => $value));
+        }
+        else {
+            $yaml = new Parser();
+            try {
+                $value = $yaml->parse($content);
+            } catch (ParseException $e) {
+                $error = array( 'text' =>  "Unable to parse the YAML string: %s<br/>".$e->getMessage() );
+                return $this->render('AriiDOCBundle:Templates:ERROR.html.twig', array('error' => $error));
+            }                        
+        }
+        exit();
+    }
+    
 }

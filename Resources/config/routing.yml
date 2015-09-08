@@ -2,6 +2,22 @@ arii_Home_index:
     pattern:  /
     defaults: { _controller: AriiCoreBundle:Default:index }
 
+arii_Home_readme:
+    pattern:  /readme
+    defaults: { _controller: AriiCoreBundle:Default:readme }
+
+arii_Core_readme:
+    pattern:  /readme
+    defaults: { _controller: AriiCoreBundle:Default:readme }
+    
+html_Core_readme:
+    pattern:  /readme.html
+    defaults: { _controller: AriiCoreBundle:Default:readme_html }
+
+html_Home_readme:
+    pattern:  /readme.html
+    defaults: { _controller: AriiCoreBundle:Default:readme_html }
+    
 json_Home_ribbon:
     pattern:  /ribbon.json
     defaults: { _controller: AriiCoreBundle:Default:ribbon }
@@ -32,6 +48,9 @@ xml_doc_view:
     pattern:  /doc
     defaults: { _controller: AriiCoreBundle:Default:doc }
 
+html_doc_view:
+    pattern:  /docs/view
+    defaults: { _controller: AriiCoreBundle:Docs:view }
 
 #--------------------------------------------------------------------
 # DHTMLX
