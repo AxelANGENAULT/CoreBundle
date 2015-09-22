@@ -143,13 +143,13 @@ class DocsController extends Controller
         
         if (!($content = @file_get_contents($this->Decodage($page)))) {
             $error = array( 'text' =>  'File not found: '.$doc );
-            return $this->render('AriiDOCBundle:Templates:ERROR.html.twig', array('error' => $error));
+            return $this->render('AriiCoreBundle:Templates:ERROR.html.twig', array('error' => $error));
         }
         
         if ((substr($doc,-3)=='.md') or (substr($doc,-4)=='.rst')) {
             $doc = $this->container->get('arii_core.doc');
             $value =  array('content' => $doc->Parsedown($content));
-            return $this->render('AriiDOCBundle:Templates:bootstrap.html.twig', array('doc' => $value));
+            return $this->render('AriiCoreBundle:Templates:bootstrap.html.twig', array('doc' => $value));
         }
         else {
             $yaml = new Parser();
@@ -157,7 +157,7 @@ class DocsController extends Controller
                 $value = $yaml->parse($content);
             } catch (ParseException $e) {
                 $error = array( 'text' =>  "Unable to parse the YAML string: %s<br/>".$e->getMessage() );
-                return $this->render('AriiDOCBundle:Templates:ERROR.html.twig', array('error' => $error));
+                return $this->render('AriiCoreBundle:Templates:ERROR.html.twig', array('error' => $error));
             }                        
         }
         exit();

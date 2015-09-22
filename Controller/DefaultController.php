@@ -517,7 +517,7 @@ class DefaultController extends Controller
         }
         
         $content = @file_get_contents('../src/Arii/'.$bundle.'Bundle/README.md');
-        $doc = $this->container->get('arii_doc.doc');
+        $doc = $this->container->get('arii_core.doc');
         $value =  array('content' => $doc->Parsedown($content));
         
         return $this->render('AriiCoreBundle:Templates:bootstrap.html.twig', array('doc' => $value));

@@ -247,7 +247,8 @@ class AriiSQL
                    break;
                default:
                    if ($v == '(null)') {
-                        array_push($Where,'(isnull('.$this->Column($k)."))");
+                        // array_push($Where,'(isnull('.$this->Column($k)."))");
+                        array_push($Where,'('.$this->SqlFunction('isnull', $k).')');
                    }
                    elseif ($v == '(!null)') {
                         switch ($this->driver) {
@@ -502,6 +503,10 @@ class AriiSQL
                 }
 			case 'isnull':
                 switch ($this->driver) {
+                    case 'postgre':
+                    case 'postgres':
+                    case 'pdo_pgsql':
+                        return '"'.$col.'" is null';
                     case 'pdo_oci':
                         return "$col is null";
                     default:
