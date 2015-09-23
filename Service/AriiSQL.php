@@ -44,7 +44,7 @@ class AriiSQL
         }
         
         $db = $session->getDatabase();
-        $this->driver       = $db['driver'];
+        $this->driver = $db['driver'];
 
         $Spooler =$session->getSpooler( );
         $this->spooler = $Spooler['name'];
@@ -83,6 +83,11 @@ class AriiSQL
             $this->ref_future=2;
         if ($this->spooler=="")
             $this->spooler="%";
+    }
+    
+    // Force le driver 
+    public function setDriver($driver) {
+        $this->driver = $driver;
     }
     
     private function AppendPath($path,$obj,$noroot = true) {
@@ -359,6 +364,7 @@ class AriiSQL
                 $col = substr($col,0,$p);
             }
         }
+
         // gestion des guillements
         switch ($this->driver) {
             case 'postgre':
@@ -373,12 +379,13 @@ class AriiSQL
         if (($p = strpos($col,'.'))>0) {
 			$var = substr($col,$p+1);
             $col = substr($col,0,$p+1).$q.$var.$q;
+
         }
         else {
 			$var = $col;
             $col = $q.$col.$q;
         }
-		
+
         $col = $this->SqlFunction($fct,$col,$params);
         
         // Dates
