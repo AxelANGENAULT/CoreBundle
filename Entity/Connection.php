@@ -32,13 +32,19 @@ class Connection
      * @ORM\JoinColumn(nullable=true)
      *      */
     private $proxy;
-  
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="env", type="string", length=16)
+     */        
+    private $env;
+
     /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=100)
-     */
-        
+     */        
     private $title;
 
     /**
@@ -70,12 +76,12 @@ class Connection
      */
     private $port;
 
-   /**
-     * @ORM\ManyToOne(targetEntity="Arii\CoreBundle\Entity\Network")
-     * @ORM\JoinColumn(nullable=true)
-     *      
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="protocol", type="string", length=32, nullable=true)
      */
-    private $network;
+    private $protocol;
 
     /**
      * @var string
