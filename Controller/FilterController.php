@@ -108,11 +108,13 @@ class FilterController extends Controller
         $user_id = $session->getUserId();
         
         $sql = $this->container->get('arii_core.sql');
-        $qry = $sql->Select(array('ID','NAME','DESCRIPTION'))
+        $sql->setDriver($this->container->getParameter('database_driver'));
+        
+        $qry = $sql->Select(array('ID','NAME','DESCRIPTION','SPOOLER','JOB','JOB_CHAIN','ORDER_ID','STATUS'))
             .$sql->From(array('ARII_USER_FILTER'))
-            .$sql->Where(array('user_id'=>$user_id))
+            .$sql->Where(array('USER_ID'=>$user_id))
             .$sql->OrderBy(array('name'));
-        $grid->render_sql($qry,"ID","NAME,DESCRIPTION");
+        $grid->render_sql($qry,"ID","NAME,DESCRIPTION,SPOOLER,JOB,JOB_CHAIN,ORDER_ID,STATUS");
     }
 
     public function filter_formAction()

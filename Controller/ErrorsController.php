@@ -21,7 +21,7 @@ class ErrorsController extends Controller
         return $this->render('AriiCoreBundle:Errors:toolbar.xlml.twig');
     }
     
-public function xmlAction()   
+    public function xmlAction()   
     {
         $db = $this->container->get('arii_core.db');
         $grid = $db->Connector('grid');

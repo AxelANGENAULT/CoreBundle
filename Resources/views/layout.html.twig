@@ -1,4 +1,4 @@
-{% extends "::base.html.twig" %}
+{% extends "AriiCoreBundle::base.html.twig" %}
 {% block dhtmlx %}
 {% if arii_pro %}
 	<link rel="stylesheet" type="text/css" href="{{ asset('dhtmlx_pro/skins/' ~  skin ~ '/dhtmlx.css') }}" />
@@ -26,17 +26,22 @@ function ClickRibbon (itemid,state) {
         case 'home':
             window.location = "{{ url('arii_Home_index') }}";
             break;
-        case 'about_me':
+        case 'profile':
             window.location = "{{ url('arii_my_account') }}";
             break;
-        case 'filters':
+        case 'filter':
             window.location = "{{ url('arii_filters') }}";
             break;
-        case 'favorites':
-            window.location = "{{ url('arii_favorites') }}";
+        case 'audit':
+            window.location = "{{ url('arii_Home_audit') }}";
+            break;
+        case 'errors':
+            window.location = "{{ url('arii_Home_errors') }}";
             break;
         case 'docs':
             window.location = "{{ url('arii_docs') }}";
+            break;
+        case 'my_account':
             break;
         default:
             alert(itemid);

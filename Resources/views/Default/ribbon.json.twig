@@ -13,21 +13,46 @@
                         text:   "", 
                         isbig:  true, 
                         img:    "48/navigation.png"
-                    }
+                    },
+                    {   
+                         type:   "button", 
+                         id:     "errors",
+                         text:   "", 
+                         img:    "error.png"
+                    },
+                    {   
+                         type:   "button", 
+                         id:     "audit",
+                         text:   "", 
+                         img:    "shield.png"
+                    }                    
                 ]
         },
         {   
-            type:"block", 
-            text:"{{ "Favorite" | trans }}", 
-            text_pos: "bottom", 
+            type:       "block", 
+            text:       "{{ "My account" | trans }}", 
+            text_pos:   "bottom", 
             list:
                 [
-                   {
+                   {   
                         type:   "button", 
+                        id:     "my_account",
                         text:   "", 
                         isbig:  true, 
-                        img:    "48/favorite.png"
-                    }            
+                        img:    "48/me.png"
+                    },
+                    {   
+                         type:   "button", 
+                         id:     "profile",
+                         text:   "", 
+                         img:    "user_edit.png"
+                    },
+                    {   
+                         type:   "button", 
+                         id:     "filter",
+                         text:   "", 
+                         img:    "filter.png"
+                    }                         
                 ]
         }
    ]

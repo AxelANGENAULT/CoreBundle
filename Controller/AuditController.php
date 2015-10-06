@@ -74,5 +74,36 @@ class AuditController extends Controller
         $Infos = $data->sql->get_next($res);
         // if (isset($Infos['LOG'])) $Infos['LOG'] = substr($Infos['LOG'],50); 
         return $this->render('AriiCoreBundle:Audit:detail.html.twig', $Infos);
-     }    
+     }  
+     
+    public function chartAction()
+    {
+        $db = $this->container->get('arii_core.db');        
+        $chart = $db->Connector('chart');
+        $sql = $this->container->get('arii_core.sql');
+        $sql->setDriver($this->container->getParameter('database_driver'));
+        
+        $qry = $sql->Select(array('ID','LOGTIME','STATUS','count(ID) as NB'))
+                .$sql->From(array('ARII_AUDIT'))
+                .$sql->GroupBy(array('STATUS'));
+        
+        $chart->event->attach("beforeRender",array($this,"rowColor"));
+        $chart->render_sql($qry,'ID','LOGTIME,STATUS,NB,COLOR');     
+    }
+
+    function rowColor($row)
+    {
+        if ($row->get_value('STATUS')=="ERROR")
+        {   
+            $row->set_value('COLOR', '#fbb4ae');
+        }
+        elseif ($row->get_value('STATUS')=="SUCCESS") {
+            $row->set_value('COLOR', '#ccebc5');
+        }
+        else {
+            $row->set_value('COLOR', '#00cc33');
+        }
+        $row->set_value( 'LOGTIME', strtotime($row->get_value( 'LOGTIME' ))/3600);
+    }
+
 }

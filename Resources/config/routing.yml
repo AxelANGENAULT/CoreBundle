@@ -239,6 +239,10 @@ xml_Home_audit_list:
     pattern:  /audit/list.xml
     defaults: { _controller: AriiCoreBundle:Audit:xml }
 
+xml_Home_audit_chart:
+    pattern:  /audit/chart.xml
+    defaults: { _controller: AriiCoreBundle:Audit:chart }
+
 arii_Home_errors:
     pattern:  /errors
     defaults: { _controller: AriiCoreBundle:Errors:list }

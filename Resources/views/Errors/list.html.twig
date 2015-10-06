@@ -1,90 +1,56 @@
 {# src/Arii/CoreBundle/Resources/views/index.html.twig #}
 {% extends "AriiCoreBundle::layout.html.twig" %}
-{% block content %}
-<!--[if !IE]>start section<![endif]-->	
-<div class="section table_section">
-	<!--[if !IE]>start title wrapper<![endif]-->
-	<div class="title_wrapper">
-		<h2>{{ "Errors" | trans }}</h2>
-<ul  class="section_menu">
-      <li><a href="{{ url('arii_Home_audit') }}" class=""><span><span><img src="{{ asset('bundles/ariicore/images/wa/audit.png') }}"/>&nbsp;{{ "Audit" | trans }}</span></span></a></li>
-      <li><a href="{{ url('arii_Home_errors') }}" class="active"><span><span><img src="{{ asset('bundles/ariicore/images/wa/error.png') }}"/>&nbsp;{{ "Errors" | trans }}</span></span></a></li>
-</ul>
-		<span class="title_wrapper_left"></span>
-		<span class="title_wrapper_right"></span>
-	</div>
-	<!--[if !IE]>end title wrapper<![endif]-->
-<!--[if !IE]>start section content<![endif]-->
-	<div class="section_content">
-		<!--[if !IE]>start section content top<![endif]-->
-		<div class="sct">
-			<div class="sct_left">
-				<div class="sct_right">
-					<div class="sct_left">
-                                                <div class="sct_right">
-    <div id="mygrid" style="height:576px;background-color:white;overflow:hidden;position: relative;"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+{% block body %}
 <script language="javascript">
 var autorefresh = setInterval( "GridRefresh()",30000);
-var dhxLayout = new dhtmlXLayoutObject("mygrid","1C");
+dhtmlxEvent(window,"load",function(){     
 
-var toolbar;
-toolbar = dhxLayout.attachToolbar();
-toolbar.setIconsPath("{{ asset('bundles/ariicore/images/toolbar/') }}");
-toolbar.loadStruct("{{ url('xml_Home_errors_toolbar') }}");
-toolbar.attachEvent( "onClick", function(id, value) {
-    switch (id) {
-        case "refresh":
-            GridRefresh();
-        break;
-        default:
-            alert(id);
-    }
+    globalLayout = new dhtmlXLayoutObject(document.body,"2U");  
+    globalLayout.cells("a").setWidth(355); 
+    globalLayout.cells("a").hideHeader(); 
+    globalLayout.cells("b").hideHeader(); 
+//    globalLayout.cells("c").hideHeader(); 
+//    globalLayout.cells("c").setHeight(260); 
+
+    globalMenu = globalLayout.cells("a").attachMenu();
+    globalMenu.setIconsPath( "{{ asset('/bundles/ariicore/images/menu/') }}" );
+    globalMenu.loadStruct("{{ url('xml_menu') }}?route={{ app.request.attributes.get('_route') }}");
+
+    myRibbon = globalLayout.cells("a").attachRibbon(); 
+    myRibbon.setIconPath( "{{ asset('/bundles/ariicore/images/ribbon/') }}" );
+    myRibbon.loadStruct("{{ url('json_Home_ribbon') }}");
+    myRibbon.attachEvent("onStateChange", StateRibbon );
+    myRibbon.attachEvent("onClick", ClickRibbon );
+
+    globalToolbar = globalLayout.cells("b").attachToolbar();
+    globalToolbar.setIconsPath("{{ asset('bundles/ariicore/images/toolbar/') }}");
+    globalToolbar.loadStruct("{{ url('xml_Home_errors_toolbar') }}");
+    globalToolbar.attachEvent( "onClick", function(id, value) {
+        switch (id) {
+            case "refresh":
+                GridRefresh();
+            break;
+            default:
+                alert(id);
+        }
+    });
+
+    globalLayout.cells("a").hideHeader();
+
+    myGrid = globalLayout.cells("b").attachGrid();
+    myGrid.setImagePath( "{{ asset('bundles/ariicore/images/treegrid/') }}");
+    myGrid.setHeader("{{ "Timestamp" | trans }},{{ "Error" | trans }},{{ "Code" | trans }},{{ "File" | trans }},{{ "#" | trans }},{{ "Trace" | trans }},{{ "User" | trans }},{{ "IP address" | trans }}");
+    myGrid.attachHeader("#text_filter,#text_filter,#select_filter,#text_filter,#text_filter,#text_filter,#select_filter,#select_filter");
+    myGrid.setInitWidths("150,*,60,200,40,200,200,130");
+    myGrid.setColAlign("right,left,right,left,right,left,left,right");
+    myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro");
+    myGrid.setColSorting("date,str,int,str,int,str,str,str");
+
+    myGrid.init();
+    myGrid.load( "{{ url('xml_Home_errors_list') }}" );
+    myGrid.enableLightMouseNavigation( true );
 });
-
-dhxLayout.cells("a").hideHeader();
-dhxLayout.cells("a").setHeight(295);
-
-var mygrid = dhxLayout.cells("a").attachGrid();
-mygrid.setImagePath( "{{ asset('bundles/ariicore/images/treegrid/') }}");
-mygrid.setHeader("{{ "Log time" | trans }},{{ "Error" | trans }},{{ "Code" | trans }},{{ "File" | trans }},{{ "Line" | trans }},{{ "Trace" | trans }},{{ "User" | trans }},{{ "IP address" | trans }}");
-mygrid.attachHeader("#text_filter,#text_filter,#select_filter,#text_filter,#text_filter,#text_filter,#select_filter,#select_filter");
-mygrid.setInitWidths("130,*,40,200,40,200,200,130");
-mygrid.setColAlign("right,left,right,left,right,left,left,right");
-mygrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro");
-mygrid.setColSorting("date,str,int,str,int,str,str,str");
-var sb = dhxLayout.cells("a").attachStatusBar();
-dhxLayout.cells("a").vs[dhxLayout.cells("a").av].sbHeight = 30;
-sb.setText('<div id="recinfoArea"></div>');
-mygrid.enablePaging(true, 20, 5, "recinfoArea");
-mygrid.setPagingSkin("toolbar","dhx_skyblue");
-mygrid.setPagingWTMode(true,true,true,[ 5, 10, 20, 50, 100, 200, 400, 800]);
-
-mygrid.setFiltrationLevel(-2);
-mygrid.init();
-mygrid.setSkin('dhx_skyblue');
-mygrid.i18n.paging={
-      results: "{{ "Results" | trans }}",
-      records: "{{ "From" | trans }}",
-      to: " {{ "to" | trans }} ",
-      page:"{{ "Page" | trans }} ",
-      perpage: "{{ "rows per page" | trans }}",
-      first: "{{ "To first Page" | trans }}",
-      previous:"{{ "Previous Page" | trans }}",
-      found:"{{ "Found records" | trans }}",
-      next:"{{ "Next Page" | trans }}",
-      last:"{{ "To last Page" | trans }}",
-      of:" {{ "of" | trans }} ",
-      notfound:"{{ "No Records Found" | trans }}" };
-
-//mygrid.kidsXmlFile = "database/state_job_chains.php";
-mygrid.loadXML( "{{ url('xml_Home_errors_list') }}" );
-mygrid.enableLightMouseNavigation( true );
-
+    
 function GridRefresh() {
     var currentTime = new Date();
     var hours = currentTime.getHours();
@@ -96,14 +62,11 @@ function GridRefresh() {
     if (seconds < 10){
     seconds = "0" + seconds;
     }
-    toolbar.setItemText( "refresh", hours + ":" + minutes + ":" +  seconds );
-    //mygrid.clearAll();
-    var page_number = mygrid.currentPage;
-    mygrid.load( "{{ url('xml_Home_errors_list') }}"+'?time='+seconds,  function(){
-            mygrid.changePage(page_number);
-            mygrid.refreshFilters();
-            mygrid.filterByAll();
-        });
+    globalToolbar.setItemText( "refresh", hours + ":" + minutes + ":" +  seconds );
+    globalLayout.cells("b").progressOn();
+    myGrid.load( "{{ url('xml_Home_errors_list') }}"+'?time='+seconds,  function(){
+        globalLayout.cells("b").progressOff();
+    });
 }
 
 function GlobalRefresh()
@@ -112,13 +75,4 @@ function GlobalRefresh()
 }
 
 </script>
-		<!--[if !IE]>end section content top<![endif]-->
-		<!--[if !IE]>start section content bottom<![endif]-->
-		<span class="scb"><span class="scb_left"></span><span class="scb_right"></span></span>
-		<!--[if !IE]>end section content bottom<![endif]-->
-		
-	</div>
-	<!--[if !IE]>end section content<![endif]-->
-</div>
-<!--[if !IE]>end section<![endif]-->
 {% endblock %}
