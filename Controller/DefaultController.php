@@ -483,12 +483,12 @@ class DefaultController extends Controller
     public function docAction() {
         $request = Request::createFromGlobals();
         $lang = $this->getRequest()->getLocale();
-
+        
         $doc = $request->get('doc');
-        if ($doc != '')
-            $file = "../src/Arii/ATSBundle/Docs/$lang/$doc.md";
-        else 
+        if ($doc == 'README')
             $file = "../src/Arii/ATSBundle/README.md";
+        else 
+            $file = "../src/Arii/ATSBundle/Docs/$lang/$doc.md";
 
         $content = @file_get_contents($file);
         if ($content == '') {

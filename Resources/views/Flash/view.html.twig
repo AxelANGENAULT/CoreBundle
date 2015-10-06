@@ -1,9 +1,0 @@
-{# src/Arii/JIDBundle/Resources/views/Ajax/job.html.twig #}
-{% extends "AriiJIDBundle:Ajax:layout.html.twig" %}
-{% block content %}
-<ul class="system_messages">
-{% for key, flash in app.session.getFlashes() %}
-<li class="{{ key }}"><span class="ico"></span><strong class="system_title">{{ flash | trans }}</strong></li>
-{% endfor %}
-</ul>
-{% endblock %}

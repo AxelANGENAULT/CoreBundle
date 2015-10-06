@@ -100,12 +100,7 @@ xml_favorites:
 xml_favoritesPP:
     pattern:  /favoritesPP.xml
     defaults: { _controller: AriiCoreBundle:Default:favoritesPP }
-#--------------------------------------------------------------------
-# Flash bag 
-#--------------------------------------------------------------------
-arii_flash_view:
-    pattern:  /flash/view
-    defaults: { _controller: AriiCoreBundle:Flash:view }
+
 #--------------------------------------------------------------------
 # Gestion des filtres
 #--------------------------------------------------------------------
@@ -225,22 +220,6 @@ xml_user_toolbar:
     pattern:  /user/toolbar.xml
     defaults: { _controller: AriiCoreBundle:User:toolbar }
     
-#--------------------------------------------------------------------
-# Quick info
-#--------------------------------------------------------------------
-xml_arii_session:
-    pattern:  /quickinfo/session.xml
-    defaults: { _controller: AriiCoreBundle:QuickInfo:session }
-
-xml_arii_errors:
-    pattern:  /quickinfo/errors.xml
-    defaults: { _controller: AriiCoreBundle:QuickInfo:errors }
-
-xml_arii_audit_quick:
-    pattern:  /quickinfo/audit.xml
-    defaults: { _controller: AriiCoreBundle:QuickInfo:audit }
-
-
 #--------------------------------------------------------------------
 # Audit & Errors
 #--------------------------------------------------------------------
