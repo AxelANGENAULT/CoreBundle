@@ -7,11 +7,13 @@ class AriiDoc
     protected $requestStack;
     protected $java_home;
     protected $ditaa;
+    protected $graphviz;
     
-    public function __construct (RequestStack $requestStack, $java_home, $ditaa ) {    
+    public function __construct (RequestStack $requestStack, $java_home, $ditaa, $graphviz ) {    
         $this->requestStack = $requestStack;
         $this->java_home = $java_home;
         $this->ditaa = $ditaa;
+        $this->graphviz = $graphviz;
         require_once '../vendor/parsedown/Parsedown.php';
     }
     
@@ -63,7 +65,21 @@ class AriiDoc
             }
             else {
                 $dita = substr($parsedown,$p+7,$e-$p-7); 
-                $parsedown = substr($parsedown,0,$p).$this->Ditaa($dita).substr($parsedown,$e+1);
+                $parsedown = substr($parsedown,0,$p).$this->Ditaa($dita).substr($parsedown,$e+7);
+            }
+        }
+
+        // Traitement du dot:
+        while (($p = strpos($parsedown,'(dot:'))>0) {
+            $e = strpos($parsedown,':dot)',$p+5);
+            if ($e===false) {
+                $e = strpos($parsedown,')',$p+5);
+                $dot = substr($parsedown,$p+5,$e-$p); 
+                $parsedown = substr($parsedown,0,$p).$this->Dot($dot).substr($parsedown,$e+5);
+            }
+            else {
+                $dot = substr($parsedown,$p+5,$e-$p-5); 
+                $parsedown = substr($parsedown,0,$p).$this->Dot($dot).substr($parsedown,$e+5);
             }
         }
         
@@ -85,4 +101,32 @@ class AriiDoc
         }
         return "<pre>$text</pre>";
     }
+    
+    // appel de graphviz
+    public function Dot($text) {
+        // Format 
+        $format = "fontname=arial
+fontsize=10
+splines=polyline
+randkir=TB
+node [shape=plaintext,fontname=arial,fontsize=10]
+edge [shape=plaintext,fontname=arial,fontsize=8,decorate=true,compound=true]
+bgcolor=transparent";
+        
+        // Nettoyage
+        $text = str_replace(array("<p>","</p>",'&gt;'),array('','','>'),$text);
+        $text = "digraph arii {\n$format\n$text\n}\n";
+        
+        // Appel
+        $file = sys_get_temp_dir().'/'.str_replace(array(' ','.'),'',microtime());
+        file_put_contents("$file.dot", $text );
+        $cmd = '"'.$this->graphviz.'" "'.$file.'.dot" -Tpng > '.$file.'.png';
+        exec("$cmd", $output, $result);
+        if ($result==0) {
+            $img = file_get_contents("$file.png");
+            return '<img class="img-responsive" src="data:image/png;base64,'.base64_encode($img).'"';
+        }
+        return "<pre>$text<font color='red'>".var_dump($output)."</font></pre>";
+    }
+    
 }

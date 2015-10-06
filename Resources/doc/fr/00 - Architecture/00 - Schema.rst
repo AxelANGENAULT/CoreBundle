@@ -28,6 +28,13 @@ Schema
 
 :ditaa)
 
+(dot:
+randkir=LR
+
+A -> B
+
+:dot)
+
 Infrastructure
 --------------
 L'architecture repose généralement sur des composants LAMP: Linux, Apache, MySQL/MariaDB, PHP mais il est possible changer des composants:
