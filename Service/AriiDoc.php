@@ -5,9 +5,13 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class AriiDoc
 {
     protected $requestStack;
+    protected $java_home;
+    protected $ditaa;
     
-    public function __construct (RequestStack $requestStack) {
+    public function __construct (RequestStack $requestStack, $java_home, $ditaa ) {    
         $this->requestStack = $requestStack;
+        $this->java_home = $java_home;
+        $this->ditaa = $ditaa;
         require_once '../vendor/parsedown/Parsedown.php';
     }
     
@@ -38,6 +42,7 @@ class AriiDoc
         $parsedown = $Parsedown->text($doc);
         // Traitement des tables
         $parsedown = str_replace('<table>','<table class="table table-striped table-bordered table-hover">',$parsedown);
+        
         // Traitement des images
         while (($p = strpos($parsedown,'<img src="'))>0) {         
             $e = strpos($parsedown,'"',$p+10);
@@ -48,7 +53,36 @@ class AriiDoc
             $parsedown = substr($parsedown,0,$p).$replace.substr($parsedown,$e+1);
         }
         
+        // Traitement du dita:
+        while (($p = strpos($parsedown,'(ditaa:'))>0) {
+            $e = strpos($parsedown,':ditaa)',$p+7);
+            if ($e===false) {
+                $e = strpos($parsedown,')',$p+7);
+                $dita = substr($parsedown,$p+7,$e-$p); 
+                $parsedown = substr($parsedown,0,$p).$this->Ditaa($dita).substr($parsedown,$e+7);
+            }
+            else {
+                $dita = substr($parsedown,$p+7,$e-$p-7); 
+                $parsedown = substr($parsedown,0,$p).$this->Ditaa($dita).substr($parsedown,$e+1);
+            }
+        }
+        
         return $parsedown;
     }
  
+    // appel le script java et renvoie le contenu du png
+    public function Ditaa($text) {
+        // nettoyage
+        $text = str_replace(array("<p>","</p>"),'',$text);
+
+        $file = sys_get_temp_dir().'/'.str_replace(array(' ','.'),'',microtime());
+        file_put_contents("$file.ditaa", $text );
+        $cmd = '"'.$this->java_home.'/bin/java" -jar ../vendor/'.$this->ditaa." \"$file.ditaa\" \"$file.png\"";
+        exec("$cmd 2>&1", $output, $result);
+        if ($result==0) {
+            $img = file_get_contents("$file.png");
+            return '<img class="img-responsive" src="data:image/png;base64,'.base64_encode($img).'"';
+        }
+        return "<pre>$text</pre>";
+    }
 }

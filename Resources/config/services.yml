@@ -83,4 +83,4 @@ services:
 
     arii_core.doc:
         class: Arii\CoreBundle\Service\AriiDoc
-        arguments: ["@request_stack"]
+        arguments: ["@request_stack", %java_home%, %ditaa% ]
