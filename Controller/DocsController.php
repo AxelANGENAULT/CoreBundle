@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DocsController extends Controller
-{
+{    
     public function indexAction()
     {        
         return $this->render('AriiCoreBundle:Docs:index.html.twig');            
@@ -127,6 +127,7 @@ class DocsController extends Controller
     }
     
     protected function Decodage($text) {
+        $this->charset = $this->container->getParameter('charset');
         if ($this->charset != 'UTF-8')
             return utf8_decode($text);
         return $text;
@@ -140,15 +141,31 @@ class DocsController extends Controller
         $p = strpos($doc,'/');
         
         $page = '../src/Arii/'.substr($doc,0,$p).'Bundle/Resources/doc/'.substr($doc,$p);
+        $file = $this->Decodage($page);
         
-        if (!($content = @file_get_contents($this->Decodage($page)))) {
+        // Est ce un répertoire ?
+        if (is_dir($file)) {
+            $doc = "$doc.rst";
+            $content = '';
+//            $content= "$doc\n";
+//            $content.= "===========\n";
+            $dir = $file;
+            if ($dh = opendir($dir)) {
+                while (($file = readdir($dh)) !== false) {
+                    if (substr($file,0,1)!='.' )
+                        $content .= "- $file\n";
+                }
+                closedir($dh);
+            }
+        }
+        elseif (!($content = @file_get_contents($file))) {
             $error = array( 'text' =>  'File not found: '.$doc );
             return $this->render('AriiCoreBundle:Templates:ERROR.html.twig', array('error' => $error));
         }
         
         if ((substr($doc,-3)=='.md') or (substr($doc,-4)=='.rst')) {
             $doc = $this->container->get('arii_core.doc');
-            $value =  array('content' => $doc->Parsedown($content));
+            $value =  array('content' => $doc->Parsedown($content,dirname($file)));
             return $this->render('AriiCoreBundle:Templates:bootstrap.html.twig', array('doc' => $value));
         }
         else {

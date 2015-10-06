@@ -108,19 +108,6 @@ dhtmlxEvent(window,"load",function() {
     globalLayout.cells("a").setWidth(360);
     globalLayout.cells("b").hideHeader();
 
-    myDocs = globalLayout.cells("a").attachAccordion();
-    myDocs.addItem( "Home", "{{ "Ari'i" }}", true);
-    myTree = myDocs.cells("Home").attachTree();
-    myTree.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
-    myTree.load("{{ url('xml_docs_tree') }}?route=arii_Core_index");
-    myTree.attachEvent("onClick",function(id){
-        globalLayout.cells("b").attachURL("{{ url('html_doc_view') }}?doc="+id);
-    })    
-    
-    {% for name,info in Modules %}
-        myDocs.addItem( "{{ name }}", "{{ info.name }}" );
-    {% endfor %}
-        
     myToolbar = globalLayout.cells("b").attachToolbar();
 
     myToolbar.setIconsPath("{{ asset('bundles/ariicore/images/cover/') }}");
@@ -148,6 +135,20 @@ dhtmlxEvent(window,"load",function() {
         }
     });
  
+    myDataView = globalLayout.cells("a").attachDataView({
+//        edit:true,
+        drag: true,
+        type:{
+                template:"<div><img src='{{ asset('/bundles/ariicore/images/cover/32/') }}#BUNDLE#.png' style='float: left;'/><span class='dhx_strong'> #name#</span></div>",
+//              template_edit:"<input class='dhx_item_editor' bind='obj.BUNDLE'>",
+                height:30,
+        }
+    });
+    myDataView.load("{{ url('xml_favorites') }}");
+    var myDataProcessor = new dataProcessor("{{ url('xml_favoritesPP') }}");
+    myDataProcessor.init(myDataView);
+
+// Menu principal
     dhtmlx.Type.add(dhtmlXDataView,{
     name:"bundle1",
     css: "bundle1",
@@ -186,17 +187,20 @@ dhtmlxEvent(window,"load",function() {
         var d = dhxView.get(sid);
 	window.location.href = d.url;
     });
-    
-    {% for name,info in Modules %}
-        myTree{{name}} = myDocs.cells("{{ name }}").attachTree();
-        myTree{{name}}.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
-        myTree{{name}}.load("{{ url('xml_docs_tree') }}?route=arii_{{name}}_index");
-        myTree{{name}}.attachEvent("onClick",function(id){
-            globalLayout.cells("b").attachURL("{{ url('html_doc_view') }}?doc="+id);
-        })    
-    {% endfor %}
-    
+/*    
+    myTree = myAccordion.cells("docs").attachTree();
+    myTree.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
+    myTree.loadXML("{{ url('xml_docs_tree') }}");
+    myTree.attachEvent("onClick",function(id) {
+        globalLayout.cells("b").attachUrl("{{ url('xml_doc_view') }}?doc="+id);        
+    });
+*/
 });
+
+function remove_data(){
+        myDataView.remove(myDataView.getSelected());
+}
+
 function getImageStyle(obj){
     if(window._isIE){
         return "background-image: none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='{{ asset('bundles/ariicore/images/cover/') }}"+obj.img+"',sizingMethod='crop');";

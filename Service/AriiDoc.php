@@ -33,10 +33,21 @@ class AriiDoc
         return $doc;
     }
 
-    public function Parsedown($doc) {
+    public function Parsedown($doc,$path='') {
         $Parsedown = new \Parsedown();
         $parsedown = $Parsedown->text($doc);
+        // Traitement des tables
         $parsedown = str_replace('<table>','<table class="table table-striped table-bordered table-hover">',$parsedown);
+        // Traitement des images
+        while (($p = strpos($parsedown,'<img src="'))>0) {         
+            $e = strpos($parsedown,'"',$p+10);
+            $file = substr($parsedown,$p+10,$e-$p-10);            
+            $img = @file_get_contents("$path/$file");
+            $ext = substr($file,-3);
+            $replace = '<img class="img-thumbnail" src="data:image/'.$ext.';base64,'.base64_encode($img).'"';
+            $parsedown = substr($parsedown,0,$p).$replace.substr($parsedown,$e+1);
+        }
+        
         return $parsedown;
     }
  

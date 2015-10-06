@@ -23,6 +23,9 @@ function StateRibbon (itemid,state) {
 
 function ClickRibbon (itemid,state) {
     switch(itemid) {
+        case 'home':
+            window.location = "{{ url('arii_Home_index') }}";
+            break;
         case 'about_me':
             window.location = "{{ url('arii_my_account') }}";
             break;
@@ -36,7 +39,7 @@ function ClickRibbon (itemid,state) {
             window.location = "{{ url('arii_docs') }}";
             break;
         default:
-            // alert(itemid);
+            alert(itemid);
     }
 }
 </script>

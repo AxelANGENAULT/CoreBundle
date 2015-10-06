@@ -6,6 +6,10 @@ arii_Home_readme:
     pattern:  /readme
     defaults: { _controller: AriiCoreBundle:Default:readme }
 
+arii_Home_docs:
+    pattern:  /docs
+    defaults: { _controller: AriiCoreBundle:Default:docs }
+
 arii_Core_readme:
     pattern:  /readme
     defaults: { _controller: AriiCoreBundle:Default:readme }
