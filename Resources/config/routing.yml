@@ -120,17 +120,13 @@ arii_filters_list:
     pattern:  /filters/list
     defaults: { _controller: AriiCoreBundle:Filter:list }
 
-arii_filters_edit:
-    pattern:  /filters/edit
-    defaults: { _controller: AriiCoreBundle:Filter:add }
-
 xml_filter_list:
     pattern:  /filters/list.xml
     defaults: { _controller: AriiCoreBundle:Filter:xml }
 
-xml_filter_toolbar:
-    pattern:  /filters/toolbar.xml
-    defaults: { _controller: AriiCoreBundle:Filter:toolbar }
+xml_filter_menu:
+    pattern:  /filters/menu.xml
+    defaults: { _controller: AriiCoreBundle:Filter:menu }
     
 xml_filter_form:
     pattern:  /filters/form.xml

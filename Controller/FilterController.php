@@ -26,13 +26,13 @@ class FilterController extends Controller
         return $this->render('AriiCoreBundle:Filter:list.html.twig');
     }
     
-    public function toolbarAction()
+    public function menuAction()
     {
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml');
-        return $this->render("AriiCoreBundle:Filter:toolbar.xml.twig",array(),$response);
+        return $this->render("AriiCoreBundle:Filter:menu.xml.twig",array(),$response);
     }
-    
+
     public function addAction()
     {
         return $this->render('AriiCoreBundle:Filter:add.html.twig');
@@ -49,13 +49,11 @@ class FilterController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         $id = $request->get('id');
-        if ($id != "") // nouveau filtre
-        {
-            $user_filter = $this->getDoctrine()->getRepository("AriiCoreBundle:UserFilter")->find($id);            
-        }
-        else {
+        
+        // on teste 
+        $user_filter =  $this->getDoctrine()->getRepository("AriiCoreBundle:UserFilter")->find($id); 
+        if (!$user_filter)
             $user_filter = new \Arii\CoreBundle\Entity\UserFilter();
-        }
         
         $user_filter->setUser($user);
         $user_filter->setName($request->get('name'));

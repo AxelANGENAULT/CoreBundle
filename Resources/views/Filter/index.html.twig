@@ -29,25 +29,23 @@ dhtmlxEvent(window,"load",function(){
             {type:"input", name: 'job', label:'{{ 'Job' | trans }}', value: '*' },
             {type:"input", name: 'job_chain', label:'{{ 'Chain' | trans }}', value: '*' },
             {type:"input", name: 'order_id', label:'{{ 'Order' | trans }}', value: '*' },
-            {type:"input", name: 'status', label:'{{ 'Status' | trans }}', value: '*'}
+            {type:"input", name: 'status', label:'{{ 'Status' | trans }}', value: '*'},
+            {type:"button", name: 'save', value: '{{ 'Save' | trans }}', inputLeft: 100 }
         ];
-    formlayout = globalLayout.cells("a").attachLayout("2E");
-    formlayout.cells("a").hideHeader();
-    formlayout.cells("a").setHeight(45);
-    formlayout.cells("b").hideHeader();
     
-    myform = formlayout.cells("b").attachForm(formData);
+    myform = globalLayout.cells("a").attachForm(formData);
     myform.enableLiveValidation(true);
     
     var dp = new dataProcessor("{{ url('xml_filter_form') }}");
     dp.init(myform);
 
-    toolbar = formlayout.cells("a").attachToolbar();
-    toolbar.setIconsPath("{{ asset('bundles/ariicore/images/toolbar/') }}");
-    toolbar.loadStruct("{{ url('xml_filter_toolbar') }}");
-    toolbar.attachEvent("onClick",onClick);
+    myGridMenu = new dhtmlXMenuObject(null);
+    myGridMenu.setIconsPath( "{{ asset('/bundles/ariicore/images/wa/') }}" );
+    myGridMenu.renderAsContextMenu();
+    myGridMenu.loadStruct("{{ url('xml_filter_menu') }}");
 
     myGrid = globalLayout.cells("b").attachGrid();
+    myGrid.selMultiRows = true;
     myGrid.setImagePath( "{{ asset('bundles/ariicore/images/treegrid/') }}");
     myGrid.setHeader("{{ "Filter" | trans }},{{ "Description" | trans }},{{ "Spooler" | trans }},{{ "Job" | trans }},{{ "Chain" | trans }},{{ "Trigger" | trans }},{{ "Status" | trans }}");
     myGrid.attachHeader("#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter,#text_filter");
@@ -55,74 +53,78 @@ dhtmlxEvent(window,"load",function(){
     myGrid.setColAlign("left,left,left,left,left,left,left");
     myGrid.setColTypes("ro,ro,ro,ro,ro,ro,ro");
     myGrid.setColSorting("str,str,str,str,str,str,str");
+    myGrid.enableContextMenu(myGridMenu);
     myGrid.init();
     myGrid.load( "{{ url('xml_filter_list') }}" );
     myGrid.attachEvent("onRowDblClicked", function (rid) {
         EditFilter(rid);
     });
+    
+    myform.attachEvent("onButtonClick", function(id){
+        globalLayout.cells("a").progressOn();
+        if(!this.validate())
+        {
+            dhtmlx.message({
+                title:"Error",
+                type: "error",
+                lifetime: "60000",
+                text: "{{ "Please type in all the required fields!" | trans }}"
+             });
+            return;
+        }
+        this.send("{{ url('xml_User_filter_save') }}","POST",function(loader,response){
+           if(response === "success")
+           {
+             dhtmlx.message({
+                title:"{{ "Save" | trans }}",
+                type: "Notice",
+                lifetime: "60000",
+                text: "{{ "Filter saved" | trans }}"
+             });
+             GridRefresh();
+           }
+           else 
+           {
+             dhtmlx.message({
+                title:"{{ "Save" | trans }}",
+                type: "error",
+                lifetime: "60000",
+                text: response
+             });
+           }
+            globalLayout.cells("a").progressOff();
+        });
+    });
 
+    myGridMenu.attachEvent("onClick", function (menuitemId, type) {
+        var data = myGrid.contextID.split("_");
+        var rId = data[0];
+        var cInd = data[1];
+        spooler = myGrid.cells(rId,0).getValue();
+        switch (menuitemId) {
+           case "add_filter":
+                NewFilter();
+                break;
+            case "delete_filter":
+                myform.setItemValue("id",'');
+                DeleteFilter(rId);
+                break;
+            default:
+                alert("inconnu ! "+menuitemId);    
+        }
+        return true;
+    });
 
 });
-    
-function onClick(id){
-    switch (id){
-        case "add_filter":
-            NewFilter();
-            break;
-        case "delete_filter":
-            id = myform.getItemValue("id");
-            DeleteFilter(id);
-            break;
-        case "save_filter":
-            globalLayout.cells("a").progressOn();
-            if(!myform.validate())
-            {
-                dhtmlx.message({
-                    title:"Error",
-                    type: "error",
-                    lifetime: "60000",
-                    text: "{{ "Please type in all the required fields!" | trans }}"
-                 });
-                return;
-            }
-            myform.send("{{ url('xml_User_filter_save') }}","POST",function(loader,response){
-               if(response === "success")
-               {
-                 dhtmlx.message({
-                    title:"{{ "Save" | trans }}",
-                    type: "Notice",
-                    lifetime: "60000",
-                    text: "{{ "Filter saved" | trans }}"
-                 });
-                 GridRefresh();
-               }
-               else 
-               {
-                 dhtmlx.message({
-                    title:"{{ "Save" | trans }}",
-                    type: "error",
-                    lifetime: "60000",
-                    text: response
-                 });
-               }
-                globalLayout.cells("a").progressOff();
-            });
-        break;
-        default:
-            break;
-    }
-}
 
 function NewFilter() {
     myform.clear();
     myform.setItemFocus("name");
     myform.setItemLabel("fieldset","{{ "New filter" | trans }}");
-    toolbar.hideItem("delete_filter");
 }
 
 function EditFilter(id) {
     globalLayout.cells("b").progressOn();
-    toolbar.showItem("delete_filter");
     myform.setItemLabel("fieldset","{{ "Edit filter" | trans }}");
     myform.clear();
     myform.load("{{ url('xml_filter_form') }}?id="+id, function () {
@@ -131,7 +133,9 @@ function EditFilter(id) {
 }
 
 function DeleteFilter(id) {
-    globalLayout.cells("a").progressOn();
+    // On edite pour sauvegarder
+    globalLayout.cells("b").progressOn();
+    EditFilter(id);
     dhtmlx.confirm({
      title: "{{ "Delete filter" | trans }}",
      type: "confirm-error",
@@ -157,8 +161,7 @@ function DeleteFilter(id) {
                  });
                }
                     myGrid.deleteRow(id);
-                    globalLayout.cells("a").progressOff();
-
+                    globalLayout.cells("b").progressOff();
                 })
         }
     },
