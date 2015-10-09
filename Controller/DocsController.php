@@ -165,7 +165,7 @@ class DocsController extends Controller
         
         if ((substr($doc,-3)=='.md') or (substr($doc,-4)=='.rst')) {
             $doc = $this->container->get('arii_core.doc');
-            $value =  array('content' => $doc->Parsedown($content,dirname($file)));
+            $value =  array('content' => $doc->Parsedown($content,$file));
             return $this->render('AriiCoreBundle:Templates:bootstrap.html.twig', array('doc' => $value));
         }
         else {

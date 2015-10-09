@@ -5,13 +5,13 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class AriiDoc
 {
     protected $requestStack;
-    protected $java_home;
+    protected $java;
     protected $ditaa;
     protected $graphviz;
     
-    public function __construct (RequestStack $requestStack, $java_home, $ditaa, $graphviz ) {    
+    public function __construct (RequestStack $requestStack, $java, $ditaa, $graphviz ) {    
         $this->requestStack = $requestStack;
-        $this->java_home = $java_home;
+        $this->java = $java;
         $this->ditaa = $ditaa;
         $this->graphviz = $graphviz;
         require_once '../vendor/parsedown/Parsedown.php';
@@ -39,7 +39,7 @@ class AriiDoc
         return $doc;
     }
 
-    public function Parsedown($doc,$path='') {
+    public function Parsedown($doc,$filename='') {
         $Parsedown = new \Parsedown();
         $parsedown = $Parsedown->text($doc);
         // Traitement des tables
@@ -56,77 +56,136 @@ class AriiDoc
         }
         
         // Traitement du dita:
-        while (($p = strpos($parsedown,'(ditaa:'))>0) {
-            $e = strpos($parsedown,':ditaa)',$p+7);
+        $balise = 'ditaa';
+        $len = strlen($balise)+1;
+        while (($p = strpos($parsedown,"<$balise"))>0) {            
+            // fin du tag
+            $t = strpos($parsedown,'>',$p+$len);
+            $tag = substr($parsedown,$p+1,$t-$p-1);            
+            
+            # On retrouve les attributs
+            $d = strpos($tag,'"');
+            $f = strpos($tag,'"',$d+1);
+            $name = substr($tag,$d+1,$d-$d-1);
+            
+            $e = strpos($parsedown,"</$balise>",$t);
             if ($e===false) {
-                $e = strpos($parsedown,')',$p+7);
-                $dita = substr($parsedown,$p+7,$e-$p); 
-                $parsedown = substr($parsedown,0,$p).$this->Ditaa($dita).substr($parsedown,$e+7);
+                print "</$balise> !!";
+                exit();
             }
-            else {
-                $dita = substr($parsedown,$p+7,$e-$p-7); 
-                $parsedown = substr($parsedown,0,$p).$this->Ditaa($dita).substr($parsedown,$e+7);
-            }
+            $dita = substr($parsedown,$t+1,$e-$t-1); 
+            $parsedown = substr($parsedown,0,$p).$this->Ditaa($dita,$name,$filename).substr($parsedown,$e+$len+2);
         }
 
         // Traitement du dot:
-        while (($p = strpos($parsedown,'(dot:'))>0) {
-            $e = strpos($parsedown,':dot)',$p+5);
+        $balise = 'dot';
+        $len = strlen($balise)+1;
+        while (($p = strpos($parsedown,"<$balise"))>0) {            
+            // fin du tag
+            $t = strpos($parsedown,'>',$p+$len);
+            $tag = substr($parsedown,$p+1,$t-$p-1);            
+            
+            # On retrouve les attributs
+            $d = strpos($tag,'"');
+            $f = strpos($tag,'"',$d+1);
+            $name = substr($tag,$d+1,$d-$d-1);
+            
+            $e = strpos($parsedown,"</$balise>",$t);
             if ($e===false) {
-                $e = strpos($parsedown,')',$p+5);
-                $dot = substr($parsedown,$p+5,$e-$p); 
-                $parsedown = substr($parsedown,0,$p).$this->Dot($dot).substr($parsedown,$e+5);
+                print "</$balise> !!";
+                exit();
             }
-            else {
-                $dot = substr($parsedown,$p+5,$e-$p-5); 
-                $parsedown = substr($parsedown,0,$p).$this->Dot($dot).substr($parsedown,$e+5);
-            }
+            $dot = substr($parsedown,$t+1,$e-$t-1); 
+            $parsedown = substr($parsedown,0,$p).$this->Dot($dot,$name,$filename).substr($parsedown,$e+$len+2);
         }
         
         return $parsedown;
     }
  
     // appel le script java et renvoie le contenu du png
-    public function Ditaa($text) {
-        // nettoyage
-        $text = str_replace(array("<p>","</p>"),'',$text);
+    public function Ditaa($text,$name,$filename='') {
 
-        $file = sys_get_temp_dir().'/'.str_replace(array(' ','.'),'',microtime());
-        file_put_contents("$file.ditaa", $text );
-        $cmd = '"'.$this->java_home.'/bin/java" -jar ../vendor/'.$this->ditaa." \"$file.ditaa\" \"$file.png\"";
-        exec("$cmd 2>&1", $output, $result);
-        if ($result==0) {
-            $img = file_get_contents("$file.png");
-            return '<img class="img-responsive" src="data:image/png;base64,'.base64_encode($img).'"';
+        // Document en cours
+        $Info = stat($filename);
+        $mtime_doc = $Info[9];
+        
+        // Nom de l'image
+        $output = dirname($filename)."/".$name.'.png';    
+        // L'image existe ? Si oui, est elle plus récente que le document ?
+        $update = true;
+        if (is_file($output)) {
+            $Info = stat($output);
+            $mtime_img = $Info[9];            
+            if ($mtime_img>=$mtime_doc) {
+                $update = false;
+            }
         }
-        return "<pre>$text</pre>";
+        
+        // On refait le cache
+        if ($update) {            
+            // nettoyage
+            $text = str_replace(array("<p>","</p>"),array("","\n"),$text);
+
+            $input = sys_get_temp_dir().'/'.str_replace(array(' ','.'),'',microtime());
+            file_put_contents("$input.ditaa", $text );
+            $cmd = '"'.$this->java.'/bin/java" -jar ../vendor/'.$this->ditaa." \"$input.ditaa\" \"$output\"";
+            exec("$cmd 2>&1", $output, $result);
+            if ($result>0) {
+                return "<pre>$text</pre>";
+            }
+        }
+        
+        $img = file_get_contents($output);
+        return '<img class="img-responsive" src="data:image/png;base64,'.base64_encode($img).'"/>';
     }
     
     // appel de graphviz
-    public function Dot($text) {
-        // Format 
-        $format = "fontname=arial
-fontsize=10
-splines=polyline
-randkir=TB
-node [shape=plaintext,fontname=arial,fontsize=10]
-edge [shape=plaintext,fontname=arial,fontsize=8,decorate=true,compound=true]
-bgcolor=transparent";
+    public function Dot($text,$name,$filename='') {
+
+        // Document en cours
+        $Info = stat($filename);
+        $mtime_doc = $Info[9];
         
-        // Nettoyage
-        $text = str_replace(array("<p>","</p>",'&gt;'),array('','','>'),$text);
-        $text = "digraph arii {\n$format\n$text\n}\n";
-        
-        // Appel
-        $file = sys_get_temp_dir().'/'.str_replace(array(' ','.'),'',microtime());
-        file_put_contents("$file.dot", $text );
-        $cmd = '"'.$this->graphviz.'" "'.$file.'.dot" -Tpng > '.$file.'.png';
-        exec("$cmd", $output, $result);
-        if ($result==0) {
-            $img = file_get_contents("$file.png");
-            return '<img class="img-responsive" src="data:image/png;base64,'.base64_encode($img).'"';
+        // Nom de l'image
+        $output = dirname($filename)."/".$name.'.png';    
+        // L'image existe ? Si oui, est elle plus récente que le document ?
+        $update = true;
+        if (is_file($output)) {
+            $Info = stat($output);
+            $mtime_img = $Info[9];            
+            if ($mtime_img>=$mtime_doc) {
+                $update = false;
+            }
         }
-        return "<pre>$text<font color='red'>".var_dump($output)."</font></pre>";
+        
+        // On refait le cache
+        if ($update) {            
+        
+        // Format 
+        $format = "
+    fontname=arial
+    fontsize=10
+    splines=polyline
+    randkir=TB
+    node [shape=plaintext,fontname=arial,fontsize=10]
+    edge [shape=plaintext,fontname=arial,fontsize=8,decorate=true,compound=true]
+    bgcolor=transparent";
+
+            // Nettoyage
+            $text = str_replace(array("<p>","</p>",'&gt;'),array('','','>'),$text);
+            $text = "digraph arii {\n$format\n$text\n}\n";
+
+            // Appel
+            $input = sys_get_temp_dir().'/'.str_replace(array(' ','.'),'',microtime());
+            file_put_contents("$input.dot", $text );
+            $cmd = '"'.$this->graphviz.'" "'.$input.'.dot" -Tpng > "'.$output.'"';
+            exec("$cmd", $output, $result);
+            if ($result>0)
+                return "<pre>$text<font color='red'>".var_dump($output)."</font></pre>";
+        }
+        print "(($output))";
+        $img = file_get_contents($output);
+        return '<img class="img-responsive" src="data:image/png;base64,'.base64_encode($img).'"/>';
     }
     
 }

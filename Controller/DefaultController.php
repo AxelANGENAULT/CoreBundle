@@ -346,7 +346,7 @@ class DefaultController extends Controller
             exit();
         }
         $doc = $this->container->get('arii_core.doc');
-        $parsedown =  $doc->Parsedown($content,dirname($file));
+        $parsedown =  $doc->Parsedown($content,$file);
 
         return $this->render('AriiCoreBundle:Default:bootstrap.html.twig',array( 'content' => $parsedown ) );
     }
