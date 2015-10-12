@@ -191,7 +191,7 @@ dhtmlxEvent(window,"load",function() {
     {% for name,info in Modules %}
         myTree{{name}} = myDocs.cells("{{ name }}").attachTree();
         myTree{{name}}.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
-        myTree{{name}}.load("{{ url('xml_docs_tree') }}?route=arii_{{name}}_index");
+        myTree{{name}}.loadXML("{{ url('xml_docs_tree') }}?route=arii_{{name}}_index");
         myTree{{name}}.attachEvent("onClick",function(id){
             globalLayout.cells("b").attachURL("{{ url('html_doc_view') }}?doc="+id);
         })    

@@ -21,7 +21,7 @@ dhtmlxEvent(window,"load",function(){
 
     myTree = globalLayout.cells("a").attachTree();
     myTree.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
-    myTree.load("{{ url('xml_docs_tree') }}");
+    myTree.loadXML("{{ url('xml_docs_tree') }}");
     myTree.attachEvent("onClick",function(id){
         globalLayout.cells("b").attachURL("{{ url('html_doc_view') }}?doc="+id);
     })    
