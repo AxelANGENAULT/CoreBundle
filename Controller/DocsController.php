@@ -84,6 +84,8 @@ class DocsController extends Controller
     private function DocTitle($doc) {
         if (preg_match('/^\d\d - /',$doc,$matches))
                 $doc = substr($doc,5);
+        return $doc;
+        // Devient inutile car tout est en utf-8, même sur windows
         return utf8_encode($doc);
     }
     

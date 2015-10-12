@@ -110,9 +110,10 @@ dhtmlxEvent(window,"load",function() {
 
     myDocs = globalLayout.cells("a").attachAccordion();
     myDocs.addItem( "Home", "{{ "Ari'i" }}", true);
+    
     myTree = myDocs.cells("Home").attachTree();
     myTree.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
-    myTree.load("{{ url('xml_docs_tree') }}?route=arii_Core_index");
+    myTree.loadXML("{{ url('xml_docs_tree') }}?route=arii_Core_index");
     myTree.attachEvent("onClick",function(id){
         globalLayout.cells("b").attachURL("{{ url('html_doc_view') }}?doc="+id);
     })    
