@@ -44,4 +44,90 @@ Obsolete:
     arii_pro: false
     skin: skyblue
 
+Contenu de **app/config/security.yml**:
+
+    security:
+        encoders:
+            FOS\UserBundle\Model\UserInterface: sha512
+            Symfony\Component\Security\Core\User\User: plaintext
+
+        role_hierarchy:
+            ROLE_ADMIN:       [ROLE_SYSADMIN,ROLE_OPERATOR,ROLE_DEVELOPPER]
+            ROLE_MANAGER:     [ROLE_USER,ROLE_OPERATOR,ROLE_DEVELOPPER]
+            ROLE_OPERATOR:    [ROLE_USER]
+            ROLE_DEVELOPPER:  [ROLE_USER]       
+            ROLE_SYSADMIN:    [ROLE_ALLOWED_TO_SWITCH,ROLE_DEVELOPPER]
+
+        providers:
+            chain_provider:
+                chain:
+                    providers: [fos_userbundle, in_memory]
+            in_memory:
+                memory:
+                    users:
+                        user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                        admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+            fos_userbundle:
+                id: fos_user.user_provider.username
+
+        firewalls:
+            rest:
+                pattern:    /api/.*
+                anonymous: false
+                http_basic:
+                    realm: "Secured Area"
+                    provider: fos_userbundle
+
+            receiver:
+                pattern:    /receiver/.*
+                security: false
+
+            dev:
+                pattern:  ^/(_(profiler|wdt)|css|images|js|pdf)/
+                security: false
+
+            nagios:
+                pattern:  ^/(nagios)/
+                security: false
+
+            public:
+                pattern:  /(public)/
+                security: false
+
+            user:
+                pattern:  ^/(user)/
+                security: false
+
+            # Firewall pour le cache
+            cache:
+                pattern:    ^/cache
+                anonymous: false
+                http_basic:
+                    realm: "Secured Area"
+                    provider: fos_userbundle
+
+            login:
+                pattern:   ^/(login$|register|resetting|sync_state)  # Les adresses de ces pages sont login, register 
+                security: false
+
+            main:
+                pattern:    ^/  # Tout est protégé
+                anonymous: true
+
+                form_login:
+                    provider:    fos_userbundle  # On lit l'authentification au provider définit plus haut
+                    remember_me: true            # On active la possibilité du "Se souvenir de moi" (désactivé par défaut)
+                    login_path: fos_user_security_login
+                    check_path: fos_user_security_check
+                    default_target_path: arii_Home_index
+                logout:
+                    path:   fos_user_security_logout
+                    target: arii_Home_index
+                remember_me:
+                    key:      %secret%        # On définit la clé pour le remember_me (%secret% est un parametre de parameters.ini)
+                    lifetime: 31536000 # 365 days in seconds
+
+        access_control:
+            #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+
 __v1.6.0__
