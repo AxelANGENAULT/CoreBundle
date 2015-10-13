@@ -44,6 +44,7 @@ class AriiDoc
         $parsedown = $Parsedown->text($doc);
         // Traitement des tables
         $parsedown = str_replace('<table>','<table class="table table-striped table-bordered table-hover">',$parsedown);
+        $path = dirname($filename);
         
         // Traitement des images
         while (($p = strpos($parsedown,'<img src="'))>0) {         
