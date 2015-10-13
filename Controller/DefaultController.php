@@ -59,7 +59,8 @@ class DefaultController extends Controller
         $response->headers->set('Content-Type', 'text/xml');
         $list = '<?xml version="1.0" encoding="UTF-8"?>';
         $list .= "<data>\n";
-        foreach ($this->getModules() as $k=>$v) {
+        $portal = $this->container->get('arii_core.portal');
+        foreach ($portal->getModules() as $k=>$v) {
             $list .= "  <item id=\"$k\">\n";
             foreach(array('BUNDLE','role','summary','name','desc','img', 'url') as $t) {
                 $list .= "      <$t>".$v[$t]."</$t>\n";
