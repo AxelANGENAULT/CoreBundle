@@ -3,23 +3,23 @@ arii_Home_index:
     defaults: { _controller: AriiCoreBundle:Default:index }
 
 arii_Home_readme:
-    pattern:  /readme
+    pattern:  /public/readme
     defaults: { _controller: AriiCoreBundle:Default:readme }
 
 arii_Home_docs:
-    pattern:  /docs
+    pattern:  /public/docs
     defaults: { _controller: AriiCoreBundle:Default:docs }
 
 arii_Core_readme:
-    pattern:  /readme
+    pattern:  /public/readme
     defaults: { _controller: AriiCoreBundle:Default:readme }
     
 html_Core_readme:
-    pattern:  /readme.html
+    pattern:  /public/readme.html
     defaults: { _controller: AriiCoreBundle:Default:readme_html }
 
 html_Home_readme:
-    pattern:  /readme.html
+    pattern:  /public/readme.html
     defaults: { _controller: AriiCoreBundle:Default:readme_html }
     
 json_Home_ribbon:
@@ -37,23 +37,23 @@ arii_favorites:
 # Docs
 #--------------------------------------------------------------------
 arii_docs:
-    pattern:  /docs
+    pattern:  /public/docs
     defaults: { _controller: AriiCoreBundle:Docs:index }
 
 xml_docs_tree:
-    pattern:  /docs/tree.xml
+    pattern:  /public/docs/tree.xml
     defaults: { _controller: AriiCoreBundle:Docs:tree }
 
 json_Home_docs_ribbon:
-    pattern:  /docs/ribbon.json
+    pattern:  /public/docs/ribbon.json
     defaults: { _controller: AriiCoreBundle:Docs:ribbon }
 
 xml_doc_view:
-    pattern:  /doc
+    pattern:  /public/doc
     defaults: { _controller: AriiCoreBundle:Default:doc }
 
 html_doc_view:
-    pattern:  /docs/view
+    pattern:  /public/docs/view
     defaults: { _controller: AriiCoreBundle:Docs:view }
 
 #--------------------------------------------------------------------
@@ -74,14 +74,6 @@ arii_About:
 xml_modules:
     pattern:  /modules.xml
     defaults: { _controller: AriiCoreBundle:Default:modules }
-
-#--------------------------------------------------------------------
-# Outils communs aux modules
-#--------------------------------------------------------------------
-# Command XML
-arii_XML_Command:
-    pattern:  /XML/command
-    defaults: { _controller: AriiCoreBundle:SOS:XMLCommand }
 
 #--------------------------------------------------------------------
 # Session 

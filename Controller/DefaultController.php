@@ -29,7 +29,8 @@ class DefaultController extends Controller
     // On passe les modules dans l'index pour construire la page
     public function indexAction()
     {   
-        return $this->render('AriiCoreBundle:Default:index.html.twig',array('Modules'=>$this->getModules()));
+        $portal = $this->container->get('arii_core.portal');
+        return $this->render('AriiCoreBundle:Default:index.html.twig',array('Modules'=> $portal->getModules()));
     }
     
     public function readmeAction()
@@ -69,52 +70,6 @@ class DefaultController extends Controller
 
         $response->setContent($list);
         return $response;
-    }
-
-    private function getModules() {
-        $sc = $this->get('security.context');
-        $Params = array();
-        $Result = array();
-        # Les modules pour tout le monde
-        $session = $this->container->get('arii_core.session');
-        $param = $session->getModules(); 
-        if ($param != '')
-            foreach (explode(',',$param) as $p)
-                array_push($Params, $p);
-                
-        # On retrouve l'url active 
-        foreach ($Params as $p) {
-            // Modules limites à un droit ?
-            if (($d = strpos($p,'('))>0) {
-                $module = substr($p,0,$d);
-                $f = strpos($p,')',$d+1);
-                $role = substr($p,$d+1,$f-$d-1);
-                $p = '';
-                if (($sc->isGranted('IS_AUTHENTICATED_FULLY')) 
-              or ($sc->isGranted('IS_AUTHENTICATED_REMEMBERED'))) {
-                    if ($sc->isGranted($role))
-                        $p = $module;
-                }
-                else {
-                    if ($role == 'ANONYMOUS')
-                        $p = $module;
-                }
-            }
-            else {
-                $role = '';
-            }
-            if ($p!='') 
-                $Result[$p] = array(
-                    'BUNDLE'=>$p,
-                    'role' => $this->get('translator')->trans($role), 
-                    'mod' => strtolower($p), 
-                    'name' => $this->get('translator')->trans('module.'.$p), 
-                    'desc' => $this->get('translator')->trans('text.'.$p), 
-                    'summary' => $this->get('translator')->trans('summary.'.$p), 
-                    'img' => "$p.png",
-                    'url' => $this->generateUrl('arii_'.$p.'_index') );
-        } 
-        return $Result;
     }
     
     public function cover_toolbarAction()

@@ -25,9 +25,13 @@ services:
         factory_method: getRepository
         arguments: ['AriiCoreBundle:Connection']
         
+    arii_core.portal:
+        class: Arii\CoreBundle\Service\AriiPortal
+        arguments: ["@arii_core.session",   @security.context, @translator, @router ]
+
     arii_core.sql:
         class: Arii\CoreBundle\Service\AriiSQL
-        arguments: ["@arii_core.session"]
+        arguments: ["@arii_core.session" ]
 
     arii_core.date:
         class: Arii\CoreBundle\Service\AriiDate

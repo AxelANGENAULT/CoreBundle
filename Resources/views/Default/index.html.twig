@@ -110,19 +110,25 @@ dhtmlxEvent(window,"load",function() {
 
     myDocs = globalLayout.cells("a").attachAccordion();
     myDocs.addItem( "Home", "{{ "Ari'i" }}", true);
-    
+
+    myTabbar = globalLayout.cells("b").attachTabbar();
+    myTabbar.addTab("portal","{{ "Portal" | trans }}","100px", null, true);
+    myTabbar.addTab("bundles","{{ "Bundles" | trans }}","100px");
+
+    myTabbar.cells("portal").attachURL("{{ url('html_Core_readme') }}");
+
     myTree = myDocs.cells("Home").attachTree();
     myTree.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
     myTree.load("{{ url('xml_docs_tree') }}?route=arii_Core_index");
     myTree.attachEvent("onClick",function(id){
-        globalLayout.cells("b").attachURL("{{ url('html_doc_view') }}?doc="+id);
+        myTabbar.cells("portal").attachURL("{{ url('html_doc_view') }}?doc="+id);
     })    
     
     {% for name,info in Modules %}
         myDocs.addItem( "{{ name }}", "{{ info.name }}" );
     {% endfor %}
         
-    myToolbar = globalLayout.cells("b").attachToolbar();
+    myToolbar = myTabbar.cells("bundles").attachToolbar();
 
     myToolbar.setIconsPath("{{ asset('bundles/ariicore/images/cover/') }}");
     myToolbar.loadStruct("{{ url('xml_toolbar') }}");
@@ -176,7 +182,7 @@ dhtmlxEvent(window,"load",function() {
             margin: 2,
             image:getImageStyle
     });
-    dhxView = globalLayout.cells("b").attachDataView(
+    dhxView = myTabbar.cells("bundles").attachDataView(
             { type:"bundle2",
     drag: true, 
     select:true });
@@ -193,7 +199,7 @@ dhtmlxEvent(window,"load",function() {
         myTree{{name}}.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
         myTree{{name}}.load("{{ url('xml_docs_tree') }}?route=arii_{{name}}_index");
         myTree{{name}}.attachEvent("onClick",function(id){
-            globalLayout.cells("b").attachURL("{{ url('html_doc_view') }}?doc="+id);
+            myTabbar.cells("portal").attachURL("{{ url('html_doc_view') }}?doc="+id);
         })    
     {% endfor %}
 });
