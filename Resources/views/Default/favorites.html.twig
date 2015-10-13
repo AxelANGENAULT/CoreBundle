@@ -190,7 +190,7 @@ dhtmlxEvent(window,"load",function() {
 /*    
     myTree = myAccordion.cells("docs").attachTree();
     myTree.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
-    myTree.loadXML("{{ url('xml_docs_tree') }}");
+    myTree.load("{{ url('xml_docs_tree') }}");
     myTree.attachEvent("onClick",function(id) {
         globalLayout.cells("b").attachUrl("{{ url('xml_doc_view') }}?doc="+id);        
     });

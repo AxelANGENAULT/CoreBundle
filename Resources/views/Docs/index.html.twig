@@ -23,7 +23,7 @@ dhtmlxEvent(window,"load",function() {
 
     myTree =globalLayout.cells("a").attachTree();
     myTree.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
-    myTree.loadXML("{{ url('xml_docs_tree') }}");
+    myTree.load("{{ url('xml_docs_tree') }}");
     myTree.attachEvent("onClick",function(id) {
         if (myTree.getItemImage(id,0)=='folder.gif') return true;
         globalLayout.cells("b").attachURL("{{ url('xml_doc_view') }}?doc="+id);        

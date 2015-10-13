@@ -113,7 +113,7 @@ dhtmlxEvent(window,"load",function() {
     
     myTree = myDocs.cells("Home").attachTree();
     myTree.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
-    myTree.loadXML("{{ url('xml_docs_tree') }}?route=arii_Core_index");
+    myTree.load("{{ url('xml_docs_tree') }}?route=arii_Core_index");
     myTree.attachEvent("onClick",function(id){
         globalLayout.cells("b").attachURL("{{ url('html_doc_view') }}?doc="+id);
     })    
@@ -191,12 +191,11 @@ dhtmlxEvent(window,"load",function() {
     {% for name,info in Modules %}
         myTree{{name}} = myDocs.cells("{{ name }}").attachTree();
         myTree{{name}}.setImagesPath("{{ asset('bundles/ariicore/images/tree/') }}");
-        myTree{{name}}.loadXML("{{ url('xml_docs_tree') }}?route=arii_{{name}}_index");
+        myTree{{name}}.load("{{ url('xml_docs_tree') }}?route=arii_{{name}}_index");
         myTree{{name}}.attachEvent("onClick",function(id){
             globalLayout.cells("b").attachURL("{{ url('html_doc_view') }}?doc="+id);
         })    
     {% endfor %}
-    
 });
 function getImageStyle(obj){
     if(window._isIE){

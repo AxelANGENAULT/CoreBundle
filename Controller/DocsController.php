@@ -81,12 +81,14 @@ class DocsController extends Controller
         return $xml;
     }
 
-    private function DocTitle($doc) {
+    private function DocTitle($doc) {        
         if (preg_match('/^\d\d - /',$doc,$matches))
                 $doc = substr($doc,5);
+        $this->charset = $this->container->getParameter('charset');
+        if ($this->charset != 'UTF-8')
+            return utf8_encode($doc);
         return $doc;
         // Devient inutile car tout est en utf-8, même sur windows
-        return utf8_encode($doc);
     }
     
     public function doc2Action()

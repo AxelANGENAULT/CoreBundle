@@ -183,7 +183,6 @@ class AriiDoc
             if ($result>0)
                 return "<pre>$text<font color='red'>".var_dump($output)."</font></pre>";
         }
-        print "(($output))";
         $img = file_get_contents($output);
         return '<img class="img-responsive" src="data:image/png;base64,'.base64_encode($img).'"/>';
     }
