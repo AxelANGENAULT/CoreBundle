@@ -88,7 +88,7 @@ dhtmlxEvent(window,"load",function(){
         ];
 
     globalLayout = new dhtmlXLayoutObject(document.body,"2U");  
-    globalLayout.cells("a").setWidth(330); 
+    globalLayout.cells("a").setWidth(400); 
     globalLayout.cells("a").hideHeader(); 
     globalLayout.cells("b").hideHeader(); 
 
@@ -110,7 +110,7 @@ dhtmlxEvent(window,"load",function(){
                             margin: 0,
                             padding: 0,
                             height: 50,
-                            width: 320
+                            width: 390
                     },
                     drag: false,
                     select: true
@@ -118,7 +118,8 @@ dhtmlxEvent(window,"load",function(){
         
     myLinks.parse([
                     {id: "profile", text: "{{ "Profile" | trans }}"},
-                    {id: "filters", text: "{{ "Filter" | trans }}"}
+                    {id: "filters", text: "{{ "Filter" | trans }}"},
+                    {id: "session", text: "{{ "Session" | trans }}"}
             ], "json");
 
     myLinks.attachEvent("onSelectChange", function(itemid) {
@@ -128,6 +129,9 @@ dhtmlxEvent(window,"load",function(){
                 break;
             case 'filters':
                 document.location.href = "{{ url('arii_filters') }}";
+                break;                    
+            case 'session':
+                document.location.href = "{{ url('arii_my_session') }}";
                 break;                    
              default:
                 alert("("+itemid+")");

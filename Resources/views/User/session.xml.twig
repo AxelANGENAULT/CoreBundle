@@ -1,157 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rows>
-    <head>
-        <afterInit>
-            <call command="clearAll"/>
-            <call command="loadOpenStates"/>
-        </afterInit>
-    </head>
-<row id="general">
-    <cell image="../silk/wrench.png">{{ "General" | trans }}</cell>
-    <row>
-        <cell image="bullet_blue.png">{{ "Refresh" | trans }}</cell>
-        <cell>{{ app.session.get('refresh') }}</cell>
-    </row>
+<row>
+    <cell image="wrench.png">{{ "General" | trans }}</cell>
+    <cell image="bullet_blue.png">{{ "Refresh" | trans }}</cell>
+    <cell>{{ app.session.get('refresh') }}</cell>
 </row>
-<row id="date">
+<row>
     <cell image="../wa/date.png">Date</cell>
-    <row>
-        <cell image="bullet_red.png">{{ "Reference date" | trans }}</cell>
-        <cell>{{ app.session.get('ref_date') }}</cell>
-    </row>
-    <row>
-        <cell image="bullet_red.png">{{ "From" | trans }}</cell>
-        <cell>{{ app.session.get('past') }} ({{ app.session.get('ref_past') }}{{ "day.d" | trans}})</cell>
-    </row>    
-    <row>
-        <cell image="bullet_red.png">{{ "To" | trans }}</cell>
-        <cell>{{ app.session.get('future') }} (+{{ app.session.get('ref_future') }}{{ "day.d" | trans}})</cell>
-    </row>
-    <row>
-        <cell image="bullet_red.png">{{ "Timezone" | trans }}</cell>
-        <cell>{{ app.session.get('timezone') }}</cell>
-    </row>
+    <cell image="bullet_red.png">{{ "Reference date" | trans }}</cell>
+    <cell>{{ app.session.get('ref_date') }}</cell>
 </row>
-<row id="site">
+<row>
+    <cell image="../wa/date.png">Date</cell>
+    <cell image="bullet_red.png">{{ "From" | trans }}</cell>
+    <cell>{{ app.session.get('past') }} ({{ app.session.get('ref_past') }}{{ "day.d" | trans}})</cell>
+</row>
+<row>
+    <cell image="../wa/date.png">Date</cell>
+    <cell image="bullet_red.png">{{ "To" | trans }}</cell>
+    <cell>{{ app.session.get('future') }} (+{{ app.session.get('ref_future') }}{{ "day.d" | trans}})</cell>
+</row>
+<row>
+    <cell image="../wa/date.png">Date</cell>
+    <cell image="bullet_red.png">{{ "Timezone" | trans }}</cell>
+    <cell>{{ app.session.get('timezone') }}</cell>
+</row>
+{% set site = app.session.get('site') %}
+{% for k,v in site %}            
+<row>
     <cell image="site.png">{{ "Site" | trans }}</cell>
-    {% set site = app.session.get('site') %}
+    <cell image="bullet_green.png">{{ k }}</cell>
+    <cell>{{ v }}</cell>
+</row>
+{% endfor %}
+{% set sites = app.session.get('Sites') %}     
+{% for s,site in sites %}
     {% for k,v in site %}            
     <row>
-        <cell image="bullet_green.png">{{ k }}</cell>
+        <cell image="site.png">{{ "Sites" | trans }}</cell>
+        <cell image="bullet_orange.png">[{{ s }}] {{ k }}</cell>
         <cell>{{ v }}</cell>
     </row>
-    {% endfor %}
-    <row id="sites">
-        <cell image="site.png">{{ "Available" | trans }}</cell>
-        {% set sites = app.session.get('Sites') %}     
-        {% for k,site in sites %}
-        <row>
-            <cell image="bullet_orange.png">{{ k }}</cell>
-            {% for k,v in site %}            
-            <row>
-                <cell image="bullet_orange.png">{{ k }}</cell>
-                <cell>{{ v }}</cell>
-            </row>
-            {% endfor %}        
-        </row>
-        {% endfor %}        
-    </row>
-</row>
-<row id="filter">
+    {% endfor %}        
+{% endfor %}        
+<row>
     <cell image="filter.png">{{ "Filter" | trans }}</cell>
-    <row>
-        <cell image="bullet_orange.png">{{ "Free text" | trans }}</cell>
-        <cell>{{ app.session.get('filter_str') }}</cell>
-    </row>
-    {% set filter = app.session.get('filter') %}
+    <cell image="bullet_orange.png">{{ "Free text" | trans }}</cell>
+    <cell>{{ app.session.get('filter_str') }}</cell>
+</row>
+{% set filter = app.session.get('filter') %}
+{% for k,v in filter %}            
+<row>
+    <cell image="bullet_orange.png">{{ k }}</cell>
+    <cell>{{ v }}</cell>
+</row>
+{% endfor %}        
+{% set filters = app.session.get('Filters') %}     
+{% for f,filter in filters %}
+<row>
     {% for k,v in filter %}            
-    <row>
-        <cell image="bullet_orange.png">{{ k }}</cell>
-        <cell>{{ v }}</cell>
-    </row>
+    <cell image="filter.png">{{ "Available" | trans }}</cell>
+    <cell image="bullet_orange.png">[{{ f }}] {{ k }}</cell>
+    <cell>{{ v }}</cell>
     {% endfor %}        
-    <row id="filters">
-        <cell image="filter.png">{{ "Available" | trans }}</cell>
-        {% set filters = app.session.get('Filters') %}     
-        {% for k,filter in filters %}
-        <row>
-            <cell image="bullet_orange.png">{{ k }}</cell>
-            {% for k,v in filter %}            
-            <row>
-                <cell image="bullet_orange.png">{{ k }}</cell>
-                <cell>{{ v }}</cell>
-            </row>
-            {% endfor %}        
-        </row>
-        {% endfor %}        
-    </row>
 </row>
-<row id="spooler">
+{% endfor %}        
+{% set spooler = app.session.get('spooler') %}
+{% for k,v in spooler %}            
+<row>
     <cell image="spooler.png">{{ "spooler" | trans }}</cell>
-    {% set spooler = app.session.get('spooler') %}
-    {% for k,v in spooler %}            
-    <row>
-        <cell image="bullet_green.png">{{ k }}</cell>
-        <cell>{{ v }}</cell>
-    </row>
-    {% endfor %}        
-    <row id="spoolers">
-        <cell image="spooler.png">{{ "Available" | trans }}</cell>
-        {% set spoolers = app.session.get('Spoolers') %}     
-        {% for k,spooler in spoolers %}
-        <row>
-            <cell image="bullet_yellow.png">{{ k }}</cell>
-            {% for k,v in spooler %}            
-            <row>
-                <cell image="bullet_orange.png">{{ k }}</cell>
-                <cell>{{ v }}</cell>
-            </row>
-            {% endfor %}        
-        </row>
-        {% endfor %}        
-    </row>
+    <cell image="bullet_green.png">{{ k }}</cell>
+    <cell>{{ v }}</cell>
 </row>
-<row id="database">
-    <cell image="../silk/database.png">{{ "Repository" | trans }}</cell>
-        {% set database = app.session.get('database') %}
-    <row>
-        <cell image="bullet_yellow.png">{{ "Name" | trans }}</cell>
-        <cell>{{ database.name }}</cell>
-    </row>
-    <row>
-        <cell image="bullet_yellow.png">{{ "Driver" | trans }}</cell>
-        <cell>{{ database.driver }}</cell>
-    </row>
-    <row>
-        <cell image="bullet_yellow.png">{{ "Host" | trans }}</cell>
-        <cell>{{ database.host }}</cell>
-    </row>
-    <row>
-        <cell image="bullet_yellow.png">{{ "Port" | trans }}</cell>
-        <cell>{{ database.port }}</cell>
-    </row>
-    <row>
-        <cell image="../silk/bullet_yellow.png">{{ "Database" | trans }}</cell>
-        <cell>{{ database.db_name }}</cell>
-    </row>
-    <row id="databases">
-        <cell image="../silk/database.png">{{ "Available" | trans }}</cell>
-        {% set databases = app.session.get('Databases') %}     
-        {% if databases|length > 0 %}
-        {% for k,database in databases %}
-        <row>
-            <cell image="bullet_orange.png">{{ k }}</cell>
-            <row>
-                <cell image="bullet_orange.png">{{ "Name" | trans }}</cell>
-                <cell>{{ database.name }}</cell>
-            </row>
-            <row>
-                <cell image="bullet_orange.png">{{ "Driver" | trans }}</cell>
-                <cell>{ { database.driver } }</cell>
-            </row>
-        </row>
-        {% endfor %}
-        {% endif %}
-    </row>
+{% endfor %}        
+{% set spoolers = app.session.get('Spoolers') %}     
+{% for s,spooler in spoolers %}
+{% for k,v in spooler %}            
+<row>
+    <cell image="spooler.png">{{ "Spoolers" | trans }}</cell>
+    <cell image="bullet_yellow.png">[{{ s }}] {{ k }}</cell>
+    <cell>{{ v }}</cell>
 </row>
+{% endfor %}        
+{% endfor %}        
+<row>
+    <cell image="database.png">{{ "Repository" | trans }}</cell>
+    {% set database = app.session.get('database') %}
+    <cell image="bullet_yellow.png">{{ "Name" | trans }}</cell>
+    <cell>{{ database.name }}</cell>
+</row>
+<row>
+    <cell image="database.png">{{ "Repository" | trans }}</cell>
+    <cell image="bullet_yellow.png">{{ "Driver" | trans }}</cell>
+    <cell>{{ database.driver }}</cell>
+</row>
+<row>
+    <cell image="database.png">{{ "Repository" | trans }}</cell>
+    <cell image="bullet_yellow.png">{{ "Host" | trans }}</cell>
+    <cell>{{ database.host }}</cell>
+</row>
+<row>
+    <cell image="database.png">{{ "Repository" | trans }}</cell>
+    <cell image="bullet_yellow.png">{{ "Port" | trans }}</cell>
+    <cell>{{ database.port }}</cell>
+</row>
+<row>
+    <cell image="database.png">{{ "Repository" | trans }}</cell>
+    <cell image="bullet_yellow.png">{{ "Database" | trans }}</cell>
+    <cell>{{ database.db_name }}</cell>
+</row>
+
+{% set databases = app.session.get('Databases') %}     
+{% if databases|length > 0 %}
+{% for k,database in databases %}
+<row>
+    <cell image="database.png">{{ "Databases" | trans }}</cell>
+    <cell image="bullet_orange.png">[{{ k }}] {{ "Name" | trans }}</cell>
+    <cell>{{ database.name }}</cell>
+</row>
+<row>
+    <cell image="database.png">{{ "Databases" | trans }}</cell>
+    <cell image="bullet_orange.png">[{{ k }}] {{ "Driver" | trans }}</cell>
+    <cell>{{ database.driver }}</cell>
+</row>
+{% endfor %}
+{% endif %}
 </rows>

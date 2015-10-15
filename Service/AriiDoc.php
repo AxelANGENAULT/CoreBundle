@@ -123,21 +123,26 @@ class AriiDoc
         }
         
         // On refait le cache
+        $out = '';
         if ($update) {            
             // nettoyage
             $text = str_replace(array("<p>","</p>"),array("","\n"),$text);
 
             $input = sys_get_temp_dir().'/'.str_replace(array(' ','.'),'',microtime());
             file_put_contents("$input.ditaa", $text );
-            $cmd = '"'.$this->java.'/bin/java" -jar ../vendor/'.$this->ditaa." \"$input.ditaa\" \"$output\"";
-            exec("$cmd 2>&1", $output, $result);
+            $cmd = '"'.$this->java.'/bin/java" -Dfile.encoding=UTF-8 -jar ../vendor/'.$this->ditaa." \"$input.ditaa\" \"$output\"";
+            exec("$cmd 2>&1", $screen, $result);
+            $out .= '<p class="bg-info"><ol>';
+            foreach ($screen as $s) {
+               $out .= "<li>$s</li>";
+            }
+            $out .= "</ol></p>";
             if ($result>0) {
                 return "<pre>$text</pre>";
             }
         }
-        
         $img = file_get_contents($output);
-        return '<img class="img-responsive" src="data:image/png;base64,'.base64_encode($img).'"/>';
+        return '<img class="img-thumbnail" src="data:image/png;base64,'.base64_encode($img).'"/>'.$out;
     }
     
     // appel de graphviz

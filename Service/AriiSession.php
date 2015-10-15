@@ -20,6 +20,8 @@ class AriiSession
     protected $user_id;
     protected $team_id;
     protected $arii_modules;
+    protected $arii_databases;
+    protected $arii_spoolers;
 
     public function __construct(Session $session, ContainerInterface $service_container, \Arii\CoreBundle\Service\AriiDB $db )
     {
@@ -27,6 +29,8 @@ class AriiSession
         $this->session = $session;
         $this->container = $service_container;
         $this->arii_modules = $this->container->getParameter('arii_modules');
+        $this->arii_databases = $this->container->getParameter('databases');
+        $this->arii_spoolers = $this->container->getParameter('spoolers');
 
         // on teste si il est anonyme
         $securityContext = $this->container->get('security.context');
@@ -102,10 +106,11 @@ class AriiSession
 
         // Les bases de données
         $Databases = $this->get( 'Databases');
+        $this->setDatabases();
         if (empty($Databases)) {
             $this->setDatabases();
         }
-
+        
         // Les spoolers
         $Spoolers = $this->get( 'Spoolers');
         if (empty($Spoolers)) {
@@ -227,8 +232,8 @@ class AriiSession
         }
         $qry .= ' ORDER BY ar.name';
 
+        $Databases = array();        
         $data = $this->db->Connector('data');
-        $Databases = array();
         if ($data) {
             $res = $data->sql->query($qry);
             while ($line = $data->sql->get_next($res))
@@ -249,6 +254,24 @@ class AriiSession
     }
     
     public function setDefaultDatabases() {
+        // Nouveauté 1.6, on inègre les bases de données du fichier parameters.yml
+        if (!empty($this->arii_databases)) {
+            $Default = array();
+            foreach ($this->arii_databases as $db) {
+                $DB = $db;
+                $DB['id'] = -1;
+                $DB['db'] = -1;
+                // compatibilité avec les versions precedentes
+                $DB['login'] = $db['user'];
+                $DB['db_name'] = $db['dbname'];
+                array_push($Default,$DB);
+            }
+            $this->set( 'Databases', $Default);
+            $this->setDatabase( $Default[0] );
+            return $Default;
+        }
+        
+        // devrait être un tableau
         $Default['id'] = -1;
         $Default['db'] = -1;
         $Default['name'] = $this->container->getParameter('repository_name');
@@ -259,7 +282,7 @@ class AriiSession
         $Default['password'] = $this->container->getParameter('repository_password');
         $Default['driver'] = $this->container->getParameter('repository_driver');
         $Default['vendor'] = $this->container->getParameter('repository_driver');
-        $this->set( 'Databases', array($Default) );
+        $this->set( 'Databases', array($Default));
         $this->setDatabase( $Default );
         return $Default;
     }
@@ -351,10 +374,17 @@ class AriiSession
 
     public function setSpoolers()
     {
+        // La notion de spooler est à revoir en fonction des modules
+        if (!empty($this->arii_spoolers)) {
+            $Spoolers = $this->arii_spoolers;
+            $this->set( 'Spoolers', $Spoolers );            
+            $this->setSpooler( $Spoolers[0] );
+            return $Spoolers;
+        }
+        
         $db = $this->getDatabase();
         if (empty($db)) {
             // on doit logguer une erreur, ce n'est pas normal !
-            
             return;
         }
         
@@ -372,6 +402,7 @@ class AriiSession
             }
         }
 */
+        
         $qry = "SELECT id,name,scheduler as spooler_id,timezone from ARII_SPOOLER where db_id=".$db['id']." order by scheduler";
 
         $data = $this->db->Connector('data');
