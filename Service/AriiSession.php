@@ -110,13 +110,14 @@ class AriiSession
         if (empty($Databases)) {
             $this->setDatabases();
         }
-        
         // Les spoolers
+        /* Inutile on reprends le parameters.yml
         $Spoolers = $this->get( 'Spoolers');
         if (empty($Spoolers)) {
             $this->setSpoolers();
         }
-
+        */
+        
         // Les sites 
         $Sites = $this->get( 'Sites');
         if (empty($Sites)) {
@@ -560,7 +561,6 @@ class AriiSession
     public function setDatabase($current)
     {
         $this->set('database',$current);
-        $this->setSpoolers();
     }
     
     public function setDatabaseById($id)
@@ -571,8 +571,6 @@ class AriiSession
                 WHERE ac.id=".$id;
         $res = $data->sql->query($qry);
         $this->setDatabase($data->sql->get_next($res));
-        // On reprend  la liste des spoolers
-        $this->setSpoolers();
     }   
      
     public function setRefresh($refresh)

@@ -48,13 +48,29 @@ class SessionController extends Controller
         }
         
         if ($request->query->get( 'database' )) {
-            $db = $request->query->get( 'database' );
+            $db = substr($request->query->get( 'database' ),2);
+            $Databases = $session->getDatabases();
+            print "<pre>";
+            print_r($Databases);
+            if (isset($Databases[$db])) {
+                $session->setDatabase($Databases[$db]);
+                print "NOUVEAU !!!!". $Databases[$db]['name'];
+                print_r($session->getDatabase());
+                
+                exit();
+            }
+            else {
+                print "<font color='red'>$db ?!</font>";
+                exit();
+            }
+            /* ancien systeme
             if ($db != 'recalc') {
                 $session->setDatabaseById($db);
             }
             else {
                 $session->setDatabases();
             }
+             */
         }
         
         if ($request->query->get( 'spooler' )) {
@@ -82,6 +98,7 @@ class SessionController extends Controller
             $State[$page][$id] = $state;
             $session->set( 'state', $State );
         }
+        exit();
         return $this->render('AriiCoreBundle:Session:result.html.twig',array(), $response );
     }
     
