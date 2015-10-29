@@ -17,8 +17,7 @@ class AriiDHTMLX
         # La connexion passe par la session
         $this->session = $session;
         $db = $session->getDatabase();
-        print_r($db);
-        exit();
+
         if (!$db) {
             // Pas de session en cours
             // on prend celle par defaut
