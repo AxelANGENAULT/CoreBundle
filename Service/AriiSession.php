@@ -109,12 +109,9 @@ class AriiSession
             $this->setDatabases();            
         }
         // Les spoolers
-        /* Inutile on reprends le parameters.yml
-        $Spoolers = $this->get( 'Spoolers');
-        if (empty($Spoolers)) {
+        if (empty($this->getSpooler()) or empty($this->get( 'Spoolers'))) {            
             $this->setSpoolers();
         }
-        */
         
         // Les sites 
         $Sites = $this->get( 'Sites');
@@ -252,9 +249,15 @@ class AriiSession
         return $current;
     }
     
+    public function getDatabases() {
+        if (empty($this->get('Databases'))) {
+            setDefaultDatabases();
+        }
+        return $this->get('Databases');
+    }
+    
     public function setDefaultDatabases() {
         // Nouveauté 1.6, on inègre les bases de données du fichier parameters.yml
-        print "change"; exit();
         if (!empty($this->arii_databases)) {
             $Default = array();
             foreach ($this->arii_databases as $db) {
@@ -288,11 +291,39 @@ class AriiSession
     }
     
     // Donne la liste des base de données
-    public function getDatabases()
+    public function setSpoolers()
     {
-        return $this->get( 'Databases' );
+        // Nouveauté 1.6, on inègre les bases de données du fichier parameters.yml
+        if (!empty($this->arii_spoolers)) {
+            $Default = array();
+            foreach ($this->arii_spoolers as $spool) {
+                array_push($Default,$spool);
+            }
+            $this->set( 'Spoolers', $Default);
+            $this->setSpooler( $Default[0] );
+            return $Default;
+        }
+        
+        // on a au moins arii
+        $Default['name'] = 'arii';
+        $Default['host'] = 'localhost';
+        $Default['port'] = '44444';
+        $this->set( 'Spoolers', array($Default));
+        $this->setSpooler( $Default );
+        return $Default;
+    }
+
+
+    public function GetSpoolers()
+    { 
+        return $this->get('Spoolers');
     }
     
+    public function getSpooler()
+    { 
+        return $this->get('spooler');
+    }
+
     public function setUserFilters()
     {
         // les filtres sont ceux de l'utilisateur et de son equipe
@@ -370,60 +401,6 @@ class AriiSession
     public function getTeamRights()
     { 
         return $this->get('TeamRights');
-    }
-
-    public function setSpoolers()
-    {
-        // La notion de spooler est à revoir en fonction des modules
-        if (!empty($this->arii_spoolers)) {
-            $Spoolers = $this->arii_spoolers;
-            $this->set( 'Spoolers', $Spoolers );            
-            $this->setSpooler( $Spoolers[0] );
-            return $Spoolers;
-        }
-        
-        $db = $this->getDatabase();
-        if (empty($db)) {
-            // on doit logguer une erreur, ce n'est pas normal !
-            return;
-        }
-        
-        // On recupere les permissions en cours
-/*        $filter_where = '';
-        $filters = $this->getFilters();
-        if (!empty($filters)) {
-            foreach ($filters as $f) {
-                $spooler = str_replace('*','%',$f['spooler']);
-                if ($spooler=='%') { 
-                    $filter_where = '';
-                    continue;
-                }
-                $filter_where .= ' and (name like "'.$spooler.'")';
-            }
-        }
-*/
-        
-        $qry = "SELECT id,name,scheduler as spooler_id,timezone from ARII_SPOOLER where db_id=".$db['id']." order by scheduler";
-
-        $data = $this->db->Connector('data');
-        $res = $data->sql->query($qry);
-        $Spoolers = array();
-        // on teste si le spooler courant fait parti de la liste
-        while ($line = $data->sql->get_next($res)) {
-            array_push($Spoolers,$line);
-        }
-        $this->set( 'Spoolers', $Spoolers );
-        $this->setSpooler( current($Spoolers) );
-    }
-
-    public function GetSpoolers()
-    { 
-        return $this->get('Spoolers');
-    }
-    
-    public function getSpooler()
-    { 
-        return $this->get('spooler');
     }
 
     public function setSpoolerById($id)
