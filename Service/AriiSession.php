@@ -105,10 +105,8 @@ class AriiSession
         }
 
         // Les bases de données
-        $Databases = $this->get( 'Databases');
-        $this->setDatabases();
-        if (empty($Databases)) {
-            $this->setDatabases();
+        if (empty($this->getDatabase()) or empty($this->get( 'Databases'))) {            
+            $this->setDatabases();            
         }
         // Les spoolers
         /* Inutile on reprends le parameters.yml
@@ -256,6 +254,7 @@ class AriiSession
     
     public function setDefaultDatabases() {
         // Nouveauté 1.6, on inègre les bases de données du fichier parameters.yml
+        print "change"; exit();
         if (!empty($this->arii_databases)) {
             $Default = array();
             foreach ($this->arii_databases as $db) {

@@ -48,15 +48,11 @@ class SessionController extends Controller
         }
         
         if ($request->query->get( 'database' )) {
-            $db = substr($request->query->get( 'database' ),2);
+            $db = $request->query->get( 'database' )-1;
             $Databases = $session->getDatabases();
-            print "<pre>";
-            print_r($Databases);
             if (isset($Databases[$db])) {
                 $session->setDatabase($Databases[$db]);
-                print "NOUVEAU !!!!". $Databases[$db]['name'];
-                print_r($session->getDatabase());
-                
+                print $Databases[$db]['name'];
                 exit();
             }
             else {
