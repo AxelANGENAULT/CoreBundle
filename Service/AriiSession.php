@@ -105,11 +105,11 @@ class AriiSession
         }
 
         // Les bases de données
-        if (empty($this->getDatabase()) or empty($this->get( 'Databases'))) {            
+        if (!($this->getDatabase() and $this->get( 'Databases'))) {            
             $this->setDatabases();            
         }
         // Les spoolers
-        if (empty($this->getSpooler()) or empty($this->get( 'Spoolers'))) {            
+        if (!($this->getSpooler() and $this->get( 'Spoolers'))) {            
             $this->setSpoolers();
         }
         
@@ -316,6 +316,10 @@ class AriiSession
 
     public function GetSpoolers()
     { 
+        // rempli ?
+        if (empty($this->get('Spoolers'))) {
+            $this->setSpoolers();
+        }
         return $this->get('Spoolers');
     }
     

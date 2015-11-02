@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <menu>
-{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}                
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') or is_granted('IS_AUTHENTICATED_FULLY') %}                
 	<item id="menu" img="house.png">
             {% for menu in MENU %}
                 <item id="{{ menu.mod }}" text="{{ menu.title | trans }}" img="{{ menu.mod }}.png">
@@ -72,6 +72,17 @@
         <item id="fr" text="{{ "fr" | trans }}" >
         <href><![CDATA[{{ path('arii_About') }}]]></href>
         </item>
+    </item>
+-->
+<!--
+    <item id="tz" img="world.png">
+            {% for continent,country in TZ %}
+               <item id="{{ continent }}" text="{{ continent }}" >
+                {% for k,v in country %}
+                    <item id="{{ continent }}/{{ k }}" text="{{ v }}" />
+                {% endfor %}
+               </item>    
+            {% endfor %}
     </item>
 -->
     <item id="lang" img="{{ app.request.locale }}.png">

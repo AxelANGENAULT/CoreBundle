@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DocsController extends Controller
 {    
+    protected $charset;
+    
     public function indexAction()
     {        
         return $this->render('AriiCoreBundle:Docs:index.html.twig');            
@@ -84,7 +86,12 @@ class DocsController extends Controller
     private function DocTitle($doc) {        
         if (preg_match('/^\d\d - /',$doc,$matches))
                 $doc = substr($doc,5);
-        $this->charset = $this->container->getParameter('charset');
+        if ($this->container->hasParameter('charset')) {
+            $this->charset = $this->container->getParameter('charset');
+        }
+        else {
+            $this->charset = 'UTF-8';
+        }
         if ($this->charset != 'UTF-8')
             return utf8_encode($doc);
         return $doc;

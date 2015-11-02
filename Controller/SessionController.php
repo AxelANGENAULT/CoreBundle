@@ -100,8 +100,8 @@ class SessionController extends Controller
     
      public function viewAction()
     {
-         $session = $this->container->get('arii_core.session');
-         print_r($session->get('database'));
+        $session = $this->container->get('arii_core.session');
+        //  print_r($session->get('database'));
         return $this->render('AriiCoreBundle:Session:view.html.twig' );
     }
    

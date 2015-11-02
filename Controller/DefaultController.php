@@ -165,9 +165,18 @@ class DefaultController extends Controller
             array_push($liste, array( 'mod' => strtolower($p), 'module' => $p, 'url' => $url, 'class' => $class, 'title' => 'module.'.$p ) );
         }   
 
+        // Timezone
+        $tz = array();
+        foreach (timezone_identifiers_list() as $c) {
+            $p = strpos($c,'/');
+            $continent = substr($c,0,$p);
+            $country = substr($c,$p+1);
+            if ($continent != '') 
+                $tz[$continent][$country]=str_replace('_',' ',$country);            
+        }
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml');   
-        return $this->render('AriiCoreBundle:Default:menu.xml.twig',array('MENU' => $liste, 'LANG' => $lang, 'BUNDLE' => $current ), $response );
+        return $this->render('AriiCoreBundle:Default:menu.xml.twig',array('MENU' => $liste, 'LANG' => $lang, 'BUNDLE' => $current, 'TZ' => $tz ), $response );
     }
 
     public function aboutAction()

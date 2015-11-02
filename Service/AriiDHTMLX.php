@@ -119,14 +119,10 @@ class AriiDHTMLX
                 $conn= pg_connect("host=".$this->host." port=".$this->port." dbname=".$this->database." user=".$this->user." password=".$this->password);
                 break;
             case 'MySQLi':
-                // @$conn= new \mysqli( $this->host, $this->user, $this->password, $this->database );
-                $conn= @mysqli_connect(  $this->host, $this->host,$this->user, $this->password, $this->database);
-                if ($conn->connect_errno) {
-                    print $conn->connect_error;
-                    exit();
-                    //trigger_error($conn->connect_error,E_USER_ERROR);
-                    return;
-                }
+            case 'pdo_mysql':
+            case 'mysqli':
+            case 'mysql':
+                $conn= @mysqli_connect( $this->host, $this->user,  $this->password, $this->database );
                 mysqli_query($conn, "SET NAMES 'utf8'");
                 break;
             default:

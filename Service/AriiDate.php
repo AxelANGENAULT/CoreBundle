@@ -29,28 +29,21 @@ class AriiDate
             $this->TZLocal = date_default_timezone_get ();
         }
         $target_offset = $this->getOffset($this->TZLocal);
-        foreach ($session->getSpoolers() as $k=>$v) {
+        /* Devient inutile, les ordonnanceurs stockent les dates en GMT
+        foreach ($session->getSpoolers() as $k=>$v) {     
             $s = $v['name'];
             $t = $v['timezone'];
             $this->TZSpooler[$s] = $t;
             $this->TZOffset[$s] = $target_offset - $this->getOffset($t);
         }
+         */
         // pour les spoolers par defaut en 1.5
         $this->DefaultOffset = $this->getOffset($this->TZLocal);
     }
 
     private function getOffset( $tz ) {
-        if ($tz=='') {
-            // ATTENTION !!!!!!!!!!!!!!!!!!!!!!!!!!!
-            $tz = 'GMT';
-        }
-        if ($tz == 'GMT') {
-            $offset = 0;
-        }
-        else {
-            $offset =  timezone_offset_get( new \DateTimeZone( $tz ), new \DateTime() );
-        }
-        return $offset;
+        if ($tz=='') return 0; # Heure GMT
+        return timezone_offset_get( new \DateTimeZone( $tz ), new \DateTime() );
     }
 
     public function getLocaltimes( $start, $end, $next='', $spooler='', $short=true ) {
@@ -153,18 +146,9 @@ class AriiDate
        return $this->FormatTime($d);
     }
 
-    public function Time2Local($time,$spooler,$gmt=false) {
-        if (!$gmt) {
-            if ((isset($this->TZOffset[$spooler])) and ($this->TZOffset[$spooler]!='')) {
-                $offset = $this->TZOffset[$spooler];
-            }
-            else 
-                $offset = $this->DefaultOffset; // heure GMT par defaut
-        }
-        else {
-            $offset=0;
-        }
-        return $this->ShortDate( date( 'Y-m-d H:i:s', $time + $offset) );
+    // obsolete !! Aucun ordonnanceur ne loggue en localtime
+    public function Time2Local($time,$spooler='',$gmt=false) {
+        return $this->ShortDate( date( 'Y-m-d H:i:s', $time) );
     }
     
     public function Date2Local($date,$spooler,$short=false) {
