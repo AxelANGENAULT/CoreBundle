@@ -328,6 +328,17 @@ class AriiSession
         return $this->get('spooler');
     }
 
+    public function getSpoolerByName($name, $type='osjs')
+    { 
+        foreach ($this->getSpoolers() as $spooler) {
+            if (($spooler['name'] == $name) and ($spooler['type'] == $type)) {
+                return $spooler;
+            }
+        }
+        print "'$name' ($type) not defined in parameters.yml !";
+        exit();
+    }
+
     public function setUserFilters()
     {
         // les filtres sont ceux de l'utilisateur et de son equipe

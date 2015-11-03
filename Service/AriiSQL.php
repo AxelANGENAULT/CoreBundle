@@ -29,8 +29,7 @@ class AriiSQL
     
     public function __construct(AriiSession $session)
     {
-        $this->session = $session;
-        
+        $this->session = $session;        
         $this->enterprise = $session->getEnterprise();
         
         // Securité !
@@ -114,17 +113,8 @@ class AriiSQL
     }
 
     /* Couche d'abstraction */
-    public function Update( $Columns = array(), $option='' ) {   
-        $Select = array();
-        foreach ($Columns as $c) {
-            if (($p = strpos($c,' as '))>0) {
-                array_push($Select,$this->ColumnSelect(trim(substr($c,0,$p+1)),trim(substr($c,$p+4))));
-            }
-            else {
-                array_push($Select,$this->ColumnSelect(trim($c)));
-            }
-        }
-        return 'update '.$option.' '.implode(',',$Select);
+    public function Update( $Table ) {   
+       return 'update '.join(',',$Table);
     }
 
    public function From( $Table ) {
