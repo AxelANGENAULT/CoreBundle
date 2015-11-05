@@ -75,7 +75,7 @@ services:
 
     arii_core.folder:
         class: Arii\CoreBundle\Service\AriiFolder
-        arguments: [ "@arii_core.session", %osjs_config% ]
+        arguments: [ "@arii_core.session" ]
 
     arii_core.cron:
         class: Arii\CoreBundle\Service\AriiCron

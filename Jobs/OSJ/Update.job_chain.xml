@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<job_chain  orders_recoverable="yes" visible="yes" title="Mise a jour">
+    <file_order_source  directory="/home/arii" regex="^arii_update[\d\.]*\.zip$" next_state="WATCH"/>
+
+    <job_chain_node  state="WATCH" job="File watch" next_state="MOVE" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="MOVE" job="File move" next_state="UNZIP" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="GET" job="Download" next_state="UNZIP" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="UNZIP" job="Unzip file" next_state="STOP" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="STOP" job="Apache stop" next_state="LOGS" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="LOGS" job="Purge logs" next_state="CACHE" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="CACHE" job="Purge cache" next_state="CONFIG" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="CONFIG" job="Backup config" next_state="BACKUP" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="BACKUP" job="Backup full" next_state="UPDATE" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="UPDATE" job="Update arii" next_state="SCHEMA" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="SCHEMA" job="Schema update" next_state="START" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="START" job="Apache start" next_state="CHECK" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="CHECK" job="Check url" next_state="SUCCESS" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="!FAILURE"/>
+
+    <file_order_sink  state="SUCCESS" remove="yes"/>
+</job_chain>

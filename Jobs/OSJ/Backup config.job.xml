@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<job  order="yes" stop_on_error="no" title="Sauvegarde la configuration du site">
+    <params >
+        <include  live_file="../arii.params.xml" node=""/>
+    </params>
+
+    <script  language="shell">
+        <![CDATA[
+echo === ${SCHEDULER_JOB_NAME} ============================================
+echo  ${SCHEDULER_PARAM_ARII}
+mkdir ${SCHEDULER_PARAM_ARII}/backup
+cp ${SCHEDULER_PARAM_ARII}/app/config/parameters.yml ${SCHEDULER_PARAM_ARII}/backup
+        ]]>
+    </script>
+
+    <run_time />
+</job>

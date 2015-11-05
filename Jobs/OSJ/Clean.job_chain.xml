@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<job_chain  orders_recoverable="yes" visible="yes" title="Nettoyage quotidien">
+    <job_chain_node  state="STOP" job="Apache stop" next_state="LOGS" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="LOGS" job="Purge logs" next_state="CACHE" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="CACHE" job="Purge cache" next_state="START" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="START" job="Apache start" next_state="CHECK" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="CHECK" job="Check url" next_state="SUCCESS" error_state="!FAILURE" on_error="suspend"/>
+
+    <job_chain_node  state="!FAILURE"/>
+
+    <job_chain_node  state="SUCCESS"/>
+</job_chain>

@@ -250,7 +250,7 @@ class AriiSession
     }
     
     public function getDatabases() {
-        if (empty($this->get('Databases'))) {
+        if (!$this->get('Databases')) {
             setDefaultDatabases();
         }
         return $this->get('Databases');
@@ -258,7 +258,7 @@ class AriiSession
     
     public function setDefaultDatabases() {
         // Nouveauté 1.6, on inègre les bases de données du fichier parameters.yml
-        if (!empty($this->arii_databases)) {
+        if ($this->arii_databases) {
             $Default = array();
             foreach ($this->arii_databases as $db) {
                 $DB = $db;
@@ -317,7 +317,7 @@ class AriiSession
     public function GetSpoolers()
     { 
         // rempli ?
-        if (empty($this->get('Spoolers'))) {
+        if (!$this->get('Spoolers')) {
             $this->setSpoolers();
         }
         return $this->get('Spoolers');

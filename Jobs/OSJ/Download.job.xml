@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<job  order="yes" stop_on_error="no" title="Telechargement de la distribution">
+    <params >
+        <param  name="URL" value="http://download.arii.org/arii_update.zip"/>
+    </params>
+
+    <script  language="shell">
+        <![CDATA[
+echo === ${SCHEDULER_JOB_NAME} ============================================
+wget ${SCHEDULER_PARAM_URL} -O /tmp/arii_update.zip
+        ]]>
+    </script>
+
+    <run_time />
+</job>

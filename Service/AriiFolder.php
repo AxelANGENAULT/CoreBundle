@@ -5,11 +5,9 @@ use Symfony\Component\Translation\Translator;
 class AriiFolder {
    
     protected $session; 
-    protected $config;
     
-    public function __construct(AriiSession $session, $config) {
+    public function __construct(AriiSession $session) {
         $this->session = $session;
-        $this->config = $config;
     }
     
     public function Tree($basedir,$dir,$Files=array(),$Ext=array() ) {
@@ -91,24 +89,5 @@ class AriiFolder {
         return $xml;
     }
     
-    public function Remotes() {
-
-        $path = $this->config.'/remote';
-        $Dir = array();
-        if ($dh = @opendir($path)) {
-            while (($file = readdir($dh)) !== false) {
-                if (($file != '_all') and (substr($file,0,1) != '.') and is_dir($path.'/'.$file)) {
-                    array_push($Dir, str_replace('#',':',$file) );
-                }
-            }
-            closedir($dh);
-        }
-        else {
-            array_push($Dir,'empty !');
-        }
-
-        sort($Dir);
-        return $Dir;
-    }
 }
 ?>

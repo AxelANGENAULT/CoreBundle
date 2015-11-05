@@ -28,27 +28,7 @@
             <item id="readme" img="{{ BUNDLE.img }}.png" text="{{ "About..." | trans }}">
                 <href><![CDATA[{{ BUNDLE.url }}]]></href>
             </item>
-            
-<!--            <item id="about" img="about.png" text="{{ "About Ari'i" | trans }}">
-                <href><![CDATA[http://www.sos-paris.com]]></href>
-            </item>
--->      </item>        
-<!--
-	<item id="toolbox" img="toolbox.png">
-                <item id="silent_install" text="{{ "Silent install" | trans }}" >
-                <href><![CDATA[{{ url('arii_Tools_silent') }}]]></href>
-                </item>
-                <item id="cron" text="{{ "Cron converter" | trans }}" >
-                <href><![CDATA[{{ url('arii_Tools_cron') }}]]></href>
-                </item>
-	</item>
--->
-<!--	<item id="help" img="help.png">
-                <item id="about" text="{{ "About" | trans }}" >
-                <href><![CDATA[{{ path('arii_About') }}]]></href>
-                </item>
-	</item>
--->
+        </item>        
 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}                
 	<item type="separator"/>
 {% if is_granted('ROLE_OPERATOR') %}
@@ -66,14 +46,6 @@
 	<item id="topdis" text="{{ app.user.username }}" img="role_operator.png"/>        
 {% endif %}
 {% endif %}
-<!--
-    <item type="separator"/>        
-    <item id="lang" img="world.png">
-        <item id="fr" text="{{ "fr" | trans }}" >
-        <href><![CDATA[{{ path('arii_About') }}]]></href>
-        </item>
-    </item>
--->
 <!--
     <item id="tz" img="world.png">
             {% for continent,country in TZ %}

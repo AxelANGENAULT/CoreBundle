@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<job  order="yes" stop_on_error="no" title="Décompresse le fichier">
+    <script  language="shell">
+        <![CDATA[
+echo === ${SCHEDULER_JOB_NAME} ============================================
+cd /tmp
+unzip -f arii_update.zip -d arii_update
+        ]]>
+    </script>
+
+    <run_time />
+</job>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<order  state="GET" title="Téléchargement et mise à jour">
+    <params >
+        <param  name="URL" value="http://www.sos-paris.com/download/arii_update.zip"/>
+
+        <param  name="ARII" value="/home/arii/Symfony"/>
+    </params>
+
+    <run_time  let_run="no"/>
+</order>
