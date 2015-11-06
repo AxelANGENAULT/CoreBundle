@@ -59,18 +59,20 @@ class SessionController extends Controller
                 print "<font color='red'>$db ?!</font>";
                 exit();
             }
-            /* ancien systeme
-            if ($db != 'recalc') {
-                $session->setDatabaseById($db);
-            }
-            else {
-                $session->setDatabases();
-            }
-             */
         }
         
         if ($request->query->get( 'spooler' )) {
-             $session->setSpoolerById($request->query->get( 'spooler' ));
+            $db = $request->query->get( 'spooler' )-1;
+            $Spoolers = $session->getSpoolers();
+            if (isset($Spoolers[$db])) {
+                $session->setSpooler($Spoolers[$db]);
+                print $Spoolers[$db]['name'];
+                exit();
+            }
+            else {
+                print "<font color='red'>$db ?!</font>";
+                exit();
+            }
         }
         
         if ($request->query->get( 'site' )) {
