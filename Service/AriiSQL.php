@@ -1,6 +1,4 @@
 <?php
-// src/Sdz/BlogBundle/Service/AriiSQL.php
- 
 namespace Arii\CoreBundle\Service;
 use Arii\CoreBundle\Service\AriiSession;
 
@@ -56,13 +54,17 @@ class AriiSQL
         $this->ref_timestamp = $session->getRefTimestamp();
 
         // Correction des dates 
-        if ($this->driver == 'pdo_oci') {
+        switch ($this->driver) {
+            case 'oci8':
+            case 'oracle':
+            case 'pdo_oci':    
                 $this->past = "to_date('".$session->getPast()."','yyyy-mm-dd hh24:mi:ss')";
                 $this->future = "to_date('".$session->getFuture()."','yyyy-mm-dd hh24:mi:ss')";
-        }
-        else {
+                break;
+            default:
                 $this->past   = '"'.$session->getPast().'"';
                 $this->future = '"'.$session->getFuture().'"';
+                break;
         }
 
         // filtre en cours 
@@ -246,16 +248,7 @@ class AriiSQL
                         array_push($Where,'('.$this->SqlFunction('isnull', $k).')');
                    }
                    elseif ($v == '(!null)') {
-                        switch ($this->driver) {
-                             case 'postgre':
-                             case 'postgres':
-                             case 'pdo_pgsql':
-                                 array_push($Where,'('.$this->Column($k).' is not null'.")");
-                                 break;
-                             default:
-                                 array_push($Where,'(not(isnull('.$this->Column($k).")))");
-                                 break;
-                        }
+                        array_push($Where,'('.$this->SqlFunction('isnotnull', $k).')');
                    }
                    elseif (strpos(" $v",'%'))  {
                         array_push($Where,'( '.$this->Column($k)." like '".$v."')");
@@ -498,19 +491,35 @@ class AriiSQL
                     default:
                         return 'month('.$col.')';
                 }
-			case 'isnull':
+            case 'isnull':
                 switch ($this->driver) {
+                    case 'oci8':
+                    case 'oracle':
+                    case 'pdo_oci':
+                        return "$col is null";
                     case 'postgre':
                     case 'postgres':
                     case 'pdo_pgsql':
                         return '"'.$col.'" is null';
-                    case 'pdo_oci':
-                        return "$col is null";
                     default:
                         return 'isnull('.$col.')';
                 }			
                 break;            
-        }
+            case 'isnotnull':
+                switch ($this->driver) {
+                    case 'oci8':
+                    case 'oracle':
+                    case 'pdo_oci':
+                        return "$col is not null";
+                    case 'postgre':
+                    case 'postgres':
+                    case 'pdo_pgsql':
+                        return '"'.$col.'" is not null';
+                    default:
+                        return 'not(isnull('.$col.'))';
+                }			
+                break;            
+            }
         return $this->SimpleFunction( $fct,$col,$params);     
       }
       
@@ -525,6 +534,11 @@ class AriiSQL
       private function Date($col,$ope,$val) {
         $date = '';
         switch ($this->driver) {
+            case 'oci8':
+            case 'oracle':
+            case 'pdo_oci':    
+                $date = $this->Column($col).' '.$ope.' '.$val;
+                break;
             case 'postgre':
             case 'postgres':
             case 'pdo_pgsql':
