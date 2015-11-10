@@ -275,6 +275,7 @@ class AriiSession
         }
         
         // devrait être un tableau
+        // obsolete, devrait disparaitre des prochaines versions.
         $Default['id'] = -1;
         $Default['db'] = -1;
         $Default['name'] = $this->container->getParameter('repository_name');

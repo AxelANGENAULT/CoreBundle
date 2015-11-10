@@ -7,6 +7,7 @@ class AriiSQL
     private $session;
     
     protected $driver;
+    protected $owner;
     
     protected $spooler;
     protected $job_name;
@@ -42,7 +43,11 @@ class AriiSQL
         
         $db = $session->getDatabase();
         $this->driver = $db['driver'];
-
+        if (isset($db['owner']))
+            $this->owner = $db['owner'];
+        else 
+            $this->owner = '';
+        
         $Spooler =$session->getSpooler( );
         $this->spooler = $Spooler['name'];
         if ($this->spooler == 'spooler.all')
@@ -119,12 +124,24 @@ class AriiSQL
        return 'update '.join(',',$Table);
     }
 
+   # Fonction owner
+   private function DBO( $Table ) {
+        if ($this->owner=='')
+           return $Table;
+       
+        $DBO = array();
+        foreach ($Table as $t) {
+            array_push($DBO,$this->owner.'.'.$t);
+        }
+        return $DBO;
+    }
+    
    public function From( $Table ) {
-       return ' from '.join(',',$Table);
+       return ' from '.join(',',$this->DBO($Table));
    }
 
    public function Delete( $Table ) {
-       return 'delete from '.join(',',$Table);
+       return 'delete from '.join(',',$this->DBO($Table));
    }
 
    public function LeftJoin( $table, $Columns ) {
@@ -132,6 +149,8 @@ class AriiSQL
        foreach ($Columns as $c ) {
            array_push($Cols,$this->Column($c));
        }
+       if ($this->owner<>'')
+           $table = $this->owner.'.'.$table;
        return ' left join '.$table.' on '.implode('=',$Cols);
    }
 
