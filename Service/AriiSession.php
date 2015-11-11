@@ -554,7 +554,19 @@ class AriiSession
     {
         $this->set('database',$current);
     }
-    
+
+    public function setDatabaseByName($name, $type='osjs')
+    { 
+        foreach ($this->getDatabases() as $database) {
+            if (($database['name'] == $name) and ($database['type'] == $type)) {
+                $this->setDatabase($database);
+                return $database;
+            }
+        }
+        print "'$name' ($type) not defined in parameters.yml !";
+        exit();
+    }
+
     public function setDatabaseById($id)
     {
         $data = $this->db->Connector('data');        
