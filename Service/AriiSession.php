@@ -251,7 +251,7 @@ class AriiSession
     
     public function getDatabases() {
         if (!$this->get('Databases')) {
-            setDefaultDatabases();
+            $this->setDefaultDatabases();
         }
         return $this->get('Databases');
     }
