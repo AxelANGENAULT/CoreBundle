@@ -62,7 +62,7 @@ class AriiDHTMLX
                 $driver = "Oracle";
                 break;
             case 'mysqli':
-                require_once  $this->dhtmlx_path.'/db_oracle.php';
+                require_once  $this->dhtmlx_path.'/db_mysqli.php';
                 $driver = "MySQLi";
                 break;
             default:
@@ -124,6 +124,7 @@ class AriiDHTMLX
             case 'mysql':
                 $conn= @mysqli_connect( $this->host, $this->user,  $this->password, $this->database );
                 mysqli_query($conn, "SET NAMES 'utf8'");
+                mysqli_query($conn, "SET CHARACTER SET 'utf8'");
                 break;
             default:
                 $dsn = substr($this->driver,4).':host='. $this->host.';dbname='.$this->database;
