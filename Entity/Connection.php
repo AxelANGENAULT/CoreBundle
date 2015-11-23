@@ -506,29 +506,6 @@ class Connection
     }
 
     /**
-     * Set network
-     *
-     * @param \Arii\CoreBundle\Entity\Network $network
-     * @return Connection
-     */
-    public function setNetwork(\Arii\CoreBundle\Entity\Network $network = null)
-    {
-        $this->network = $network;
-    
-        return $this;
-    }
-
-    /**
-     * Get network
-     *
-     * @return \Arii\CoreBundle\Entity\Network 
-     */
-    public function getNetwork()
-    {
-        return $this->network;
-    }
-
-    /**
      * Set enterprise
      *
      * @param \Arii\CoreBundle\Entity\Enterprise $enterprise
