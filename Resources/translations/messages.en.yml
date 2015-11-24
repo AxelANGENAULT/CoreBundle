@@ -103,3 +103,9 @@ user.message.delete:  Do you really want to delete this user ?
 user.message.save:    User saved.
 user.name.note:    Enter your login username here, this field can not be empty.
 user.name.tooltip: Enter your login username here
+date.d: d
+date.m: m
+date.y: a
+time.h: h
+time.m: m
+time.s: s

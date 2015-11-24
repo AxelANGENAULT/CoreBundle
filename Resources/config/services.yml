@@ -35,7 +35,7 @@ services:
 
     arii_core.date:
         class: Arii\CoreBundle\Service\AriiDate
-        arguments: ["@arii_core.session"]
+        arguments: ["@arii_core.session", @translator]
 
     arii_core.session:
         class: Arii\CoreBundle\Service\AriiSession

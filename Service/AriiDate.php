@@ -3,6 +3,7 @@
  
 namespace Arii\CoreBundle\Service;
 use Arii\CoreBundle\Service\AriiSession;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class AriiDate
 {
@@ -13,14 +14,16 @@ class AriiDate
     protected $TZOffset;
     protected $DefaultOffset;
     protected $CurrentDate;
-        
-    public function __construct(AriiSession $session)
+    protected $translator;
+
+    public function __construct(AriiSession $session, TranslatorInterface $translator)
     {
         $this->session = $session;
         
         // date par defaut
         $this->CurrentDate = date('Y-m-d');
-            
+        $this->translator = $translator;
+        
         $Site =  $session->getSite();
         $this->TZLocal = $Site['timezone'];
 
@@ -108,34 +111,62 @@ class AriiDate
         return $this->ShortDate( date( 'Y-m-d H:i:s', $date + $offset) );
     }
 
-    public function FormatTime($d) {
+    public function FormatTime($d,$duration = true) {
+       // Si negatif, on le garde de cote
+       $prefix = "";
+       if ($d<0) {
+           $prefix = "-";
+           $d *= -1;
+       }
        $str = '';
        $l = 0;
+       if ($d>31557600) {
+           $n = (int) ($d/31557600);
+
+           // Si chiffre énorme (> 20ans) et duration == true, on est dans une duree en cours
+           if (($n>20) and ($duration)) {
+               $d = (time() - $d);
+               $prefix = "";
+           }
+           else {
+            $d %= 31557600;
+            $str .= ' '.$n.$this->translator->trans('date.y');
+            $l++;
+           }
+       }
+       if ($l>1) return $str;
+       if ($d>2592000) {
+           $n = (int) ($d/2592000);
+           $d %= 2592000;
+           $str .= ' '.$n.$this->translator->trans('date.m');
+           $l++;           
+       }
+       if ($l>1) return $str;
        if ($d>86400) {
            $n = (int) ($d/86400);
            $d %= 86400;
-           $str .= ' '.$n.'d'; 
+           $str .= ' '.$n.$this->translator->trans('date.d');
            $l++;           
        }
        if ($l>1) return $str;
        if ($d>3600) {
            $n = (int) ($d/3600);
            $d %= 3600;
-           $str .= ' '.$n.'h';           
+           $str .= ' '.$n.$this->translator->trans('time.h');           
            $l++;
        }
        if ($l>1) return $str;
        if ($d>60) {
            $n = (int) ($d/60);
            $d %= 60;
-           $str .= ' '.$n.'m';           
+           $str .= ' '.$n.$this->translator->trans('time.m');         
            $l++;
        }
        if ($l>1) return $str;
        
        if ($d>0) 
-        $str .= ' '.round($d).'s';
-       return $str;        
+        $str .= ' '.round($d).$this->translator->trans('time.s');
+       return $prefix.$str;
     }
     
     public function Duration($start,$end = '' ) {

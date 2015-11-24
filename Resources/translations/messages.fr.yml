@@ -143,7 +143,12 @@ Database: Base de données
 database: base de données
 Databases: Bases de données
 date.reference: date de référence
-day.d: j
+date.d: j
+date.m: m
+date.y: a
+time.h: h
+time.m: m
+time.s: s
 DBDRIVER.CHANGE: Le pilote de base de données indiqué dans le fichier de paramètres n'est pas pris en charge par Arii.
 DBDRIVER.ERROR: Pilote inconnu
 Delay: Délai
