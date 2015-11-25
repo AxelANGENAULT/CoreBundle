@@ -35,6 +35,11 @@ class Category
      */
     private $description;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="Arii\CoreBundle\Entity\Category")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $category;
 
     /**
      * Get id

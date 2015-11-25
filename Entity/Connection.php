@@ -28,6 +28,12 @@ class Connection
     private $enterprise;
 
     /**
+    * @ORM\ManyToOne(targetEntity="Arii\CoreBundle\Entity\Category")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $category;
+
+    /**
      * @ORM\OneToOne(targetEntity="Arii\CoreBundle\Entity\Connection")
      * @ORM\JoinColumn(nullable=true)
      *      */

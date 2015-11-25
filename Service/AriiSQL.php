@@ -272,13 +272,18 @@ class AriiSQL
                    elseif (strpos(" $v",'%'))  {
                         array_push($Where,'( '.$this->Column($k)." like '".$v."')");
                    }
-                   elseif (($p=strpos($k,'|'))>0) {    
+                   elseif (($p=strpos($k,'|'))>0) {
                         array_push($Where,'( '.$this->Column(substr($k,0,$p)).substr($k,$p+1)."'".$v."')");
                    }
-                   else {    
-                        array_push($Where,'( '.$this->Column($k)."='".$v."')");
+                   elseif (($p=strpos($k,'>'))>0) {   
+                        array_push($Where,'( '.$this->Column(substr($k,0,$p)).' '.substr($k,$p)."'".$v."')");
                    }
-                   
+                   elseif (($p=strpos($k,'<'))>0) {    
+                        array_push($Where,'( '.$this->Column(substr($k,0,$p)).' '.substr($k,$p)."'".$v."')");
+                   }                   
+                   else { 
+                        array_push($Where,'( '.$this->Column($k)."='".$v."')");
+                   }                   
             }
        }
        $Result = array();
