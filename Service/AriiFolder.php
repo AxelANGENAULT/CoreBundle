@@ -65,7 +65,7 @@ class AriiFolder {
             
             sort($Dir);
             foreach ($Dir as $file) {
-                $xml .= '<item id="'."$dir/$file/".'" text="'.$file.'" im0="folder.gif">';
+                $xml .= '<item id="'.utf8_encode("$dir/$file/").'" text="'.utf8_encode($file).'" im0="folder.gif">';
                 $xml .= $this->TreeXML($basedir,"$dir/$file");
                 $xml .= '</item>';
             }
