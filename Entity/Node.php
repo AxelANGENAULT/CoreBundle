@@ -24,10 +24,10 @@ class Node
     /**
      * @var string
      *
-     * @ORM\Column(name="node", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=64)
      */
-    private $node;
-
+    private $name;
+    
     /**
      * @var string
      *
@@ -36,12 +36,44 @@ class Node
     private $title;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Arii\CoreBundle\Entity\Category")
+     * @ORM\JoinColumn(nullable=true)
+     **/
+    private $category;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Arii\CoreBundle\Entity\Connection")
+     * @ORM\JoinColumn(nullable=true)
+     **/
+    private $shell;
+
+    /**
+     * @var heartbeat
+     *
+     * @ORM\Column(name="heartbeat", type="integer")
+     */
+    private $heartbeat;
+
+    /**
+     * @var status
+     *
+     * @ORM\Column(name="status", type="string", length=16)
+     */
+    private $status;
 
     /**
      * Get id

@@ -81,10 +81,10 @@ services:
         class: Arii\CoreBundle\Service\AriiCron
         arguments: [ "@arii_core.session" ]
 
-    arii_core.joe:
-        class: Arii\CoreBundle\Service\AriiJOE
-        arguments: [ "@arii_core.session" ]
-
     arii_core.doc:
         class: Arii\CoreBundle\Service\AriiDoc
         arguments: ["@request_stack", %java%, %ditaa%, %graphviz_dot% ]
+
+    arii_core.exec:
+        class: Arii\CoreBundle\Service\AriiExec
+        arguments: [ "@arii_core.session", %workspace%, "@arii_core.db", "@arii_core.sql", "@arii_core.audit", "@arii_core.log" ]

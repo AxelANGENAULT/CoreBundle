@@ -106,6 +106,13 @@ class Connection
     /**
      * @var string
      *
+     * @ORM\Column(name="key", type="string", length=255, nullable=true)
+     */
+    private $key;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="driver", type="string", length=32, nullable=true)
      */
     private $driver;

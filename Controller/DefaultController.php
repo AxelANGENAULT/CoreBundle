@@ -10,15 +10,15 @@ use Symfony\Component\Translation\Translator;
 class DefaultController extends Controller
 {
     public function homepageAction() {
-
+        
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirect($this->generateUrl('arii_Home_index'));
         }
-        else  {  
+        else  {
             return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
     }
-    
+
     public function defaultAction()
     {   
         // est-ce que la langue est en session
@@ -83,7 +83,7 @@ class DefaultController extends Controller
     public function menuAction($route='arii_Home_readme')
     {
         $here = $url = $this->generateUrl($route);
-        
+
         $request = $this->container->get('request');
         if ($request->get('route')!='') 
             $route = $request->get('route');
@@ -94,10 +94,10 @@ class DefaultController extends Controller
             $lang[$l]['string'] = $this->get('translator')->trans("lang.$l");     
             $lang[$l]['url'] = $this->generateUrl($route,array('_locale' => $l)); 
         }
-                
+
         $session = $this->container->get('arii_core.session');
         $liste = array();
-        
+
         # Les utilisateur non authentifiés sont dans public
         # Les autres dans home
         $sc = $this->get('security.context');
