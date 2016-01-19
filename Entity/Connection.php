@@ -42,7 +42,7 @@ class Connection
     /**
      * @var string
      *
-     * @ORM\Column(name="env", type="string", length=16)
+     * @ORM\Column(name="env", type="string", length=16, nullable=true)
      */        
     private $env;
 
@@ -78,7 +78,7 @@ class Connection
     /**
      * @var integer
      *
-     * @ORM\Column(name="port", type="integer")
+     * @ORM\Column(name="port", type="integer", nullable=true)
      */
     private $port;
 
@@ -106,7 +106,7 @@ class Connection
     /**
      * @var string
      *
-     * @ORM\Column(name="key", type="string", length=255, nullable=true)
+     * @ORM\Column(name="pkey", type="string", length=255, nullable=true)
      */
     private $key;
 
@@ -563,4 +563,29 @@ class Connection
     {
         return $this->interface;
     }
+    
+    /**
+     * Set category
+     *
+     * @param \Arii\CoreBundle\Entity\Category $category
+     * @return Category
+     */
+    public function setCategory(\Arii\CoreBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+    
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Arii\CoreBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    
 }

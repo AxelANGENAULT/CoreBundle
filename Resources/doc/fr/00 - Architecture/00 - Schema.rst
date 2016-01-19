@@ -1,7 +1,15 @@
 Schema
 ======
 
-<ditaa name="couches">
+Ari'i s'appuie sur deux principaux composants logiciels:
+- un backend Symfony2 renforcés par des outils PHP, Java ou Perl
+- un frontal DHTMLX pour l'interface utilisateur en Javascript
+
+Backend
+-------
+Le backend repose sur la norme proposée par Symfony2, les outils tiers sont généralement installés en tant que "Vendors" du portail.
+
+<ditaa name="couches">Couches logicielles
 /---------------------+---------------------+-----+---------------------\
 | cGRE Module 1       | cGRE Module 2       | ... | cGRE Module n       |
 +---------------------+---------------------+-----+---------------------+
@@ -25,14 +33,6 @@ Schema
 +-------------------------------+---------------------------------------+
 </ditaa>
 
-<dot name="exemple">
-randkir=LR
-
-A -> B
-B -> C
-
-
-</dot>
 
 Infrastructure
 --------------
@@ -40,4 +40,3 @@ L'architecture repose généralement sur des composants LAMP: Linux, Apache, MyS
 
 IIS Windows n'a jamais été testé.
 Pour la base de données, PostGres et Oracle peuvent être utilisés pour la grande majorité des modules.
-

@@ -96,4 +96,28 @@ class Category
     {
         return $this->description;
     }
+    
+    /**
+     * Set category
+     *
+     * @param \Arii\CoreBundle\Entity\Category $category
+     * @return Category
+     */
+    public function setCategory(\Arii\CoreBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+    
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Arii\CoreBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
 }

@@ -14,10 +14,16 @@ class Site
 {
   /**
    * @ORM\ManyToOne(targetEntity="Arii\CoreBundle\Entity\Enterprise")
-   * @ORM\JoinColumn(nullable=false)
+   * @ORM\JoinColumn(nullable=true)
    */
   private $enterprise;
 
+  /**
+   * @ORM\ManyToOne(targetEntity="Arii\CoreBundle\Entity\Zone")
+   * @ORM\JoinColumn(nullable=true)
+   */
+  private $zone;
+  
     /**
      * @var integer
      *
@@ -54,13 +60,6 @@ class Site
      * @ORM\Column(name="longitude", type="float" )
      */
     private $longitude;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="country_code", type="string", length=3, nullable=true)
-     */
-    private $country_code;
 
     /**
      * @var string

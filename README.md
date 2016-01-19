@@ -17,15 +17,25 @@ Le container ou portail est le module de base, il permet de gérer l'ensemble de
 Modules
 -------
 
-### CoreBundle
+| Nom            | Description |
+| ------------   | ----------- |
+| CoreBundle     | Gestion du portail
+| UserBundle     | Gestion des utilisateurs
+| AdminBundle    | Configuration du portail
+| TimeBundle     | Planification de dates complexes
+| MFTBundle      | Transferts de fichiers
+| HubBundle      | Suivi des jobs en Cron et déploiement
+| ATSBundle      | Suivi des jobs Autosys 
+| JIDBundle      | Suivi des jobs Open Source JobScheduler
+| RUNBundle      | Suivi des jobs RunDeck
+| I5Bundle       | Suivi des jobs ISeries
+| ReportBundle   | Archivage et de reporting
+| GraphvizBundle | Affichage graphique des XMLs JobScheduler
+| GalleryBundle  | Galerie d'images
 
-Ce module prend en charge les fonctions communes du portail.
 
-### UserBundle
-Le module Core s'appuie sur un module portal <a href="https://github.com/AriiPortal/UserBundle" target="_blank">UserBundle</a> qui fait le lien avec le module FOSUserBundle.
 
-### Tools
-Pour bénéficier d'outils supplémentaires pour Open Source JobScheduler, il est conseillé d'ajouter le <a href="https://github.com/AriiPortal/ToolsBundle" target="_blank">ToolsBundle</a>. La particularité de ces outils est de pouvoir être utlisé sans avoir installé JobScheduler.
+
 
 Configuration
 -------------

@@ -15,6 +15,3 @@ Le container ou portail est le module de base, il permet de gérer l'ensemble de
 
 L'administrateur du portail peut installer tous les modules disponibles ou seulement certains modules.
 Chaque utilisateur est associé à un « rôle », l'administrateur ouvre tout ou partie des modules installés à chaque rôle.
-
-
-

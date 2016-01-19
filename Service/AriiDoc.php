@@ -185,9 +185,9 @@ class AriiDoc
             $input = sys_get_temp_dir().'/'.str_replace(array(' ','.'),'',microtime());
             file_put_contents("$input.dot", $text );
             $cmd = '"'.$this->graphviz.'" "'.$input.'.dot" -Tpng > "'.$output.'"';
-            exec("$cmd", $output, $result);
+            exec("$cmd 2>&1", $screen, $result);
             if ($result>0)
-                return "<pre>$text<font color='red'>".var_dump($output)."</font></pre>";
+                return "<pre>$text<font color='red'>".var_dump($screen)."</font></pre>";
         }
         $img = file_get_contents($output);
         return '<img class="img-responsive" src="data:image/png;base64,'.base64_encode($img).'"/>';
